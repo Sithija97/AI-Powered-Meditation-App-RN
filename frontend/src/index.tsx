@@ -9,6 +9,9 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import { Home, Login, Register } from "./pages";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import PrivateRoute from "./components/privateRoute";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,7 +20,9 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<Home />} />
+      <Route path="" element={<PrivateRoute />}>
+        <Route index={true} path="/" element={<Home />} />
+      </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Route>
@@ -25,7 +30,9 @@ const router = createBrowserRouter(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 

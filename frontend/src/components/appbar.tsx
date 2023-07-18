@@ -7,6 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import { AccountCircle } from "@mui/icons-material";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import { logout } from "../store/auth/authSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../store/store";
+import { useNavigate } from "react-router-dom";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -38,6 +44,25 @@ interface IProps {
 }
 
 export const Appbar = ({ open, toggleDrawer }: IProps) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { userInfo } = useAppSelector((state: RootState) => state.auth);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setAnchorEl(null);
+    navigate("/login");
+  };
+
   return (
     <AppBar position="absolute" open={open}>
       <Toolbar
@@ -71,6 +96,38 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
             <NotificationsIcon />
           </Badge>
         </IconButton>
+        {userInfo && (
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
+          </div>
+        )}
       </Toolbar>
     </AppBar>
   );
