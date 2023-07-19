@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
-import { register } from "../store/auth/authSlice";
+import { register, reset } from "../store/auth/authSlice";
 import { CircularProgress } from "@mui/material";
 
 function Copyright(props: any) {
@@ -41,7 +41,7 @@ const defaultTheme = createTheme();
 export const Register = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { userInfo, isLoading, isError, message } = useAppSelector(
+  const { userInfo, isLoading, isError, isSuccess, message } = useAppSelector(
     (state: RootState) => state.auth
   );
 
@@ -51,14 +51,17 @@ export const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
-    if (userInfo) {
+    if (isError) {
+      toast.error(message);
+    }
+    if (isSuccess || userInfo) {
       navigate("/");
     }
-  }, [navigate, userInfo]);
 
-  useEffect(() => {
-    if (isError) toast.error(message);
-  }, [isError]);
+    return () => {
+      dispatch(reset());
+    };
+  }, [userInfo, isError, isSuccess, message]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -176,7 +179,7 @@ export const Register = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={!name || !email || !password || !confirmPassword}
+              // disabled={!name || !email || !password || !confirmPassword}
             >
               Sign Up
             </Button>
