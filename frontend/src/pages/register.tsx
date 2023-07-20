@@ -176,7 +176,7 @@ export const Register = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              // disabled={!name || !email || !password || !confirmPassword}
+              disabled={!name || !email || !password || !confirmPassword}
             >
               Sign Up
             </Button>

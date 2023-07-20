@@ -156,16 +156,12 @@ export const Login = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                // disabled={!email || !password}
+                disabled={!email || !password}
               >
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  {/* <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link> */}
-                </Grid>
+                <Grid item xs></Grid>
                 <Grid item>
                   <Link to="/register">{"Don't have an account? Sign Up"}</Link>
                 </Grid>
