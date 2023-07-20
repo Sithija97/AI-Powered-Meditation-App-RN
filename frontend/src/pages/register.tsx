@@ -54,14 +54,11 @@ export const Register = () => {
     if (isError) {
       toast.error(message);
     }
-    if (isSuccess || userInfo) {
-      navigate("/");
-    }
 
     return () => {
       dispatch(reset());
     };
-  }, [userInfo, isError, isSuccess, message]);
+  }, [userInfo, isError, isSuccess, message, dispatch]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -74,7 +71,7 @@ export const Register = () => {
           email,
           password,
         };
-        dispatch(register(userData));
+        dispatch(register(userData)).then(() => navigate("/login"));
       } catch (error: any) {
         toast.error(error?.data?.message || error.error);
       }
