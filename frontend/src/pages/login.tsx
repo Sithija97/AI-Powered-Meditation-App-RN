@@ -17,6 +17,7 @@ import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { login, reset } from "../store/auth/authSlice";
 import { CircularProgress } from "@mui/material";
 import { toast } from "react-toastify";
+import { RequestStatus } from "../models";
 
 function Copyright(props: any) {
   return (
@@ -67,7 +68,11 @@ export const Login = () => {
         email,
         password,
       };
-      dispatch(login(userData)).then(() => navigate("/"));
+      dispatch(login(userData)).then((res) => {
+        if (res.meta.requestStatus === RequestStatus.Fulfiled) {
+          navigate("/");
+        }
+      });
     } catch (error: any) {
       toast.error(error?.data?.message || error.error);
     }
