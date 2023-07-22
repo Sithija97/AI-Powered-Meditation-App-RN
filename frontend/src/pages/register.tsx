@@ -116,7 +116,7 @@ export const Register = () => {
                   required
                   fullWidth
                   id="name"
-                  label="User name"
+                  label="Username"
                   name="name"
                   autoComplete="name"
                   value={name}
@@ -128,7 +128,7 @@ export const Register = () => {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Email"
                   name="email"
                   type="email"
                   autoComplete="email"

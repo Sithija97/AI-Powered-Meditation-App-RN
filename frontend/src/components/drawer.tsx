@@ -6,7 +6,7 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { mainListItems, secondaryListItems } from ".";
+import { MainListItems } from ".";
 
 const drawerWidth: number = 240;
 
@@ -58,9 +58,9 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
       </Toolbar>
       <Divider />
       <List component="nav">
-        {mainListItems}
-        <Divider sx={{ my: 1 }} />
-        {secondaryListItems}
+        <MainListItems />
+        {/* <Divider sx={{ my: 1 }} />
+        {secondaryListItems} */}
       </List>
     </Drawer>
   );
