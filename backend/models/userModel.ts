@@ -1,12 +1,20 @@
 import mongoose, { Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
 import { IUser } from "../interfaces/index.js";
+import { UserRole } from "../enums/index.js";
 
 const userSchema = new Schema<IUser>(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    nic: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    title: { type: String, required: true },
+    role: { type: String, default: UserRole.IDLE },
+    maritalStatus: { type: String },
+    email: { type: String },
+    address: { type: String },
+    dob: { type: String },
+    gender: { type: String },
   },
   {
     timestamps: true,
