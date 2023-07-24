@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Icon } from "@iconify/react";
 import { Dashboard } from "../layouts";
 import {
   Box,
@@ -27,6 +26,7 @@ import {
   Select,
   Grid,
 } from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useNavigate } from "react-router-dom";
 
 function createData(type: string, name: string, nic: string, address: string) {
@@ -84,25 +84,22 @@ export const Users = () => {
             </Button>
           </Stack>
 
-          <Card sx={{ p: 2, mb:2}}>
+          <Card sx={{ p: 2, mb: 2 }}>
             <div>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={5} md={4}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                  <Select
-                    label="Type"
-                  >
-                    <MenuItem value={10}>Manager</MenuItem>
-                    <MenuItem value={20}>Coordinator</MenuItem>
-                    <MenuItem value={30}>Driver</MenuItem>
-                    <MenuItem value={40}>Helper</MenuItem>
-                  </Select>
-                </FormControl>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={5} md={4}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                    <Select label="Type">
+                      <MenuItem value={10}>Manager</MenuItem>
+                      <MenuItem value={20}>Coordinator</MenuItem>
+                      <MenuItem value={30}>Driver</MenuItem>
+                      <MenuItem value={40}>Helper</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
               </Grid>
-            </Grid>
             </div>
-           
           </Card>
 
           <Card>
@@ -145,7 +142,7 @@ export const Users = () => {
                           color="inherit"
                           onClick={handleOpenMenu}
                         >
-                          <Icon icon="ri:more-2-fill" width="18" />
+                          <MoreVertIcon fontSize="small" />
                         </IconButton>
                       </TableCell>
                     </TableRow>
@@ -180,14 +177,10 @@ export const Users = () => {
           }}
         >
           <MenuItem>
-            <Icon icon="tabler:edit" width="18" />
+            {/* <EditIcon fontSize="small" /> */}
             Edit
           </MenuItem>
-
-          <MenuItem sx={{ color: "error.main" }}>
-            <Icon icon="carbon:delete" width="18" />
-            Delete
-          </MenuItem>
+          <MenuItem sx={{ color: "error.main" }}>Delete</MenuItem>
         </Popover>
       </Box>
     </Dashboard>

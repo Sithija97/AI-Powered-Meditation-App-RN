@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Icon } from '@iconify/react';
 import { Dashboard } from "../layouts";
 import {
   Box,
@@ -23,13 +22,13 @@ import {
   MenuItem,
   IconButton,
 } from "@mui/material";
-
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function createData(
   ownership: string,
   type: string,
   chassieNo: string,
-  fuelType: string,
+  fuelType: string
 ) {
   return { ownership, type, chassieNo, fuelType };
 }
@@ -43,14 +42,13 @@ const rows = [
 ];
 
 export const Vehicles = () => {
-
   const [open, setOpen] = useState(null);
 
   const handleCloseMenu = () => {
     setOpen(null);
   };
 
-  const handleOpenMenu = (event:any) => {
+  const handleOpenMenu = (event: any) => {
     setOpen(event.currentTarget);
   };
 
@@ -69,7 +67,7 @@ export const Vehicles = () => {
         }}
       >
         <Toolbar />
-        <Container  sx={{ mt: 4, mb: 4 }}>
+        <Container sx={{ mt: 4, mb: 4 }}>
           <Stack
             direction="row"
             alignItems="center"
@@ -87,11 +85,21 @@ export const Vehicles = () => {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell><b>Ownership</b></TableCell>
-                    <TableCell align="right"><b>Type</b></TableCell>
-                    <TableCell align="right"><b>Chassie No</b></TableCell>
-                    <TableCell align="right"><b>Fuel Type</b></TableCell>
-                    <TableCell align="right"><b>Actions</b></TableCell>
+                    <TableCell>
+                      <b>Ownership</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Type</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Chassie No</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Fuel Type</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Actions</b>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -107,57 +115,49 @@ export const Vehicles = () => {
                       <TableCell align="right">{row.chassieNo}</TableCell>
                       <TableCell align="right">{row.fuelType}</TableCell>
                       <TableCell align="right">
-                      <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-                      <Icon icon="ri:more-2-fill"  width="18"/>
-                            
-                          </IconButton>
+                        <IconButton
+                          size="large"
+                          color="inherit"
+                          onClick={handleOpenMenu}
+                        >
+                          <MoreVertIcon fontSize="small" />
+                        </IconButton>
                       </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
                 <TableFooter>
-          <TableRow>
-          {/* <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} /> */}
-          </TableRow>
-        </TableFooter>
+                  <TableRow>
+                    {/* <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} /> */}
+                  </TableRow>
+                </TableFooter>
               </Table>
             </TableContainer>
           </Card>
-
         </Container>
 
         <Popover
-        open={Boolean(open)}
-        anchorEl={open}
-        onClose={handleCloseMenu}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: {
-            p: 1,
-            width: 140,
-            '& .MuiMenuItem-root': {
-              px: 1,
-              typography: 'body2',
-              borderRadius: 0.75,
+          open={Boolean(open)}
+          anchorEl={open}
+          onClose={handleCloseMenu}
+          anchorOrigin={{ vertical: "top", horizontal: "left" }}
+          transformOrigin={{ vertical: "top", horizontal: "right" }}
+          PaperProps={{
+            sx: {
+              p: 1,
+              width: 140,
+              "& .MuiMenuItem-root": {
+                px: 1,
+                typography: "body2",
+                borderRadius: 0.75,
+              },
             },
-          },
-        }}
-      >
-        <MenuItem>
-        <Icon icon="tabler:edit" width="18" />
-          Edit
-        </MenuItem>
-
-        <MenuItem sx={{ color: 'error.main' }}>
-        <Icon icon="carbon:delete" width="18" />
-          Delete
-        </MenuItem>
-      </Popover>
+          }}
+        >
+          <MenuItem>Edit</MenuItem>
+          <MenuItem sx={{ color: "error.main" }}>Delete</MenuItem>
+        </Popover>
       </Box>
-
-      
     </Dashboard>
-    
   );
 };

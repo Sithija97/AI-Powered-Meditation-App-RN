@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Icon } from "@iconify/react";
 import { Dashboard } from "../layouts";
 import {
   Box,
@@ -107,8 +106,11 @@ export const CreateUsers = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={4} md={4}>
-                <LocalizationProvider  dateAdapter={AdapterDayjs}>
-                  <DatePicker slotProps={{ textField: { fullWidth: true } }} label="Date Of Birth" />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    slotProps={{ textField: { fullWidth: true } }}
+                    label="Date Of Birth"
+                  />
                 </LocalizationProvider>
               </Grid>
             </Grid>
@@ -121,13 +123,19 @@ export const CreateUsers = () => {
                 <TextField required id="nic" name="nic" label="NIC" fullWidth />
               </Grid>
               <Grid item xs={12} sm={4} md={4}>
-              <LocalizationProvider  dateAdapter={AdapterDayjs}>
-                  <DatePicker slotProps={{ textField: { fullWidth: true } }} label="Start Date" />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    slotProps={{ textField: { fullWidth: true } }}
+                    label="Start Date"
+                  />
                 </LocalizationProvider>
               </Grid>
               <Grid item xs={12} sm={4} md={4}>
-              <LocalizationProvider  dateAdapter={AdapterDayjs}>
-                  <DatePicker slotProps={{ textField: { fullWidth: true } }}  label="End Date" />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    slotProps={{ textField: { fullWidth: true } }}
+                    label="End Date"
+                  />
                 </LocalizationProvider>
               </Grid>
             </Grid>
@@ -147,13 +155,19 @@ export const CreateUsers = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={4} md={4}>
-              <LocalizationProvider  dateAdapter={AdapterDayjs}>
-                  <DatePicker slotProps={{ textField: { fullWidth: true } }}  label="Start Date" />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    slotProps={{ textField: { fullWidth: true } }}
+                    label="Start Date"
+                  />
                 </LocalizationProvider>
               </Grid>
               <Grid item xs={12} sm={4} md={4}>
-              <LocalizationProvider  dateAdapter={AdapterDayjs}>
-                  <DatePicker slotProps={{ textField: { fullWidth: true } }}  label="End Date" />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    slotProps={{ textField: { fullWidth: true } }}
+                    label="End Date"
+                  />
                 </LocalizationProvider>
               </Grid>
             </Grid>
@@ -172,13 +186,19 @@ export const CreateUsers = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={4} md={4}>
-              <LocalizationProvider  dateAdapter={AdapterDayjs}>
-                  <DatePicker slotProps={{ textField: { fullWidth: true } }}  label="Start Date" />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    slotProps={{ textField: { fullWidth: true } }}
+                    label="Start Date"
+                  />
                 </LocalizationProvider>
               </Grid>
               <Grid item xs={12} sm={4} md={4}>
-              <LocalizationProvider  dateAdapter={AdapterDayjs}>
-                  <DatePicker slotProps={{ textField: { fullWidth: true } }} label="End Date" />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    slotProps={{ textField: { fullWidth: true } }}
+                    label="End Date"
+                  />
                 </LocalizationProvider>
               </Grid>
             </Grid>
