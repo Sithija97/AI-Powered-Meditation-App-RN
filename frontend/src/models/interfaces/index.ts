@@ -1,10 +1,15 @@
 export interface userRegistrationData {
   name: string;
-  email: string;
+  nic: string;
+  title: string;
   password: string;
+  email: string;
+  address: string;
+  dob: string;
+  maritalStatus: string;
 }
 
 export interface userLoginData {
-  email: string;
+  nic: string;
   password: string;
 }

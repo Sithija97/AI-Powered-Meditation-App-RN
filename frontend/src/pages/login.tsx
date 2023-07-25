@@ -47,7 +47,7 @@ export const Login = () => {
     (state: RootState) => state.auth
   );
 
-  const [email, setEmail] = useState("");
+  const [nic, setNic] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export const Login = () => {
     if (isError) toast.error(message);
     try {
       const userData = {
-        email,
+        nic,
         password,
       };
       dispatch(login(userData)).then((res) => {
@@ -132,13 +132,13 @@ export const Login = () => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email"
-                name="email"
-                autoComplete="email"
+                id="nic"
+                label="NIC"
+                name="nic"
+                autoComplete="nic"
                 autoFocus
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={nic}
+                onChange={(e) => setNic(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -161,7 +161,7 @@ export const Login = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                disabled={!email || !password}
+                disabled={!nic || !password}
               >
                 Sign In
               </Button>
