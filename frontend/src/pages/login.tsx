@@ -18,6 +18,7 @@ import { login, reset } from "../store/auth/authSlice";
 import { CircularProgress } from "@mui/material";
 import { toast } from "react-toastify";
 import { RequestStatus } from "../models";
+import loginImage from "../assets/login.svg";
 
 function Copyright(props: any) {
   return (
@@ -95,8 +96,7 @@ export const Login = () => {
           sm={4}
           md={7}
           sx={{
-            backgroundImage:
-              "url(https://source.unsplash.com/random?wallpapers)",
+            backgroundImage: `url(${loginImage})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"

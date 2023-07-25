@@ -12,6 +12,7 @@ import { Home, Login, Register, Users, Vehicles, CreateUsers } from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import PrivateRoute from "./components/privateRoute";
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

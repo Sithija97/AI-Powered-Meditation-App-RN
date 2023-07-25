@@ -7,12 +7,13 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { AccountCircle } from "@mui/icons-material";
+import { AccountCircle, AssignmentInd, Logout } from "@mui/icons-material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { logout } from "../store/auth/authSlice";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { useNavigate } from "react-router-dom";
+import { ListItemIcon, ListItemText } from "@mui/material";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -123,8 +124,19 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <AssignmentInd fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Profile</ListItemText>
+              </MenuItem>
+
+              <MenuItem onClick={handleLogout}>
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Logout</ListItemText>
+              </MenuItem>
             </Menu>
           </div>
         )}

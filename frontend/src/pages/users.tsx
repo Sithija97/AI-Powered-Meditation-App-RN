@@ -15,9 +15,6 @@ import {
   TableRow,
   TableBody,
   TableFooter,
-  TablePagination,
-  Drawer,
-  TextField,
   Popover,
   MenuItem,
   IconButton,
@@ -25,8 +22,10 @@ import {
   InputLabel,
   Select,
   Grid,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Delete, Edit, MoreVert } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 function createData(type: string, name: string, nic: string, address: string) {
@@ -142,7 +141,7 @@ export const Users = () => {
                           color="inherit"
                           onClick={handleOpenMenu}
                         >
-                          <MoreVertIcon fontSize="small" />
+                          <MoreVert fontSize="small" />
                         </IconButton>
                       </TableCell>
                     </TableRow>
@@ -177,10 +176,18 @@ export const Users = () => {
           }}
         >
           <MenuItem>
-            {/* <EditIcon fontSize="small" /> */}
-            Edit
+            <ListItemIcon>
+              <Edit fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Edit</ListItemText>
           </MenuItem>
-          <MenuItem sx={{ color: "error.main" }}>Delete</MenuItem>
+
+          <MenuItem sx={{ color: "error.main" }}>
+            <ListItemIcon>
+              <Delete fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Delete</ListItemText>
+          </MenuItem>
         </Popover>
       </Box>
     </Dashboard>

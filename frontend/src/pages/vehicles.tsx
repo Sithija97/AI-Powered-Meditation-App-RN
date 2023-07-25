@@ -15,14 +15,14 @@ import {
   TableRow,
   TableBody,
   TableFooter,
-  TablePagination,
-  Drawer,
-  TextField,
   Popover,
   MenuItem,
   IconButton,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Delete, Edit } from "@mui/icons-material";
 
 function createData(
   ownership: string,
@@ -154,8 +154,19 @@ export const Vehicles = () => {
             },
           }}
         >
-          <MenuItem>Edit</MenuItem>
-          <MenuItem sx={{ color: "error.main" }}>Delete</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <Edit fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Edit</ListItemText>
+          </MenuItem>
+
+          <MenuItem sx={{ color: "error.main" }}>
+            <ListItemIcon>
+              <Delete fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Delete</ListItemText>
+          </MenuItem>
         </Popover>
       </Box>
     </Dashboard>
