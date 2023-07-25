@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -15,7 +13,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { register, reset } from "../store/auth/authSlice";
-import { CircularProgress } from "@mui/material";
+import {
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { CustomDatePicker } from "../components/customDatePicker";
+import { RequestStatus } from "../models";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { formatDate } from "../utils/dateFormatter";
 
 function Copyright(props: any) {
   return (
@@ -38,17 +47,25 @@ function Copyright(props: any) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
+const InitialState = {
+  name: "",
+  nic: "",
+  title: "",
+  password: "",
+  confirmPassword: "",
+  email: "",
+  address: "",
+  dob: "",
+  maritalStatus: "",
+};
+
 export const Register = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { userInfo, isLoading, isError, isSuccess, message } = useAppSelector(
     (state: RootState) => state.auth
   );
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formData, setFormData] = useState(InitialState);
 
   useEffect(() => {
     if (isError) {
@@ -60,18 +77,37 @@ export const Register = () => {
     };
   }, [userInfo, isError, isSuccess, message, dispatch]);
 
+  const handleChange = (event: any) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
     } else {
+      console.log(formData);
       try {
         const userData = {
           name,
-          email,
+          nic,
+          title,
           password,
+          email,
+          address,
+          dob: formatDate(dob),
+          maritalStatus,
         };
-        dispatch(register(userData)).then(() => navigate("/login"));
+
+        dispatch(register(userData)).then((res) => {
+          if (res.meta.requestStatus === RequestStatus.Fulfiled) {
+            navigate("/login");
+          }
+        });
       } catch (error: any) {
         toast.error(error?.data?.message || error.error);
       }
@@ -85,7 +121,17 @@ export const Register = () => {
       </Box>
     );
   }
-
+  const {
+    name,
+    nic,
+    title,
+    password,
+    confirmPassword,
+    email,
+    address,
+    dob,
+    maritalStatus,
+  } = formData;
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -116,11 +162,64 @@ export const Register = () => {
                   required
                   fullWidth
                   id="name"
-                  label="Username"
+                  label="Name"
                   name="name"
-                  autoComplete="name"
+                  type="text"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  autoComplete="name"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="nic"
+                  label="NIC"
+                  name="nic"
+                  type="text"
+                  value={nic}
+                  autoComplete="nic"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  value={password}
+                  autoComplete="password"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="confirmPassword"
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  autoComplete="confirmPassword"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="title"
+                  label="Title"
+                  name="title"
+                  type="text"
+                  value={title}
+                  autoComplete="title"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -128,47 +227,55 @@ export const Register = () => {
                   required
                   fullWidth
                   id="email"
-                  label="Email"
+                  label="Email Address"
                   name="email"
                   type="email"
-                  autoComplete="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  id="address"
+                  label="Address"
+                  name="address"
+                  type="address"
+                  value={address}
+                  autoComplete="address"
+                  onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm password"
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="new-password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
+              <Grid item xs={12} sm={6}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <CustomDatePicker
+                    name="dob"
+                    label="Date Of Birth"
+                    value={dob}
+                    onChange={handleChange}
+                  />
+                </LocalizationProvider>
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
+              <Grid item xs={12} sm={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Marital status
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="maritalStatus"
+                    name="maritalStatus"
+                    value={maritalStatus}
+                    type="text"
+                    label="Marital status"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={"married"}>Married</MenuItem>
+                    <MenuItem value={"unmarried"}>Unmarried</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
             </Grid>
             <Button
@@ -176,7 +283,17 @@ export const Register = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={!name || !email || !password || !confirmPassword}
+              disabled={
+                !name ||
+                !nic ||
+                !title ||
+                !password ||
+                !confirmPassword ||
+                !email ||
+                !address ||
+                !dob ||
+                !maritalStatus
+              }
             >
               Sign Up
             </Button>

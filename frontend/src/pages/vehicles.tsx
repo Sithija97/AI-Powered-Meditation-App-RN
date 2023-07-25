@@ -1,8 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dashboard } from "../layouts";
-import { Box, Container, Toolbar } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Stack,
+  Toolbar,
+  Typography,
+  Table,
+  TableContainer,
+  TableHead,
+  TableCell,
+  TableRow,
+  TableBody,
+  TableFooter,
+  TablePagination,
+  Drawer,
+  TextField,
+  Popover,
+  MenuItem,
+  IconButton,
+} from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+
+function createData(
+  ownership: string,
+  type: string,
+  chassieNo: string,
+  fuelType: string
+) {
+  return { ownership, type, chassieNo, fuelType };
+}
+
+const rows = [
+  createData("Manager", "Kamal", "123456789V", "abc"),
+  createData("Coordinator", "Kamal", "123456789V", "abc"),
+  createData("Driver", "Ramal", "123456789V", "abc"),
+  createData("Helper", "Jhon", "123456789V", "abc"),
+  createData("Helper", "Doe", "123456789V", "abc"),
+];
 
 export const Vehicles = () => {
+  const [open, setOpen] = useState(null);
+
+  const handleCloseMenu = () => {
+    setOpen(null);
+  };
+
+  const handleOpenMenu = (event: any) => {
+    setOpen(event.currentTarget);
+  };
+
   return (
     <Dashboard>
       <Box
@@ -18,9 +67,96 @@ export const Vehicles = () => {
         }}
       >
         <Toolbar />
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <h4>Vehicles</h4>
+        <Container sx={{ mt: 4, mb: 4 }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            mb={5}
+          >
+            <Typography variant="h5" gutterBottom>
+              Vehicles
+            </Typography>
+            <Button variant="contained">Add Vehicle</Button>
+          </Stack>
+
+          <Card>
+            <TableContainer sx={{ minWidth: 800 }}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      <b>Ownership</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Type</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Chassie No</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Fuel Type</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Actions</b>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow
+                      key={row.type}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.ownership}
+                      </TableCell>
+                      <TableCell align="right">{row.type}</TableCell>
+                      <TableCell align="right">{row.chassieNo}</TableCell>
+                      <TableCell align="right">{row.fuelType}</TableCell>
+                      <TableCell align="right">
+                        <IconButton
+                          size="large"
+                          color="inherit"
+                          onClick={handleOpenMenu}
+                        >
+                          <MoreVertIcon fontSize="small" />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    {/* <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} /> */}
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </TableContainer>
+          </Card>
         </Container>
+
+        <Popover
+          open={Boolean(open)}
+          anchorEl={open}
+          onClose={handleCloseMenu}
+          anchorOrigin={{ vertical: "top", horizontal: "left" }}
+          transformOrigin={{ vertical: "top", horizontal: "right" }}
+          PaperProps={{
+            sx: {
+              p: 1,
+              width: 140,
+              "& .MuiMenuItem-root": {
+                px: 1,
+                typography: "body2",
+                borderRadius: 0.75,
+              },
+            },
+          }}
+        >
+          <MenuItem>Edit</MenuItem>
+          <MenuItem sx={{ color: "error.main" }}>Delete</MenuItem>
+        </Popover>
       </Box>
     </Dashboard>
   );
