@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
 import { Request, Response } from "express";
-import User from "../models/userModel.js";
+import User from "../models/user.model.js";
 import generateToken from "../utils/generateToken.js";
 import { CustomRequest } from "../interfaces/index.js";
 
@@ -12,60 +12,62 @@ import { CustomRequest } from "../interfaces/index.js";
 ~ PUT  : /api/users/profile  - [private] - update user profile
 */
 
-const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const {
-    name,
-    nic,
-    password,
-    title,
-    role,
-    maritalStatus,
-    email,
-    address,
-    dob,
-    gender,
-  } = req.body;
-  const userExists = await User.findOne({ nic });
+export const registerUser = asyncHandler(
+  async (req: Request, res: Response) => {
+    const {
+      name,
+      nic,
+      password,
+      title,
+      role,
+      maritalStatus,
+      email,
+      address,
+      dob,
+      gender,
+    } = req.body;
+    const userExists = await User.findOne({ nic });
 
-  if (userExists) {
-    res.status(400);
-    throw new Error("User already exists");
-  }
+    if (userExists) {
+      res.status(400);
+      throw new Error("User already exists");
+    }
 
-  const user = await User.create({
-    name,
-    nic,
-    password,
-    title,
-    role,
-    maritalStatus,
-    email,
-    address,
-    dob,
-    gender,
-  });
-
-  if (user) {
-    generateToken(res, user._id);
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      nic: user.nic,
-      title: user.title,
-      role: user.role,
-      maritalStatus: user.maritalStatus,
-      email: user.email,
-      address: user.address,
-      dob: user.dob,
-      gender: user.gender,
+    const user = await User.create({
+      name,
+      nic,
+      password,
+      title,
+      role,
+      maritalStatus,
+      email,
+      address,
+      dob,
+      gender,
     });
-  } else {
-    res.status(400);
-    throw new Error("Invalid user data");
-  }
-});
 
-const loginUser = asyncHandler(async (req: Request, res: Response) => {
+    if (user) {
+      generateToken(res, user._id);
+      res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        nic: user.nic,
+        title: user.title,
+        role: user.role,
+        maritalStatus: user.maritalStatus,
+        email: user.email,
+        address: user.address,
+        dob: user.dob,
+        gender: user.gender,
+      });
+    } else {
+      res.status(400);
+      throw new Error("Invalid user data");
+    }
+  }
+);
+
+export const loginUser = asyncHandler(async (req: Request, res: Response) => {
   const { nic, password } = req.body;
 
   const user = await User.findOne({ nic });
@@ -90,7 +92,7 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
   }
 });
 
-const logoutUser = asyncHandler(async (req: Request, res: Response) => {
+export const logoutUser = asyncHandler(async (req: Request, res: Response) => {
   res.cookie("jwt", "", {
     httpOnly: true,
     expires: new Date(0),
@@ -98,7 +100,7 @@ const logoutUser = asyncHandler(async (req: Request, res: Response) => {
   res.status(200).json({ message: "Logged out successfully" });
 });
 
-const getUserProfile = asyncHandler(
+export const getUserProfile = asyncHandler(
   async (req: CustomRequest, res: Response) => {
     const user = {
       _id: req.user?._id,
@@ -116,7 +118,7 @@ const getUserProfile = asyncHandler(
   }
 );
 
-const updateUserProfile = asyncHandler(
+export const updateUserProfile = asyncHandler(
   async (req: CustomRequest, res: Response) => {
     const user = await User.findById(req.user._id);
 
@@ -155,11 +157,3 @@ const updateUserProfile = asyncHandler(
     }
   }
 );
-
-export {
-  loginUser,
-  registerUser,
-  logoutUser,
-  getUserProfile,
-  updateUserProfile,
-};

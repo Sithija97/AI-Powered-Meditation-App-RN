@@ -71,10 +71,6 @@ export const Register = () => {
     if (isError) {
       toast.error(message);
     }
-
-    return () => {
-      dispatch(reset());
-    };
   }, [userInfo, isError, isSuccess, message, dispatch]);
 
   const handleChange = (event: any) => {

@@ -55,10 +55,6 @@ export const Login = () => {
     if (isError) {
       toast.error(message);
     }
-
-    return () => {
-      dispatch(reset());
-    };
   }, [userInfo, isError, isSuccess, message, dispatch]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
