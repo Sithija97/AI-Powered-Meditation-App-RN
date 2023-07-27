@@ -5,6 +5,7 @@ import { CustomRequest } from "../interfaces/common.js";
 
 /*
 ~ POST   : /api/vehicles      - [private] - register a vehicle
+~ GET    : /api/vehicles/:id  - [private] - get vehicle
 ~ GET    : /api/vehicles      - [private] - get vehicles by user
 ~ GET    : /api/vehicles/all  - [private] - get all vehicles
 ~ PUT    : /api/vehicles/:id  - [private] - update vehicle
@@ -38,16 +39,40 @@ export const registerVehicle = asyncHandler(
   }
 );
 
+export const getVehicle = asyncHandler(
+  async (req: CustomRequest, res: Response) => {
+    const vehicle = await Vehicle.findById(req.params.id)
+      .lean()
+      .select("-createdAt -updatedAt -__v");
+
+    if (!vehicle) {
+      res.status(400);
+      throw new Error("Goal not found");
+    }
+
+    if (vehicle.user.toString() !== req.user._id.toString()) {
+      res.status(401);
+      throw new Error("User not authorized");
+    }
+
+    res.status(200).json(vehicle);
+  }
+);
+
 export const getVehicles = asyncHandler(
   async (req: CustomRequest, res: Response) => {
-    const vehicles = await Vehicle.find({ user: req.user._id });
+    const vehicles = await Vehicle.find({ user: req.user._id })
+      .lean()
+      .select("-createdAt -updatedAt -__v");
     res.status(200).json(vehicles);
   }
 );
 
 export const getAllVehicles = asyncHandler(
   async (req: Request, res: Response) => {
-    const vehicles = await Vehicle.find();
+    const vehicles = await Vehicle.find()
+      .lean()
+      .select("-createdAt -updatedAt -__v");
     res.status(200).json(vehicles);
   }
 );

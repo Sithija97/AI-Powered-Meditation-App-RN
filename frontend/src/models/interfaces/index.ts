@@ -13,3 +13,12 @@ export interface userLoginData {
   nic: string;
   password: string;
 }
+
+export interface Vehicle {
+  _id: string;
+  user: string;
+  type: string;
+  ownership: string;
+  fuelType: string;
+  chassieNumber: string;
+}
