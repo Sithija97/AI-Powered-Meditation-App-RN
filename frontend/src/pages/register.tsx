@@ -71,6 +71,10 @@ export const Register = () => {
     if (isError) {
       toast.error(message);
     }
+
+    return () => {
+      dispatch(reset());
+    };
   }, [userInfo, isError, isSuccess, message, dispatch]);
 
   const handleChange = (event: any) => {
@@ -86,7 +90,6 @@ export const Register = () => {
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
     } else {
-      console.log(formData);
       try {
         const userData = {
           name,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dashboard } from "../layouts";
 import {
   Box,
@@ -23,6 +23,9 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Delete, Edit } from "@mui/icons-material";
+import { RootState, useAppDispatch, useAppSelector } from "../store/store";
+import { getVehiclesData } from "../store/vehicle/vehicleSlice";
+import { Vehicle } from "../models";
 
 function createData(
   ownership: string,
@@ -33,16 +36,15 @@ function createData(
   return { ownership, type, chassieNo, fuelType };
 }
 
-const rows = [
-  createData("Manager", "Kamal", "123456789V", "abc"),
-  createData("Coordinator", "Kamal", "123456789V", "abc"),
-  createData("Driver", "Ramal", "123456789V", "abc"),
-  createData("Helper", "Jhon", "123456789V", "abc"),
-  createData("Helper", "Doe", "123456789V", "abc"),
-];
-
 export const Vehicles = () => {
+  const dispatch = useAppDispatch();
   const [open, setOpen] = useState(null);
+
+  const { vehicleInfo } = useAppSelector((state: RootState) => state.vehicles);
+
+  useEffect(() => {
+    dispatch(getVehiclesData());
+  }, []);
 
   const handleCloseMenu = () => {
     setOpen(null);
@@ -103,17 +105,19 @@ export const Vehicles = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {vehicleInfo.map((vehicle: Vehicle) => (
                     <TableRow
-                      key={row.type}
+                      key={vehicle._id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        {row.ownership}
+                        {vehicle.ownership}
                       </TableCell>
-                      <TableCell align="right">{row.type}</TableCell>
-                      <TableCell align="right">{row.chassieNo}</TableCell>
-                      <TableCell align="right">{row.fuelType}</TableCell>
+                      <TableCell align="right">{vehicle.type}</TableCell>
+                      <TableCell align="right">
+                        {vehicle.chassieNumber}
+                      </TableCell>
+                      <TableCell align="right">{vehicle.fuelType}</TableCell>
                       <TableCell align="right">
                         <IconButton
                           size="large"
