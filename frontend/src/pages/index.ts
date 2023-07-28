@@ -4,4 +4,5 @@ export * from "./register";
 export * from "./users";
 export * from "./vehicles";
 export * from "./createUser";
+export * from "./createVehicle";
 export * from "./404";

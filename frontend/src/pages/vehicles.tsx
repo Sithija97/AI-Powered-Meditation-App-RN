@@ -20,38 +20,45 @@ import {
   IconButton,
   ListItemIcon,
   ListItemText,
+  CircularProgress,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Delete, Edit } from "@mui/icons-material";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
-import { getVehiclesData } from "../store/vehicle/vehicleSlice";
+import { deleteVehicle, getVehicles } from "../store/vehicle/vehicleSlice";
 import { Vehicle } from "../models";
-
-function createData(
-  ownership: string,
-  type: string,
-  chassieNo: string,
-  fuelType: string
-) {
-  return { ownership, type, chassieNo, fuelType };
-}
+import { useNavigate } from "react-router-dom";
 
 export const Vehicles = () => {
   const dispatch = useAppDispatch();
-  const [open, setOpen] = useState(null);
+  const navigate = useNavigate();
 
-  const { vehicleInfo } = useAppSelector((state: RootState) => state.vehicles);
+  const [open, setOpen] = useState(null);
+  const [vehicleId, setVehicleId] = useState<string>("");
+
+  const { vehicleInfo, getVehiclesLoading } = useAppSelector(
+    (state: RootState) => state.vehicles
+  );
 
   useEffect(() => {
-    dispatch(getVehiclesData());
+    dispatch(getVehicles());
   }, []);
 
   const handleCloseMenu = () => {
     setOpen(null);
   };
 
-  const handleOpenMenu = (event: any) => {
+  const handleOpenMenu = (event: any, id: string) => {
+    setVehicleId(id);
     setOpen(event.currentTarget);
+  };
+
+  const deleteVehicleData = () => {
+    if (vehicleId) {
+      dispatch(deleteVehicle(vehicleId));
+      dispatch(getVehicles());
+    }
+    handleCloseMenu();
   };
 
   return (
@@ -79,64 +86,79 @@ export const Vehicles = () => {
             <Typography variant="h5" gutterBottom>
               Vehicles
             </Typography>
-            <Button variant="contained">Add Vehicle</Button>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/createVehicle")}
+            >
+              Add Vehicle
+            </Button>
           </Stack>
 
           <Card>
-            <TableContainer sx={{ minWidth: 800 }}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      <b>Ownership</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <b>Type</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <b>Chassie No</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <b>Fuel Type</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <b>Actions</b>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {vehicleInfo.map((vehicle: Vehicle) => (
-                    <TableRow
-                      key={vehicle._id}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {vehicle.ownership}
+            {getVehiclesLoading ? (
+              <Box sx={{ display: "flex" }}>
+                <CircularProgress />
+              </Box>
+            ) : (
+              <TableContainer sx={{ minWidth: 800 }}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>
+                        <b>Ownership</b>
                       </TableCell>
-                      <TableCell align="right">{vehicle.type}</TableCell>
                       <TableCell align="right">
-                        {vehicle.chassieNumber}
+                        <b>Type</b>
                       </TableCell>
-                      <TableCell align="right">{vehicle.fuelType}</TableCell>
                       <TableCell align="right">
-                        <IconButton
-                          size="large"
-                          color="inherit"
-                          onClick={handleOpenMenu}
-                        >
-                          <MoreVertIcon fontSize="small" />
-                        </IconButton>
+                        <b>Chassie No</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>Fuel Type</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>Actions</b>
                       </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    {/* <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} /> */}
-                  </TableRow>
-                </TableFooter>
-              </Table>
-            </TableContainer>
+                  </TableHead>
+                  <TableBody>
+                    {vehicleInfo.map((vehicle: Vehicle) => (
+                      <TableRow
+                        key={vehicle._id}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          {vehicle.ownership}
+                        </TableCell>
+                        <TableCell align="right">{vehicle.type}</TableCell>
+                        <TableCell align="right">
+                          {vehicle.chassieNumber}
+                        </TableCell>
+                        <TableCell align="right">{vehicle.fuelType}</TableCell>
+                        <TableCell align="right">
+                          <IconButton
+                            size="large"
+                            color="inherit"
+                            onClick={(event) =>
+                              handleOpenMenu(event, vehicle._id)
+                            }
+                          >
+                            <MoreVertIcon fontSize="small" />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                  <TableFooter>
+                    <TableRow>
+                      {/* <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} /> */}
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              </TableContainer>
+            )}
           </Card>
         </Container>
 
@@ -165,7 +187,7 @@ export const Vehicles = () => {
             <ListItemText>Edit</ListItemText>
           </MenuItem>
 
-          <MenuItem sx={{ color: "error.main" }}>
+          <MenuItem sx={{ color: "error.main" }} onClick={deleteVehicleData}>
             <ListItemIcon>
               <Delete fontSize="small" />
             </ListItemIcon>
