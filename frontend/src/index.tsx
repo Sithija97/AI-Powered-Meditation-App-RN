@@ -8,7 +8,15 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { Home, Login, Register, Users, Vehicles, CreateUsers } from "./pages";
+import {
+  Home,
+  Login,
+  Register,
+  Users,
+  Vehicles,
+  CreateUsers,
+  CreateVehicles,
+} from "./pages";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import PrivateRoute from "./components/privateRoute";
@@ -34,6 +42,9 @@ const router = createBrowserRouter(
       </Route>
       <Route path="" element={<PrivateRoute />}>
         <Route path="/createUser" element={<CreateUsers />} />
+      </Route>
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/createVehicle" element={<CreateVehicles />} />
       </Route>
     </Route>
   )

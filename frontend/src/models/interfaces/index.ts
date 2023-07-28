@@ -22,3 +22,10 @@ export interface Vehicle {
   fuelType: string;
   chassieNumber: string;
 }
+
+export interface VehicleData {
+  type: string;
+  ownership: string;
+  fuelType: string;
+  chassieNumber: string;
+}
