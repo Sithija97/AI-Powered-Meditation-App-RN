@@ -1,5 +1,5 @@
 import { userLogin, userRegistration } from "./auth";
-import { getVehicles } from "./vehicles";
+import { getVehicles, addVehicle, deleteVehicle } from "./vehicles";
 
 export const authService = {
   userLogin,
@@ -8,4 +8,6 @@ export const authService = {
 
 export const vehicleService = {
   getVehicles,
+  addVehicle,
+  deleteVehicle,
 };
