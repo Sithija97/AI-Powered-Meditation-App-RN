@@ -31,9 +31,8 @@ import { deleteVehicle, getVehicles } from "../store/vehicle/vehicleSlice";
 import { Vehicle } from "../models";
 import { useNavigate } from "react-router-dom";
 import { CreateVehicles } from "./createVehicle";
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import EditIcon from '@mui/icons-material/Edit';
-
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import EditIcon from "@mui/icons-material/Edit";
 
 export const Vehicles = () => {
   const [show, setShow] = useState(false);
@@ -43,7 +42,7 @@ export const Vehicles = () => {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(null);
-  const [vehicleId, setVehicleId] = useState<string>("");
+  // const [vehicleId, setVehicleId] = useState<string>("");
 
   const { vehicleInfo, getVehiclesLoading } = useAppSelector(
     (state: RootState) => state.vehicles
@@ -58,11 +57,11 @@ export const Vehicles = () => {
   };
 
   const handleOpenMenu = (event: any, id: string) => {
-    setVehicleId(id);
+    // setVehicleId(id);
     setOpen(event.currentTarget);
   };
 
-  const deleteVehicleData = () => {
+  const deleteVehicleData = (vehicleId: string) => {
     if (vehicleId) {
       dispatch(deleteVehicle(vehicleId));
       dispatch(getVehicles());
@@ -95,16 +94,19 @@ export const Vehicles = () => {
             <Typography variant="h5" gutterBottom>
               Vehicles
             </Typography>
-            <Button
-              variant="contained"  onClick={toggleDrawer}
-              
-            >
+            <Button variant="contained" onClick={toggleDrawer}>
               Add Vehicle
             </Button>
-          </Stack> 
+          </Stack>
           <Card>
             {getVehiclesLoading ? (
-              <Box sx={{ display: "flex", justifyContent:"center",padding:"15px" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  padding: "15px",
+                }}
+              >
                 <CircularProgress />
               </Box>
             ) : (
@@ -146,11 +148,25 @@ export const Vehicles = () => {
                         </TableCell>
                         <TableCell align="right">{vehicle.fuelType}</TableCell>
                         <TableCell align="right">
-                          <Fab  onClick={() => console.log('clicked')} size="small" color="primary" aria-label="edit">
+                          <Fab
+                            onClick={() => console.log("clicked")}
+                            size="small"
+                            color="primary"
+                            aria-label="edit"
+                          >
                             <EditIcon sx={{ color: "#2288E5" }} />
                           </Fab>
-                          <Fab   onClick={deleteVehicleData} size="small" color="secondary" aria-label="edit">
-                            <DeleteOutlineOutlinedIcon sx={{ color: "#FC4F4F" }} />
+                          <Fab
+                            onClick={() => {
+                              deleteVehicleData(vehicle._id);
+                            }}
+                            size="small"
+                            color="secondary"
+                            aria-label="edit"
+                          >
+                            <DeleteOutlineOutlinedIcon
+                              sx={{ color: "#FC4F4F" }}
+                            />
                           </Fab>
 
                           {/* <IconButton
@@ -212,7 +228,7 @@ export const Vehicles = () => {
       </Box>
 
       <Drawer open={show} onClose={toggleDrawer} anchor="right">
-        <CreateVehicles/>
+        <CreateVehicles onClose={toggleDrawer} />
       </Drawer>
     </Dashboard>
   );

@@ -4,10 +4,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import { Dashboard } from "../layouts";
-import { Chart, Deposits, Orders } from "../components";
 import { Card } from "@mui/material";
 import {
   Chart as ChartJS,
@@ -17,10 +15,10 @@ import {
   Title,
   Tooltip,
   Legend,
-  ArcElement
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import { Pie } from 'react-chartjs-2';
+  ArcElement,
+} from "chart.js";
+import { Bar, Doughnut } from "react-chartjs-2";
+import { RootState, useAppSelector } from "../store/store";
 
 ChartJS.register(
   CategoryScale,
@@ -37,56 +35,43 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' as const,
+      position: "top" as const,
     },
     title: {
       display: true,
-      text: 'Chart.js Bar Chart',
+      text: "Chart.js Bar Chart",
     },
   },
 };
 
-export const piedata = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+const data2 = {
+  labels: ["Red", "Blue", "Yellow"],
   datasets: [
     {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
+      label: "My First Dataset",
+      data: [300, 50, 100],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
+        "rgb(255, 99, 132)",
+        "rgb(54, 162, 235)",
+        "rgb(255, 205, 86)",
       ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
+      hoverOffset: 4,
     },
   ],
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-  labels,
+const labels = ["January", "February", "March", "April", "May", "June", "July"];
+const data = {
+  labels: labels,
   datasets: [
     {
-      label: 'Dataset 1',
-      data: labels.map(() => ({ min: 0, max: 1000 })),
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => ({ min: 0, max: 1000 })),
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      label: "My First Dataset",
+      data: [65, 59, 80],
+      backgroundColor: [
+        "rgb(255, 99, 132)",
+        "rgb(54, 162, 235)",
+        "rgb(255, 205, 86)",
+      ],
     },
   ],
 };
@@ -110,6 +95,7 @@ function Copyright(props: any) {
 }
 
 export const Home = () => {
+  const { userInfo } = useAppSelector((state: RootState) => state.auth);
   return (
     <Dashboard>
       <Box
@@ -126,46 +112,47 @@ export const Home = () => {
       >
         <Toolbar />
         <Container maxWidth={false} sx={{ mt: 4, mb: 4 }}>
-
-          <Typography variant="h5" sx={{mb:4}}>Hi, Welcome Back</Typography>
+          <Typography variant="h5" sx={{ mb: 4 }}>
+            {` Hi, Welcome Back ${userInfo.name}`}
+          </Typography>
 
           <Grid sx={{ mb: 3 }} container spacing={3}>
             <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ py: 5, boxShadow: 0, textAlign: 'center', }}>
+              <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
                 <Typography variant="h3">120</Typography>
 
                 <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                  12
+                  Users
                 </Typography>
               </Card>
             </Grid>
 
             <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ py: 5, boxShadow: 0, textAlign: 'center', }}>
-                <Typography variant="h3">120</Typography>
+              <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
+                <Typography variant="h3">100</Typography>
 
                 <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                  12
+                  Vehicles
                 </Typography>
               </Card>
             </Grid>
 
             <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ py: 5, boxShadow: 0, textAlign: 'center', }}>
-                <Typography variant="h3">120</Typography>
+              <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
+                <Typography variant="h3">180</Typography>
 
                 <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                  12
+                  Hires
                 </Typography>
               </Card>
             </Grid>
 
             <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ py: 5, boxShadow: 0, textAlign: 'center', }}>
-                <Typography variant="h3">120</Typography>
+              <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
+                <Typography variant="h3">160</Typography>
 
                 <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                  12
+                  Transactions
                 </Typography>
               </Card>
             </Grid>
@@ -173,20 +160,19 @@ export const Home = () => {
 
           <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
-              <Card sx={{p:4}}>
-              <Bar options={options} data={data} />;
+              <Card sx={{ p: 4 }}>
+                <Bar options={options} data={data} />;
               </Card>
             </Grid>
 
             <Grid item xs={12} md={4} lg={3}>
-              <Card sx={{p:4}}>
-                <Pie data={piedata} />
-                </Card>
+              <Card sx={{ p: 4 }}>
+                <Doughnut data={data2} />
+              </Card>
             </Grid>
           </Grid>
-          
-          <Copyright sx={{ pt: 4 }} />
 
+          <Copyright sx={{ pt: 4 }} />
         </Container>
       </Box>
     </Dashboard>
