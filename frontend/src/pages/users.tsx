@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Dashboard } from "../layouts";
 import {
   Box,
@@ -24,23 +24,116 @@ import {
   Grid,
   ListItemIcon,
   ListItemText,
+  Drawer,
+  DialogTitle,
 } from "@mui/material";
 import { Delete, Edit, MoreVert } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
+import { CreateUsers } from "./createUser";
 
-function createData(type: string, name: string, nic: string, address: string) {
-  return { type, name, nic, address };
-}
 
-const rows = [
-  createData("Manager", "Kamal", "123456789V", "abc"),
-  createData("Coordinator", "Kamal", "123456789V", "abc"),
-  createData("Driver", "Ramal", "123456789V", "abc"),
-  createData("Helper", "Jhon", "123456789V", "abc"),
-  createData("Helper", "Doe", "123456789V", "abc"),
+type Person = {
+  name: {
+    firstName: string;
+    lastName: string;
+  };
+  address: string;
+  city: string;
+  state: string;
+};
+
+//nested data is ok, see accessorKeys in ColumnDef below
+const data: Person[] = [
+  {
+    name: {
+      firstName: 'John',
+      lastName: 'Doe',
+    },
+    address: '261 Erdman Ford',
+    city: 'East Daphne',
+    state: 'Kentucky',
+  },
+  {
+    name: {
+      firstName: 'Jane',
+      lastName: 'Doe',
+    },
+    address: '769 Dominic Grove',
+    city: 'Columbus',
+    state: 'Ohio',
+  },
+  {
+    name: {
+      firstName: 'Joe',
+      lastName: 'Doe',
+    },
+    address: '566 Brakus Inlet',
+    city: 'South Linda',
+    state: 'West Virginia',
+  },
+  {
+    name: {
+      firstName: 'Kevin',
+      lastName: 'Vandy',
+    },
+    address: '722 Emie Stream',
+    city: 'Lincoln',
+    state: 'Nebraska',
+  },
+  {
+    name: {
+      firstName: 'Joshua',
+      lastName: 'Rolluffs',
+    },
+    address: '32188 Larkin Turnpike',
+    city: 'Omaha',
+    state: 'Nebraska',
+  },
+  {
+    name: {
+      firstName: 'Joshua',
+      lastName: 'Rolluffs',
+    },
+    address: '32188 Larkin Turnpike',
+    city: 'Omaha',
+    state: 'Nebraska',
+  },
+  {
+    name: {
+      firstName: 'Joshua',
+      lastName: 'Rolluffs',
+    },
+    address: '32188 Larkin Turnpike',
+    city: 'Omaha',
+    state: 'Nebraska',
+  },
+  {
+    name: {
+      firstName: 'Joshua',
+      lastName: 'Rolluffs',
+    },
+    address: '32188 Larkin Turnpike',
+    city: 'Omaha',
+    state: 'Nebraska',
+  },
+  {
+    name: {
+      firstName: 'Joshua',
+      lastName: 'Rolluffs',
+    },
+    address: '32188 Larkin Turnpike',
+    city: 'Omaha',
+    state: 'Nebraska',
+  },
 ];
 
+
+
 export const Users = () => {
+  const [show, setShow] = useState(false);
+  const toggleDrawer = () => setShow(!show);
+
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(null);
@@ -52,6 +145,37 @@ export const Users = () => {
   const handleOpenMenu = (event: any) => {
     setOpen(event.currentTarget);
   };
+
+  const columns = useMemo<MRT_ColumnDef<Person>[]>(
+    () => [
+      {
+        accessorKey: 'name.firstName', //access nested data with dot notation
+        header: 'First Name',
+        size: 150,
+      },
+      {
+        accessorKey: 'name.lastName',
+        header: 'Last Name',
+        size: 150,
+      },
+      {
+        accessorKey: 'address', //normal accessorKey
+        header: 'Address',
+        size: 200,
+      },
+      {
+        accessorKey: 'city',
+        header: 'City',
+        size: 150,
+      },
+      {
+        accessorKey: 'state',
+        header: 'State',
+        size: 150,
+      },
+    ],
+    [],
+  );
 
   return (
     <Dashboard>
@@ -68,7 +192,7 @@ export const Users = () => {
         }}
       >
         <Toolbar />
-        <Container sx={{ mt: 4, mb: 4 }}>
+        <Container maxWidth={false}  sx={{ mt: 4, mb: 4 }}>
           <Stack
             direction="row"
             alignItems="center"
@@ -78,118 +202,21 @@ export const Users = () => {
             <Typography variant="h5" gutterBottom>
               Users
             </Typography>
-            <Button variant="contained" onClick={() => navigate("/createUser")}>
+            <Button variant="contained" onClick={toggleDrawer}>
               Add User
             </Button>
           </Stack>
 
-          <Card sx={{ p: 2, mb: 2 }}>
-            <div>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={5} md={4}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                    <Select label="Type">
-                      <MenuItem value={10}>Manager</MenuItem>
-                      <MenuItem value={20}>Coordinator</MenuItem>
-                      <MenuItem value={30}>Driver</MenuItem>
-                      <MenuItem value={40}>Helper</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-              </Grid>
-            </div>
-          </Card>
-
           <Card>
-            <TableContainer sx={{ minWidth: 800 }}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      <b>Type</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <b>Name</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <b>NIC</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <b>Address</b>
-                    </TableCell>
-                    <TableCell align="right">
-                      <b>Actions</b>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow
-                      key={row.type}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {row.type}
-                      </TableCell>
-                      <TableCell align="right">{row.name}</TableCell>
-                      <TableCell align="right">{row.nic}</TableCell>
-                      <TableCell align="right">{row.address}</TableCell>
-                      <TableCell align="right">
-                        <IconButton
-                          size="large"
-                          color="inherit"
-                          onClick={handleOpenMenu}
-                        >
-                          <MoreVert fontSize="small" />
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    {/* <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} /> */}
-                  </TableRow>
-                </TableFooter>
-              </Table>
-            </TableContainer>
+          <MaterialReactTable columns={columns} data={data} />
           </Card>
         </Container>
-
-        <Popover
-          open={Boolean(open)}
-          anchorEl={open}
-          onClose={handleCloseMenu}
-          anchorOrigin={{ vertical: "top", horizontal: "left" }}
-          transformOrigin={{ vertical: "top", horizontal: "right" }}
-          PaperProps={{
-            sx: {
-              p: 1,
-              width: 140,
-              "& .MuiMenuItem-root": {
-                px: 1,
-                typography: "body2",
-                borderRadius: 0.75,
-              },
-            },
-          }}
-        >
-          <MenuItem>
-            <ListItemIcon>
-              <Edit fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Edit</ListItemText>
-          </MenuItem>
-
-          <MenuItem sx={{ color: "error.main" }}>
-            <ListItemIcon>
-              <Delete fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Delete</ListItemText>
-          </MenuItem>
-        </Popover>
       </Box>
+
+      <Drawer open={show} onClose={toggleDrawer} anchor="right">
+        <CreateUsers/>
+      </Drawer>
+      
     </Dashboard>
   );
 };

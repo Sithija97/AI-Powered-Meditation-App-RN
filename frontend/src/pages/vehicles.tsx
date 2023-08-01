@@ -21,6 +21,8 @@ import {
   ListItemIcon,
   ListItemText,
   CircularProgress,
+  Drawer,
+  Fab,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Delete, Edit } from "@mui/icons-material";
@@ -28,8 +30,15 @@ import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { deleteVehicle, getVehicles } from "../store/vehicle/vehicleSlice";
 import { Vehicle } from "../models";
 import { useNavigate } from "react-router-dom";
+import { CreateVehicles } from "./createVehicle";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 export const Vehicles = () => {
+  const [show, setShow] = useState(false);
+  const toggleDrawer = () => setShow(!show);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -76,7 +85,7 @@ export const Vehicles = () => {
         }}
       >
         <Toolbar />
-        <Container sx={{ mt: 4, mb: 4 }}>
+        <Container maxWidth={false} sx={{ mt: 4, mb: 4 }}>
           <Stack
             direction="row"
             alignItems="center"
@@ -87,16 +96,15 @@ export const Vehicles = () => {
               Vehicles
             </Typography>
             <Button
-              variant="contained"
-              onClick={() => navigate("/createVehicle")}
+              variant="contained"  onClick={toggleDrawer}
+              
             >
               Add Vehicle
             </Button>
-          </Stack>
-
+          </Stack> 
           <Card>
             {getVehiclesLoading ? (
-              <Box sx={{ display: "flex" }}>
+              <Box sx={{ display: "flex", justifyContent:"center",padding:"15px" }}>
                 <CircularProgress />
               </Box>
             ) : (
@@ -138,7 +146,14 @@ export const Vehicles = () => {
                         </TableCell>
                         <TableCell align="right">{vehicle.fuelType}</TableCell>
                         <TableCell align="right">
-                          <IconButton
+                          <Fab  onClick={() => console.log('clicked')} size="small" color="primary" aria-label="edit">
+                            <EditIcon sx={{ color: "#2288E5" }} />
+                          </Fab>
+                          <Fab   onClick={deleteVehicleData} size="small" color="secondary" aria-label="edit">
+                            <DeleteOutlineOutlinedIcon sx={{ color: "#FC4F4F" }} />
+                          </Fab>
+
+                          {/* <IconButton
                             size="large"
                             color="inherit"
                             onClick={(event) =>
@@ -146,7 +161,7 @@ export const Vehicles = () => {
                             }
                           >
                             <MoreVertIcon fontSize="small" />
-                          </IconButton>
+                          </IconButton> */}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -162,7 +177,7 @@ export const Vehicles = () => {
           </Card>
         </Container>
 
-        <Popover
+        {/* <Popover
           open={Boolean(open)}
           anchorEl={open}
           onClose={handleCloseMenu}
@@ -193,8 +208,12 @@ export const Vehicles = () => {
             </ListItemIcon>
             <ListItemText>Delete</ListItemText>
           </MenuItem>
-        </Popover>
+        </Popover> */}
       </Box>
+
+      <Drawer open={show} onClose={toggleDrawer} anchor="right">
+        <CreateVehicles/>
+      </Drawer>
     </Dashboard>
   );
 };
