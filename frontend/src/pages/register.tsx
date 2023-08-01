@@ -115,7 +115,7 @@ export const Register = () => {
 
   if (isLoading) {
     return (
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", justifyContent:"center",padding:"15px"}}>
         <CircularProgress />
       </Box>
     );

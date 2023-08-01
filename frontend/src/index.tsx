@@ -43,9 +43,9 @@ const router = createBrowserRouter(
       <Route path="" element={<PrivateRoute />}>
         <Route path="/createUser" element={<CreateUsers />} />
       </Route>
-      <Route path="" element={<PrivateRoute />}>
+      {/* <Route path="" element={<PrivateRoute />}>
         <Route path="/createVehicle" element={<CreateVehicles />} />
-      </Route>
+      </Route> */}
     </Route>
   )
 );

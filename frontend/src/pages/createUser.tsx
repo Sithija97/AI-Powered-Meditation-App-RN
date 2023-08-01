@@ -21,26 +21,20 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 export const CreateUsers = () => {
   return (
-    <Dashboard>
+
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
+          backgroundColor: "white",
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
         }}
       >
-        <Toolbar />
-        <Container sx={{ mt: 4, mb: 4 }}>
-          <Typography variant="h5" gutterBottom>
+        <Container>
+          <Typography sx={{ mt:12, mb: 5 }} variant="h5" gutterBottom>
             Add User
           </Typography>
-
-          <Card sx={{ p: 2, mt: 2 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={5} md={4}>
                 <FormControl fullWidth>
@@ -202,13 +196,10 @@ export const CreateUsers = () => {
                 </LocalizationProvider>
               </Grid>
             </Grid>
-
-            <Button sx={{ mt: 3, mb: 2 }} variant="contained">
+            <Button sx={{ mt: 3, mb: 2, ms:3 }} variant="contained">
               Save
             </Button>
-          </Card>
         </Container>
       </Box>
-    </Dashboard>
   );
 };
