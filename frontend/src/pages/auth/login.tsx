@@ -13,12 +13,12 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
-import { RootState, useAppDispatch, useAppSelector } from "../store/store";
-import { login, reset } from "../store/auth/authSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
+import { login, reset } from "../../store/auth/authSlice";
 import { CircularProgress } from "@mui/material";
 import { toast } from "react-toastify";
-import { RequestStatus } from "../models";
-import loginImage from "../assets/login.svg";
+import { RequestStatus } from "../../models";
+import loginImage from "../../assets/login.svg";
 
 function Copyright(props: any) {
   return (

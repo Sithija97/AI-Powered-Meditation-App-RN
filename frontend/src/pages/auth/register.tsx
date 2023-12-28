@@ -11,8 +11,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { RootState, useAppDispatch, useAppSelector } from "../store/store";
-import { register, reset } from "../store/auth/authSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
+import { register, reset } from "../../store/auth/authSlice";
 import {
   CircularProgress,
   FormControl,
@@ -21,10 +21,10 @@ import {
   Select,
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { CustomDatePicker } from "../components/customDatePicker";
-import { RequestStatus } from "../models";
+import { CustomDatePicker } from "../../components/customDatePicker";
+import { RequestStatus } from "../../models";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { formatDate } from "../utils/dateFormatter";
+import { formatDate } from "../../utils/dateFormatter";
 
 function Copyright(props: any) {
   return (

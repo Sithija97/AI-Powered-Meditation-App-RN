@@ -34,7 +34,7 @@ export const MainListItems = () => {
         </ListItemIcon>
         <ListItemText primary="Users" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton onClick={() => navigate("/hire")}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>

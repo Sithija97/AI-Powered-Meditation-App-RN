@@ -65,7 +65,8 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
   };
 
   return (
-    <AppBar position="absolute" open={open}>
+    <AppBar position="absolute" open={open}
+    sx={{zIndex:1200}}>
       <Toolbar
         sx={{
           pr: "24px", // keep right padding when drawer closed
