@@ -6,7 +6,7 @@ import { Dashboard } from '../../layouts';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
-const Hire = () => (
+const CreateHire = () => (
     <Dashboard>
     <Box
       component="main"
@@ -29,4 +29,4 @@ const Hire = () => (
   </Dashboard>
 );
 
-export default Hire;
+export default CreateHire;
