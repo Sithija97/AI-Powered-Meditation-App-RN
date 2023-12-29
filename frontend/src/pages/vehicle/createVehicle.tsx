@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dashboard } from "../layouts";
+import { Dashboard } from "../../layouts";
 import {
   Box,
   Button,
@@ -8,6 +8,7 @@ import {
   Divider,
   FormControl,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -18,10 +19,11 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useAppDispatch } from "../store/store";
-import { addVehicle, getVehicles } from "../store/vehicle/vehicleSlice";
+import { useAppDispatch } from "../../store/store";
+import { addVehicle, getVehicles } from "../../store/vehicle/vehicleSlice";
 import { useNavigate } from "react-router-dom";
-import { RequestStatus } from "../models";
+import { RequestStatus } from "../../models";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const InitialState = {
   type: "",
@@ -62,32 +64,15 @@ export const CreateVehicles = ({ onClose }: IProps) => {
 
   return (
     <Box
-      component="main"
-      sx={{
-        backgroundColor: "white",
-        flexGrow: 1,
-        height: "100vh",
-        overflow: "auto",
-      }}
-    >
-      <Container>
-        <Typography sx={{ mt: 12, mb: 5 }} variant="h5" gutterBottom>
-          Add Vehicle
-        </Typography>
-        <Grid container spacing={2}>
-          {/* <Grid item xs={12} sm={5} md={4}>
-                <FormControl fullWidth disabled>
-                  <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                  <Select label="Type">
-                    <MenuItem value={"manager"}>Manager</MenuItem>
-                    <MenuItem value={"coordinator"}>Coordinator</MenuItem>
-                    <MenuItem value={"driver"}>Driver</MenuItem>
-                    <MenuItem value={"helper"}>Helper</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid> */}
-        </Grid>
-
+      sx={{ padding: '20px' }}
+      >
+       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
+        <Typography variant="h5">Create User</Typography>
+        <IconButton aria-label="delete">
+          <CloseOutlinedIcon />
+        </IconButton>
+      </Box>
+      <Divider sx={{ mb: 3, mt: 2 }} />
         <Grid sx={{ mt: 1 }} container spacing={2}>
           <Grid item xs={12} sm={4} md={4}>
             <FormControl fullWidth>
@@ -178,7 +163,6 @@ export const CreateVehicles = ({ onClose }: IProps) => {
         >
           Save
         </Button>
-      </Container>
     </Box>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Dashboard } from "../layouts";
+import { Dashboard } from "../../layouts";
 import {
   Box,
   Button,
@@ -8,6 +8,7 @@ import {
   Divider,
   FormControl,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -18,23 +19,21 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 export const CreateUsers = () => {
   return (
 
       <Box
-        component="main"
-        sx={{
-          backgroundColor: "white",
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto",
-        }}
+      sx={{ padding: '20px' }}
       >
-        <Container>
-          <Typography sx={{ mt:12, mb: 5 }} variant="h5" gutterBottom>
-            Add User
-          </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
+        <Typography variant="h5">Create User</Typography>
+        <IconButton aria-label="delete">
+          <CloseOutlinedIcon />
+        </IconButton>
+      </Box>
+      <Divider sx={{ mb: 3, mt: 2 }} />
             <Grid container spacing={2}>
               <Grid item xs={12} sm={5} md={4}>
                 <FormControl fullWidth>
@@ -199,7 +198,7 @@ export const CreateUsers = () => {
             <Button sx={{ mt: 3, mb: 2, ms:3 }} variant="contained">
               Save
             </Button>
-        </Container>
+      
       </Box>
   );
 };

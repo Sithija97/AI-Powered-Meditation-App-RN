@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-import { Dashboard } from "../layouts";
+import { Dashboard } from "../../layouts";
 import { Card } from "@mui/material";
 import {
   Chart as ChartJS,
@@ -18,7 +18,7 @@ import {
   ArcElement,
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
-import { RootState, useAppSelector } from "../store/store";
+import { RootState, useAppSelector } from "../../store/store";
 
 ChartJS.register(
   CategoryScale,

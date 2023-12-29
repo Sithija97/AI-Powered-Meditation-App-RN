@@ -21,6 +21,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import PrivateRoute from "./components/privateRoute";
 import "./index.css";
+import Hire from "./pages/hire/hire";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -36,6 +37,9 @@ const router = createBrowserRouter(
       <Route path="/register" element={<Register />} />
       <Route path="" element={<PrivateRoute />}>
         <Route path="/users" element={<Users />} />
+      </Route>
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/hire" element={<Hire />} />
       </Route>
       <Route path="" element={<PrivateRoute />}>
         <Route path="/vehicles" element={<Vehicles />} />
