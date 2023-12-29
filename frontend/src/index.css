@@ -1,36 +1,48 @@
 body,
 html {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
-h1,h2,h3,h4,h5,h6,span {
-  font-family: 'Poppins', sans-serif !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  font-family: "Poppins", sans-serif !important;
 }
 
-button,td,th div {
-  font-family: 'Poppins', sans-serif !important;
+button,
+td,
+th div {
+  font-family: "Poppins", sans-serif !important;
 }
 
 .css-n7rtur-MuiPaper-root-MuiAppBar-root {
-  background-color: #1565c0 !important;
-  
+  background-color: #0c4bb5 !important;
+}
+
+.css-o5srbh-MuiPaper-root-MuiAppBar-root {
+  background-color: #0c4bb5 !important;
+}
+
+.css-7s014k-MuiSvgIcon-root {
+  color: #2a62c2 !important;
 }
 
 .css-qize55-MuiButtonBase-root-MuiFab-root {
-  background-color: #E4F1FC !important;
- box-shadow: none !important;
+  background-color: #e4f1fc !important;
+  box-shadow: none !important;
 }
 
 .css-9rrh7h-MuiButtonBase-root-MuiFab-root {
-  background-color: #FFF1F1 !important;
+  background-color: #fff1f1 !important;
   box-shadow: none !important;
 }
 
 @font-face {
   font-family: "Poppins";
   src: local("Poppins"),
-   url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
- }
-
-
-
+    url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+}
