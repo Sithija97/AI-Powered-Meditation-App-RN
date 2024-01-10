@@ -67,14 +67,14 @@ export const CreateVehicles = ({ onClose }: IProps) => {
       sx={{ padding: '20px' }}
       >
        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
-        <Typography variant="h5">Create User</Typography>
+        <Typography variant="h3">Create Vehicle</Typography>
         <IconButton aria-label="delete">
           <CloseOutlinedIcon />
         </IconButton>
       </Box>
       <Divider sx={{ mb: 3, mt: 2 }} />
         <Grid sx={{ mt: 1 }} container spacing={2}>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Ownership</InputLabel>
               <Select
@@ -88,7 +88,7 @@ export const CreateVehicles = ({ onClose }: IProps) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Type</InputLabel>
               <Select
@@ -105,7 +105,7 @@ export const CreateVehicles = ({ onClose }: IProps) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Fuel Type</InputLabel>
               <Select
@@ -122,7 +122,7 @@ export const CreateVehicles = ({ onClose }: IProps) => {
         </Grid>
 
         <Grid sx={{ mt: 1 }} container spacing={2}>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12}>
             <TextField
               required
               id="chassieNumber"
@@ -133,7 +133,7 @@ export const CreateVehicles = ({ onClose }: IProps) => {
               fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12}>
             <TextField
               disabled
               required
@@ -143,7 +143,7 @@ export const CreateVehicles = ({ onClose }: IProps) => {
               fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12}>
             <TextField
               disabled
               required

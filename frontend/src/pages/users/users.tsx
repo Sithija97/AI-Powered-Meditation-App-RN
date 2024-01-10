@@ -109,7 +109,7 @@ export const Users = () => {
             justifyContent="space-between"
             mb={5}
           >
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h3" gutterBottom>
               Users
             </Typography>
             <Button variant="contained" onClick={toggleDrawer}>

@@ -106,7 +106,7 @@ export const Vehicles = () => {
             justifyContent="space-between"
             mb={5}
           >
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h3" gutterBottom>
               Vehicles
             </Typography>
             <Button variant="contained" onClick={toggleDrawer}>

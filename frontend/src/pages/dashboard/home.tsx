@@ -112,7 +112,7 @@ export const Home = () => {
       >
         <Toolbar />
         <Container maxWidth={false} sx={{ mt: 4, mb: 4 }}>
-          <Typography variant="h5" sx={{ mb: 4 }}>
+          <Typography variant="h3" sx={{ mb: 4 }}>
             {` Hi, Welcome Back ${userInfo.name}`}
           </Typography>
 

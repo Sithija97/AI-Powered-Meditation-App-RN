@@ -1,12 +1,11 @@
 import * as React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import { Appbar, Sidebar } from "../components";
+import themes from '../themes';
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
-
 interface IProps {
   children: React.ReactNode;
 }
@@ -18,7 +17,7 @@ export const Dashboard = ({ children }: IProps) => {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={themes()}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <Appbar open={open} toggleDrawer={toggleDrawer} />
