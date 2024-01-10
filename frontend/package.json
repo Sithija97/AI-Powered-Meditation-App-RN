@@ -35,7 +35,8 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
-    "@types/recharts": "^2.0.0"
+    "@types/recharts": "^2.0.0",
+    "sass": "^1.69.6"
   },
   "scripts": {
     "start": "react-scripts start",

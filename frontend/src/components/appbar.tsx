@@ -86,7 +86,7 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
         </IconButton>
         <Typography
           component="h1"
-          variant="h6"
+          variant="h3"
           color="inherit"
           noWrap
           sx={{ flexGrow: 1 }}
