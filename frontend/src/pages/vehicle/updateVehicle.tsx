@@ -36,7 +36,7 @@ interface IProps {
   onClose: () => void;
 }
 
-export const CreateVehicles = () => {
+export const UpdateVehicles = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(InitialState);
@@ -67,7 +67,7 @@ export const CreateVehicles = () => {
       sx={{ padding: '20px' }}
       >
        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
-        <Typography variant="h3">Create Vehicle</Typography>
+        <Typography variant="h3">Update Vehicle</Typography>
         <IconButton aria-label="delete">
           <CloseOutlinedIcon />
         </IconButton>

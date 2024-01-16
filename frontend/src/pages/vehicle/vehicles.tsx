@@ -22,15 +22,27 @@ import MaterialReactTable, { MRT_ColumnDef } from "material-react-table";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import { ViewVehicle } from "./viewVehicle";
+import { UpdateVehicles } from "./updateVehicle";
 
 export const Vehicles = () => {
-  const [show, setShow] = useState(false);
-  const toggleDrawer = () => setShow(!show);
+  const [open, setOpen] = useState(false);
+  const modalContentInitValues = { create: false, update: false, view: false };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(modalContentInitValues);
+
+
+  const toggleDrawer = (type:any, status:any) => (event:any) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setModalContent({ ...modalContentInitValues, [type]: true });
+    setIsModalOpen(status);
+  };
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const [open, setOpen] = useState(null);
+;
   // const [vehicleId, setVehicleId] = useState<string>("");
 
   const { vehicleInfo, getVehiclesLoading } = useAppSelector(
@@ -67,21 +79,21 @@ export const Vehicles = () => {
     dispatch(getVehicles());
   }, []);
 
-  const handleCloseMenu = () => {
-    setOpen(null);
-  };
-
-  const handleOpenMenu = (event: any, id: string) => {
-    // setVehicleId(id);
-    setOpen(event.currentTarget);
-  };
 
   const deleteVehicleData = (vehicleId: string) => {
     if (vehicleId) {
       dispatch(deleteVehicle(vehicleId));
       dispatch(getVehicles());
     }
-    handleCloseMenu();
+    handleClose();
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -109,7 +121,7 @@ export const Vehicles = () => {
             <Typography variant="h3" gutterBottom>
               Vehicles
             </Typography>
-            <Button variant="contained" onClick={toggleDrawer}>
+            <Button variant="contained" onClick={toggleDrawer('create', true)}>
               Add Vehicle
             </Button>
           </Stack>
@@ -137,6 +149,7 @@ export const Vehicles = () => {
                <Box sx={{ display: 'flex' }}>
                  <Tooltip title="View">
                    <Avatar
+                     onClick={toggleDrawer('view', true)}
                      sx={{
                        color:"#00c853",
                        background:"#b9f6ca61",
@@ -148,6 +161,7 @@ export const Vehicles = () => {
                  </Tooltip>
                  <Tooltip title="Update">
                    <Avatar
+                   onClick={toggleDrawer('update', true)}
                      sx={{
                        color:"#1e88e5",
                        background:"#eef2f6",
@@ -159,9 +173,7 @@ export const Vehicles = () => {
                  </Tooltip>
                  <Tooltip title="Delete">
                    <Avatar
-                  //  onClick={() => {
-                  //   deleteVehicleData(Vehicle._id);
-                  // }}
+                     onClick={handleClickOpen}
                      sx={{
                        color: "#d84315",
                        background:"#fbe9e7"
@@ -179,10 +191,24 @@ export const Vehicles = () => {
 
   
       </Box>
-
-      <Drawer open={show} onClose={toggleDrawer} anchor="right">
-        <CreateVehicles onClose={toggleDrawer} />
+      <Drawer
+        sx={{
+          '& .MuiDrawer-paper': {
+            width: { sm: '600px', xs: '100%' },
+            boxSizing: 'border-box'
+          }
+        }}
+        anchor="right"
+        open={isModalOpen}
+        onClose={toggleDrawer(null, false)}
+      >
+        {modalContent.view && <ViewVehicle/>}
+        {modalContent.create && <CreateVehicles/>}
+        {modalContent.update && <UpdateVehicles/>}
       </Drawer>
+      {/* <Drawer open={show} onClose={toggleDrawer} anchor="right">
+        <CreateVehicles onClose={toggleDrawer} />
+      </Drawer> */}
     </Dashboard>
   );
 };
