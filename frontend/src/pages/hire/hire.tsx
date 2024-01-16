@@ -1,5 +1,9 @@
 // material-ui
-import { Avatar, Box, Button, Card, Container, Drawer, Stack, Toolbar, Tooltip, Typography } from '@mui/material';
+import { Avatar, Box, Button, Card, Container, Drawer, Stack, Toolbar, Tooltip, Typography, Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions, } from '@mui/material';
 import { Dashboard } from '../../layouts';
 import { useMemo, useState } from 'react';
 import CreateHire from './createHire';
@@ -7,6 +11,8 @@ import { MaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import { ViewHire } from './viewHire';
+import UpdateHire from './updateHire';
 // ==============================|| HIRE PAGE ||============================== //
 type Person = {
   HireType: string
@@ -32,8 +38,29 @@ const data: Person[] = [
 ];
 
 const Hire = () => {
-  const [show, setShow] = useState(false);
-  const toggleDrawer = () => setShow(!show);
+  const [open, setOpen] = useState(false);
+
+  const modalContentInitValues = { create: false, update: false, view: false };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(modalContentInitValues);
+
+
+  const toggleDrawer = (type:any, status:any) => (event:any) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setModalContent({ ...modalContentInitValues, [type]: true });
+    setIsModalOpen(status);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const columns = useMemo<MRT_ColumnDef<Person>[]>(
     () => [
       {
@@ -87,7 +114,7 @@ const Hire = () => {
             <Typography variant="h3" gutterBottom>
               Hires
             </Typography>
-            <Button variant="contained" onClick={toggleDrawer}>
+            <Button variant="contained" onClick={toggleDrawer('create', true)}>
               Add Hire
             </Button>
           </Stack>
@@ -105,6 +132,7 @@ const Hire = () => {
             <Box sx={{ display: 'flex' }}>
               <Tooltip title="View">
                 <Avatar
+                  onClick={toggleDrawer('view', true)}
                   sx={{
                     color:"#00c853",
                     background:"#b9f6ca61",
@@ -116,6 +144,7 @@ const Hire = () => {
               </Tooltip>
               <Tooltip title="Update">
                 <Avatar
+                onClick={toggleDrawer('update', true)}
                   sx={{
                     color:"#1e88e5",
                     background:"#eef2f6",
@@ -127,6 +156,7 @@ const Hire = () => {
               </Tooltip>
               <Tooltip title="Delete">
                 <Avatar
+                onClick={handleClickOpen}
                   sx={{
                     color: "#d84315",
                     background:"#fbe9e7"
@@ -143,17 +173,44 @@ const Hire = () => {
           
           </Container>
       </Box>
-          <Drawer
-       sx={{
-        '& .MuiDrawer-paper': {
-          width: { sm: '600px', xs: '100%' },
-          boxSizing: 'border-box',
-          zIndex:1300
-        }
-      }}
-      open={show} onClose={toggleDrawer} anchor="right">
-        <CreateHire/>
+      <Drawer
+        sx={{
+          '& .MuiDrawer-paper': {
+            width: { sm: '600px', xs: '100%' },
+            boxSizing: 'border-box'
+          }
+        }}
+        anchor="right"
+        open={isModalOpen}
+        onClose={toggleDrawer(null, false)}
+      >
+        {modalContent.view && <ViewHire/>}
+        {modalContent.create && <CreateHire/>}
+        {modalContent.update && <UpdateHire/>}
       </Drawer>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">
+          {"Use Google's location service?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure want to delete this ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button onClick={handleClose} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
   </Dashboard>
   )
 };
