@@ -16,6 +16,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  Divider,
   
 } from "@mui/material"
 
@@ -111,10 +112,6 @@ export const Users = () => {
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
@@ -136,6 +133,7 @@ export const Users = () => {
             </Button>
           </Stack>
 
+          <Divider/>
           <Card>
           <MaterialReactTable columns={columns} data={data} 
            enableRowActions

@@ -19,7 +19,7 @@ interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
-const drawerWidth: number = 240;
+const drawerWidth: number = 301;
 
 export const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -69,7 +69,7 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
     sx={{zIndex:1200}}>
       <Toolbar
         sx={{
-          pr: "24px", // keep right padding when drawer closed
+          pr: "40px", // keep right padding when drawer closed
         }}
       >
         <IconButton
