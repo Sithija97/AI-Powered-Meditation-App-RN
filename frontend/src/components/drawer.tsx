@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { MainListItems } from ".";
 
-const drawerWidth: number = 240;
+const drawerWidth: number = 301;
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -17,6 +17,8 @@ const Drawer = styled(MuiDrawer, {
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
+    background:"#F1F5FF",
+    boxShadow:"inset 0px 1px 18px 1px #BFD5EB",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,

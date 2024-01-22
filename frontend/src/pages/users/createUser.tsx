@@ -134,7 +134,7 @@ export const CreateUsers = () => {
       </Grid>
 
       <Divider sx={{ mt: 2, mb: 2 }} />
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Police Report Details
       </Typography>
       <Grid sx={{ mt: 1 }} container spacing={2}>
