@@ -4,8 +4,10 @@ export default function componentStyleOverrides(theme:any) {
       MuiButton: {
         styleOverrides: {
           root: {
+            width: '124px',
+            padding: '10px',
             fontWeight: '100 !important',
-            borderRadius: '58px',
+            borderRadius: '25px',
             boxShadow:'none',
             '&:hover': {
               boxShadow:'none'
@@ -16,6 +18,21 @@ export default function componentStyleOverrides(theme:any) {
                 backgroundColor: theme.colors?.successMain
               },
             }
+          }
+        }
+      },
+      MuiAppBar:{
+        styleOverrides: {
+          root: {
+            backgroundColor:'#143b5d'
+          }
+      }
+    },
+      MuiContainer: {
+        styleOverrides: {
+          root: {
+            padding:'40px !important',
+            margin:'0 !important'
           }
         }
       },
@@ -75,7 +92,13 @@ export default function componentStyleOverrides(theme:any) {
           }
         }
       },
-      
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+           marginBottom:0
+          }
+        }
+      }, 
       MuiCheckbox: {
         styleOverrides: {
           root: {
@@ -98,6 +121,7 @@ export default function componentStyleOverrides(theme:any) {
           }
         }
       },
+      
       MuiSwitch: {
         styleOverrides: {
           switchBase: {

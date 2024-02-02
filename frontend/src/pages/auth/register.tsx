@@ -15,9 +15,11 @@ import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
 import { register, reset } from "../../store/auth/authSlice";
 import {
   CircularProgress,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
+  Paper,
   Select,
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -25,7 +27,9 @@ import { CustomDatePicker } from "../../components/customDatePicker";
 import { RequestStatus } from "../../models";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { formatDate } from "../../utils/dateFormatter";
-
+import loginImg from "../../assets/images/signup.png";
+import logo from "../../assets/images/logo.png";
+import themes from '../../themes';
 function Copyright(props: any) {
   return (
     <Typography
@@ -132,29 +136,39 @@ export const Register = () => {
     maritalStatus,
   } = formData;
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <Box
+    <ThemeProvider theme={themes}>
+    <Grid container component="main" sx={{ height: "100vh", background:'#223157',
+           padding: { xs: '20px 25px 40px 25px', sm:'40px 100px 40px 100px', xl: '40px 250px 40px 250px' }}}>
+      <CssBaseline />
+      <Grid
+        item
+        xs={false}
+        sm={false}
+        md={6}
+        sx={{
+          height: { xs: '200px', md: 'auto' },
+          backgroundImage: `url(${loginImg})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'relative'
+        }}
+      />
+      <Grid item xs={12} sm={12} md={6}  component={Paper} elevation={6} square>
+      <Box>
+            <Box
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{ p: 4 }}
           >
+            <Box sx={{ display: 'flex',mb:4 }}>
+                <img src={logo} width={72} height={68} alt="logo"/>
+                <Box sx={{ display: 'flex', flexDirection: 'column', marginTop: '4px', marginLeft: '10px' }}>
+                  <Typography variant='h1' lineHeight={'28px'} fontWeight={'200'} color={'#6b6b6b'} >Transport Management</Typography>
+                  <Typography variant='h3' mt={2} fontWeight={'200'} color={defaultTheme.palette.primary.main} >/ Signup</Typography>
+                </Box>
+              </Box>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -279,9 +293,8 @@ export const Register = () => {
             </Grid>
             <Button
               type="submit"
-              fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, width: '124px', borderRadius: '25px', boxShadow: 'none', padding: '10px' }}
               disabled={
                 !name ||
                 !nic ||
@@ -296,15 +309,16 @@ export const Register = () => {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Divider sx={{mt:1,mb:2}}/>
+            <Grid container justifyContent="center">
               <Grid item>
                 <Link to="/login">Already have an account? Sign in</Link>
               </Grid>
             </Grid>
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+          </Box>
+      </Grid>
+    </Grid>
+  </ThemeProvider>
   );
 };

@@ -17,6 +17,9 @@ import {
   DialogContentText,
   DialogActions,
   Divider,
+  useTheme,
+  createTheme,
+  ThemeProvider,
   
 } from "@mui/material"
 
@@ -56,7 +59,7 @@ const data: Person[] = [
 
 export const Users = () => {
   // const toggleDrawer = () => setShow(!show);
-
+  const theme = useTheme();
   const [open, setOpen] = useState(false);
 
 
@@ -107,6 +110,17 @@ export const Users = () => {
     [],
   );
 
+  const tableTheme = useMemo(
+    () =>
+        createTheme({
+            palette: {
+                primary: theme.palette.secondary,
+
+            },
+        }),
+    [theme],
+);
+
   return (
     <Dashboard>
       <Box
@@ -123,21 +137,40 @@ export const Users = () => {
             direction="row"
             alignItems="center"
             justifyContent="space-between"
-            mb={5}
+            mb={2}
           >
-            <Typography variant="h3" gutterBottom>
+            <Box>
+            {/* <Divider orientation='vertical'  sx={{ borderRightWidth: 2, mr:3, color:'red' }}  /> */}
+            <Typography variant="h1" gutterBottom>
               Users
             </Typography>
+            </Box>
+             
             <Button variant="contained" onClick={toggleDrawer('create', true)}>
               Add User
             </Button>
           </Stack>
 
           <Divider/>
-          <Card>
+          <Box mt={4}>
+          <Box boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
+          <ThemeProvider theme={tableTheme}>
           <MaterialReactTable columns={columns} data={data} 
            enableRowActions
            positionActionsColumn="last"
+           muiTableHeadCellProps={{
+            sx: () => ({
+              borderTop: '1px solid #ddd',
+              background: '#FBFBFB',
+              fontFamily: 'poppins',
+              fontWeight: 500
+          })
+           }}
+                muiTablePaperProps={{
+                  sx: () => ({
+                    boxShadow: 'none',
+                  })
+                }}
            displayColumnDefOptions={{
              'mrt-row-actions': {
                size: 120 //make actions column wider
@@ -151,7 +184,7 @@ export const Users = () => {
                   sx={{
                     color:"#00c853",
                     background:"#b9f6ca61",
-                    margin: '0 8px 0 0'
+                    margin: '0 15px 0 0'
                   }}
                 >
                   <VisibilityIcon />
@@ -163,7 +196,7 @@ export const Users = () => {
                   sx={{
                     color:"#1e88e5",
                     background:"#eef2f6",
-                    margin: '0 8px 0 0'
+                    margin: '0 15px 0 0'
                   }}
                 >
                   <EditNoteIcon />
@@ -183,7 +216,9 @@ export const Users = () => {
             </Box>
           )}
           />
-          </Card>
+          </ThemeProvider>
+          </Box>
+          </Box>
         </Container>
       </Box>
       <Drawer

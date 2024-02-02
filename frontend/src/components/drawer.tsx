@@ -7,6 +7,8 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { MainListItems } from ".";
+import { Avatar, Box, Typography, useTheme } from "@mui/material";
+import sidebarimg from '../assets/images/asset.png';
 
 const drawerWidth: number = 301;
 
@@ -44,6 +46,7 @@ interface IProps {
 }
 
 export const Sidebar = ({ open, toggleDrawer }: IProps) => {
+  const theme = useTheme();
   return (
     <Drawer variant="permanent" open={open}>
       <Toolbar
@@ -59,11 +62,24 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
         </IconButton>
       </Toolbar>
       <Divider />
+      <Box sx={{ display: 'flex', justifyContent: 'center',marginTop: theme.spacing(2)}}>
+        <Avatar
+          alt="Remy Sharp"
+          src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+          sx={{ width: 90, height: 90, boxShadow: theme.shadows[3], border: `6px solid ${theme.palette.background.paper}` }}
+        />
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: theme.spacing(2) }}>
+        <Typography variant='h4' align="center" sx={{}}  >Hi, Paul Van </Typography>
+      </Box>
+      <Box sx={{marginTop: theme.spacing(2) }}>
       <List component="nav">
         <MainListItems />
         {/* <Divider sx={{ my: 1 }} />
         {secondaryListItems} */}
       </List>
+      </Box>
+      <img src={sidebarimg} style={{position:'absolute',bottom:0}} alt="sidebar-img"/>
     </Drawer>
   );
 };
