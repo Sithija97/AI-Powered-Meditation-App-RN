@@ -79,7 +79,7 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
         {secondaryListItems} */}
       </List>
       </Box>
-      <img src={sidebarimg} alt="sidebar-img"/>
+      <img src={sidebarimg} style={{position:'absolute',bottom:0}} alt="sidebar-img"/>
     </Drawer>
   );
 };

@@ -3,7 +3,10 @@ import { Avatar, Box, Button, Card, Container, Drawer, Stack, Toolbar, Tooltip, 
   DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogActions, } from '@mui/material';
+  DialogActions,
+  ThemeProvider,
+  createTheme,
+  useTheme, } from '@mui/material';
 import { Dashboard } from '../../layouts';
 import { useMemo, useState } from 'react';
 import CreateHire from './createHire';
@@ -38,6 +41,7 @@ const data: Person[] = [
 ];
 
 const Hire = () => {
+  const theme = useTheme();
   const [open, setOpen] = useState(false);
 
   const modalContentInitValues = { create: false, update: false, view: false };
@@ -87,6 +91,17 @@ const Hire = () => {
     [],
   );
 
+  const tableTheme = useMemo(
+    () =>
+        createTheme({
+            palette: {
+                primary: theme.palette.secondary,
+
+            },
+        }),
+    [theme],
+);
+
   return (
     <Dashboard>
     <Box
@@ -107,7 +122,7 @@ const Hire = () => {
             justifyContent="space-between"
             mb={5}
           >
-            <Typography variant="h3" gutterBottom>
+            <Typography variant="h2" gutterBottom>
               Hires
             </Typography>
             <Button variant="contained" onClick={toggleDrawer('create', true)}>
@@ -115,10 +130,24 @@ const Hire = () => {
             </Button>
           </Stack>
 
-          <Card>
+          <Box mt={4} boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
+             <ThemeProvider theme={tableTheme}>
           <MaterialReactTable columns={columns} data={data} 
            enableRowActions
            positionActionsColumn="last"
+           muiTableHeadCellProps={{
+            sx: () => ({
+              borderTop: '1px solid #ddd',
+              background: '#FBFBFB',
+              fontFamily: 'poppins',
+              fontWeight: 500
+          })
+           }}
+                muiTablePaperProps={{
+                  sx: () => ({
+                    boxShadow: 'none',
+                  })
+                }}
            displayColumnDefOptions={{
              'mrt-row-actions': {
                size: 120 //make actions column wider
@@ -164,7 +193,9 @@ const Hire = () => {
             </Box>
           )}
           />
-          </Card>
+          </ThemeProvider>
+          </Box>
+          
 
           
           </Container>

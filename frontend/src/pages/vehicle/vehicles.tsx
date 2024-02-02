@@ -12,6 +12,10 @@ import {
   Drawer,
   Tooltip,
   Avatar,
+  ThemeProvider,
+  createTheme,
+  useTheme,
+  Divider,
 } from "@mui/material";
 import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
 import { deleteVehicle, getVehicles } from "../../store/vehicle/vehicleSlice";
@@ -26,6 +30,7 @@ import { ViewVehicle } from "./viewVehicle";
 import { UpdateVehicles } from "./updateVehicle";
 
 export const Vehicles = () => {
+  const theme = useTheme();
   const [open, setOpen] = useState(false);
   const modalContentInitValues = { create: false, update: false, view: false };
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,15 +101,22 @@ export const Vehicles = () => {
     setOpen(false);
   };
 
+  const tableTheme = useMemo(
+    () =>
+        createTheme({
+            palette: {
+                primary: theme.palette.secondary,
+
+            },
+        }),
+    [theme],
+);
+
   return (
     <Dashboard>
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
@@ -116,16 +128,17 @@ export const Vehicles = () => {
             direction="row"
             alignItems="center"
             justifyContent="space-between"
-            mb={5}
+            mb={2}
           >
-            <Typography variant="h3" gutterBottom>
+            <Typography variant="h2" gutterBottom>
               Vehicles
             </Typography>
             <Button variant="contained" onClick={toggleDrawer('create', true)}>
               Add Vehicle
             </Button>
           </Stack>
-          <Card>
+          <Divider/>
+       
             {getVehiclesLoading ? (
               <Box
                 sx={{
@@ -137,9 +150,25 @@ export const Vehicles = () => {
                 <CircularProgress />
               </Box>
             ) : (
+              
+              <Box mt={4} boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
+             <ThemeProvider theme={tableTheme}>
               <MaterialReactTable columns={columns} data={vehicleInfo} 
               enableRowActions
               positionActionsColumn="last"
+              muiTableHeadCellProps={{
+                sx: () => ({
+                  borderTop: '1px solid #ddd',
+                  background: '#FBFBFB',
+                  fontFamily: 'poppins',
+                  fontWeight: 500
+              })
+               }}
+                    muiTablePaperProps={{
+                      sx: () => ({
+                        boxShadow: 'none',
+                      })
+                    }}
               displayColumnDefOptions={{
                 'mrt-row-actions': {
                   size: 120 //make actions column wider
@@ -153,7 +182,7 @@ export const Vehicles = () => {
                      sx={{
                        color:"#00c853",
                        background:"#b9f6ca61",
-                       margin: '0 8px 0 0'
+                       margin: '0 15px 0 0'
                      }}
                    >
                      <VisibilityIcon/>
@@ -165,7 +194,7 @@ export const Vehicles = () => {
                      sx={{
                        color:"#1e88e5",
                        background:"#eef2f6",
-                       margin: '0 8px 0 0'
+                       margin: '0 15px 0 0'
                      }}
                    >
                      <EditNoteIcon />
@@ -185,8 +214,11 @@ export const Vehicles = () => {
                </Box>
              )}
              />
+             </ThemeProvider>
+              </Box>
+             
             )}
-          </Card>
+          
         </Container>
 
   

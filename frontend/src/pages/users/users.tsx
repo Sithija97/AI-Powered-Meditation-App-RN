@@ -17,6 +17,9 @@ import {
   DialogContentText,
   DialogActions,
   Divider,
+  useTheme,
+  createTheme,
+  ThemeProvider,
   
 } from "@mui/material"
 
@@ -56,7 +59,7 @@ const data: Person[] = [
 
 export const Users = () => {
   // const toggleDrawer = () => setShow(!show);
-
+  const theme = useTheme();
   const [open, setOpen] = useState(false);
 
 
@@ -107,6 +110,17 @@ export const Users = () => {
     [],
   );
 
+  const tableTheme = useMemo(
+    () =>
+        createTheme({
+            palette: {
+                primary: theme.palette.secondary,
+
+            },
+        }),
+    [theme],
+);
+
   return (
     <Dashboard>
       <Box
@@ -139,9 +153,24 @@ export const Users = () => {
 
           <Divider/>
           <Box mt={4}>
+          <Box boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
+          <ThemeProvider theme={tableTheme}>
           <MaterialReactTable columns={columns} data={data} 
            enableRowActions
            positionActionsColumn="last"
+           muiTableHeadCellProps={{
+            sx: () => ({
+              borderTop: '1px solid #ddd',
+              background: '#FBFBFB',
+              fontFamily: 'poppins',
+              fontWeight: 500
+          })
+           }}
+                muiTablePaperProps={{
+                  sx: () => ({
+                    boxShadow: 'none',
+                  })
+                }}
            displayColumnDefOptions={{
              'mrt-row-actions': {
                size: 120 //make actions column wider
@@ -187,6 +216,8 @@ export const Users = () => {
             </Box>
           )}
           />
+          </ThemeProvider>
+          </Box>
           </Box>
         </Container>
       </Box>
