@@ -11,45 +11,56 @@ import CommuteIcon from "@mui/icons-material/Commute";
 import PaymentIcon from "@mui/icons-material/Payment";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useNavigate } from "react-router-dom";
+import { Divider } from "@mui/material";
 
 export const MainListItems = () => {
   const navigate = useNavigate();
+  const item ={
+    borderTop:`1px solid #ddd`,
+    height:52,
+  }
   return (
     <React.Fragment>
-      <ListItemButton onClick={() => navigate("/")}>
+      <ListItemButton sx={item} onClick={() => navigate("/")}>
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
+        <Divider orientation='vertical' sx={{ borderRightWidth: 2, mr:3 }}  />
         <ListItemText primary="Home" />
       </ListItemButton>
-      <ListItemButton onClick={() => navigate("/vehicles")}>
+      <ListItemButton sx={item}  onClick={() => navigate("/vehicles")}>
         <ListItemIcon>
           <CommuteIcon />
         </ListItemIcon>
+        <Divider orientation='vertical' sx={{ borderRightWidth: 2, mr:3 }}  />
         <ListItemText primary="Vehicles" />
       </ListItemButton>
-      <ListItemButton onClick={() => navigate("/users")}>
+      <ListItemButton sx={item}  onClick={() => navigate("/users")}>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Users" />
+        <Divider orientation='vertical' sx={{ borderRightWidth: 2, mr:3 }}  />
+        <ListItemText  primary="Users" />
       </ListItemButton>
-      <ListItemButton onClick={() => navigate("/hire")}>
+      <ListItemButton sx={item}  onClick={() => navigate("/hire")}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
+        <Divider orientation='vertical' sx={{ borderRightWidth: 2, mr:3 }}  />
         <ListItemText primary="Hire" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton sx={item} >
         <ListItemIcon>
           <PaymentIcon />
         </ListItemIcon>
+        <Divider orientation='vertical' sx={{ borderRightWidth: 2, mr:3 }}  />
         <ListItemText primary="Expenses" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton sx={item} >
         <ListItemIcon>
           <SettingsIcon />
         </ListItemIcon>
+        <Divider orientation='vertical' sx={{ borderRightWidth: 2, mr:3 }}  />
         <ListItemText primary="Settings" />
       </ListItemButton>
     </React.Fragment>

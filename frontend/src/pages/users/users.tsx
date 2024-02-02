@@ -123,18 +123,22 @@ export const Users = () => {
             direction="row"
             alignItems="center"
             justifyContent="space-between"
-            mb={5}
+            mb={2}
           >
-            <Typography variant="h3" gutterBottom>
+            <Box>
+            {/* <Divider orientation='vertical'  sx={{ borderRightWidth: 2, mr:3, color:'red' }}  /> */}
+            <Typography variant="h1" gutterBottom>
               Users
             </Typography>
+            </Box>
+             
             <Button variant="contained" onClick={toggleDrawer('create', true)}>
               Add User
             </Button>
           </Stack>
 
           <Divider/>
-          <Card>
+          <Box mt={4}>
           <MaterialReactTable columns={columns} data={data} 
            enableRowActions
            positionActionsColumn="last"
@@ -151,7 +155,7 @@ export const Users = () => {
                   sx={{
                     color:"#00c853",
                     background:"#b9f6ca61",
-                    margin: '0 8px 0 0'
+                    margin: '0 15px 0 0'
                   }}
                 >
                   <VisibilityIcon />
@@ -163,7 +167,7 @@ export const Users = () => {
                   sx={{
                     color:"#1e88e5",
                     background:"#eef2f6",
-                    margin: '0 8px 0 0'
+                    margin: '0 15px 0 0'
                   }}
                 >
                   <EditNoteIcon />
@@ -183,7 +187,7 @@ export const Users = () => {
             </Box>
           )}
           />
-          </Card>
+          </Box>
         </Container>
       </Box>
       <Drawer

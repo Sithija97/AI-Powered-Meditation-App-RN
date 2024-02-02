@@ -18,7 +18,7 @@ import { deleteVehicle, getVehicles } from "../../store/vehicle/vehicleSlice";
 import { Vehicle } from "../../models";
 import { useNavigate } from "react-router-dom";
 import { CreateVehicles } from "./createVehicle";
-import MaterialReactTable, { MRT_ColumnDef } from "material-react-table";
+import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditNoteIcon from '@mui/icons-material/EditNote';

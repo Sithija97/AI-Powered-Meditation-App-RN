@@ -30,5 +30,9 @@ export default function themeTypography(theme:any) {
       fontSize: '1.75rem', //28px
       color: theme.heading,
     },
+    subtitle3: {
+      fontSize: '1.875rem',
+      color: theme.heading,
+    },
   };
 }

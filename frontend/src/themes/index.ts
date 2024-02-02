@@ -13,14 +13,20 @@ import themeTypography from "./typography";
  */
 
 const themeOption = {
-  heading: "#000",
+  heading: "#515151",
+  divider: "#E2E4EB",
 };
-
-
 
 export const theme = () => {
   const paletteMode = LightPalette;
   const themeOptions: ThemeOptions  = {
+    // spacing: (factor:any) => `${0.25 * factor}rem`, 
+    // 15px - 3.752 units 
+    // 20px - 5 units
+    // 28px - 7 units
+    // 35px - 8.752 units
+    // 40px - 10 units
+    // 52px - 13 units
     // breakpoints: {
     //   values: {
     //     xs: 0,
