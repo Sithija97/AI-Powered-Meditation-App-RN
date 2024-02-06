@@ -6,7 +6,8 @@ import { Avatar, Box, Button, Card, Container, Drawer, Stack, Toolbar, Tooltip, 
   DialogActions,
   ThemeProvider,
   createTheme,
-  useTheme, } from '@mui/material';
+  useTheme,
+  Divider, } from '@mui/material';
 import { Dashboard } from '../../layouts';
 import { useMemo, useState } from 'react';
 import CreateHire from './createHire';
@@ -120,7 +121,7 @@ const Hire = () => {
             direction="row"
             alignItems="center"
             justifyContent="space-between"
-            mb={5}
+            mb={2}
           >
             <Typography variant="h2" gutterBottom>
               Hires
@@ -129,7 +130,7 @@ const Hire = () => {
               Add Hire
             </Button>
           </Stack>
-
+          <Divider/>
           <Box mt={4} boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
              <ThemeProvider theme={tableTheme}>
           <MaterialReactTable columns={columns} data={data} 

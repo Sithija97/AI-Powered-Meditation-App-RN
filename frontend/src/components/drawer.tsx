@@ -19,8 +19,8 @@ const Drawer = styled(MuiDrawer, {
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
-    background:"#F1F5FF",
-    boxShadow:"inset 0px 1px 18px 1px #BFD5EB",
+    background:"#FCEFE6",
+    boxShadow:"inset 0px 1px 18px 1px #fdc59e",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -79,7 +79,7 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
         {secondaryListItems} */}
       </List>
       </Box>
-      <img src={sidebarimg} style={{position:'absolute',bottom:0}} alt="sidebar-img"/>
+      <img src={sidebarimg} style={{position:'absolute',bottom:0,width:'100%'}} alt="sidebar-img"/>
     </Drawer>
   );
 };

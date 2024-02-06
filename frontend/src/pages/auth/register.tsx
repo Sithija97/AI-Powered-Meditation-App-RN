@@ -27,8 +27,10 @@ import { CustomDatePicker } from "../../components/customDatePicker";
 import { RequestStatus } from "../../models";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { formatDate } from "../../utils/dateFormatter";
-import loginImg from "../../assets/images/signup.png";
+import loginImg from "../../assets/images/lgo.png";
 import logo from "../../assets/images/logo.png";
+import loginBgImg from "../../assets/images/login-back.png";
+import trucimg from "../../assets/images/truck.png";
 import themes from '../../themes';
 function Copyright(props: any) {
   return (
@@ -137,7 +139,10 @@ export const Register = () => {
   } = formData;
   return (
     <ThemeProvider theme={themes}>
-    <Grid container component="main" sx={{ height: "100vh", background:'#223157',
+    <Grid container component="main" sx={{ height: "100vh", backgroundImage: `url(${loginBgImg})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
            padding: { xs: '20px 25px 40px 25px', sm:'40px 100px 40px 100px', xl: '40px 250px 40px 250px' }}}>
       <CssBaseline />
       <Grid
@@ -153,7 +158,9 @@ export const Register = () => {
           backgroundPosition: 'center',
           position: 'relative'
         }}
-      />
+      >
+        <img style={{ position:'absolute', bottom:0, left:'20px', maxWidth: '100%', height: 'auto', padding: 0, margin: 0 }} src={trucimg} alt="truck" width={732} height={434}/>
+      </Grid>
       <Grid item xs={12} sm={12} md={6}  component={Paper} elevation={6} square>
       <Box>
             <Box
