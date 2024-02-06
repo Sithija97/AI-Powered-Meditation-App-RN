@@ -11,15 +11,16 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
 import { login, reset } from "../../store/auth/authSlice";
 import { CircularProgress, Divider, useTheme } from "@mui/material";
 import { toast } from "react-toastify";
 import { RequestStatus } from "../../models";
-import loginImage from "../../assets/images/login-bgback.png";
-import loginImg from "../../assets/images/login.png";
+import loginBgImg from "../../assets/images/login-back.png";
+import loginImg from "../../assets/images/lgo.png";
+import trucimg from "../../assets/images/truck.png";
 import logo from "../../assets/images/logo.png";
 import themes from '../../themes';
 
@@ -92,7 +93,10 @@ export const Login = () => {
   }
   return (
     <ThemeProvider theme={themes}>
-    <Grid container component="main" sx={{ height: "100vh", background:'#223157',
+    <Grid container component="main" sx={{ height: "100vh", backgroundImage: `url(${loginBgImg})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
            padding: { xs: '50px 25px 50px 25px', sm:'50px 100px 50px 100px', lg: '60px 150px 60px 150px', xl: '60px 250px 60px 250px' }}}>
       <CssBaseline />
       <Grid
@@ -106,18 +110,22 @@ export const Login = () => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          position: 'relative'
+         position:'relative'
         }}
-      />
+        >
+
+        <img style={{ position:'absolute', bottom:0, left:'60px', maxWidth: '100%', height: 'auto', padding: 0, margin: 0 }} src={trucimg} alt="truck" width={732} height={434}/>
+      </Grid>
+   
       <Grid item xs={12} sm={12} md={6}  component={Paper} elevation={6} square>
         <Box
            sx={{ padding: { xs: '30px', md: '150px 50px 150px 50px', xl: '150px 50px 150px 50px' } }}
         >
          <Box sx={{ display: 'flex' }}>
-                <img src={logo} width={72} height={68} alt="logo"/>
+                <img src={logo} alt="logo"/>
                 <Box sx={{ display: 'flex', flexDirection: 'column', marginTop: '4px', marginLeft: '10px' }}>
                   <Typography variant='h1' lineHeight={'28px'} fontWeight={'200'} color={'#6b6b6b'} >Transport Management</Typography>
-                  <Typography variant='h3' mt={2} fontWeight={'200'} color={defaultTheme.palette.primary.main} >/ Login</Typography>
+                  <Typography variant='h3' mt={1} fontWeight={'200'} color={'#E9833D'} >/ Login</Typography>
                 </Box>
               </Box>
           <Box
