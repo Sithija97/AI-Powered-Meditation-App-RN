@@ -9,7 +9,6 @@ export default function componentStyleOverrides(theme:any) {
             fontWeight: '100 !important',
             borderRadius: '25px',
             boxShadow:'none',
-            color:'#fff !important',
             '&:hover': {
               boxShadow:'none'
             },
@@ -19,6 +18,9 @@ export default function componentStyleOverrides(theme:any) {
                 backgroundColor: theme.colors?.successMain
               },
             }
+          },
+          contained: {
+            color:'#fff !important',
           }
         }
       },
