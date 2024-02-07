@@ -20,6 +20,8 @@ import {
   useTheme,
   createTheme,
   ThemeProvider,
+  Grid,
+  Pagination,
   
 } from "@mui/material"
 
@@ -30,6 +32,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { ViewUsers } from "./viewUser";
 import { UpdateUsers } from "./updateUser";
+import UserCard from "./userCard";
 
 
 type Person = {
@@ -141,7 +144,7 @@ export const Users = () => {
           >
             <Box>
             {/* <Divider orientation='vertical'  sx={{ borderRightWidth: 2, mr:3, color:'red' }}  /> */}
-            <Typography variant="h1" gutterBottom>
+            <Typography variant="h2" gutterBottom>
               Users
             </Typography>
             </Box>
@@ -153,7 +156,7 @@ export const Users = () => {
 
           <Divider/>
           <Box mt={4}>
-          <Box boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
+          {/* <Box boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
           <ThemeProvider theme={tableTheme}>
           <MaterialReactTable columns={columns} data={data} 
            enableRowActions
@@ -217,7 +220,24 @@ export const Users = () => {
           )}
           />
           </ThemeProvider>
-          </Box>
+          </Box> */}
+          <Grid container rowSpacing={3} columnSpacing={3}>
+            <Grid item xs={12} md={6} xl={3}>
+              <UserCard/>
+            </Grid>
+            <Grid item xs={12} md={6} xl={3}>   
+              <UserCard/>
+            </Grid>
+            <Grid item xs={12} md={6} xl={3}>   
+              <UserCard/>
+            </Grid>
+            <Grid item xs={12} md={6} xl={3}>   
+              <UserCard/>
+            </Grid>
+          </Grid>
+            <Stack mt={theme.spacing(4)} spacing={2} justifyContent={'end'}>
+              <Pagination count={10} shape="rounded" />
+            </Stack>
           </Box>
         </Container>
       </Box>
