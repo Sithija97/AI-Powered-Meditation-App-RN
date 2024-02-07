@@ -21,7 +21,7 @@ const UserCard = () => {
                     <Typography fontSize={'15px'}> Driver</Typography>
                 </Box>
             </Box>
-            <Grid container rowSpacing={3} columnSpacing={3} mt={theme.spacing(2)}>
+            <Grid container rowSpacing={3} columnSpacing={3} mt={theme.spacing(1)}>
                 <Grid item xs={12}>
                     <Typography color={'#757575'} fontSize={'15px'}> Address</Typography>
                     <Typography fontSize='h3'> No 12, First lane, Colombo 03</Typography>

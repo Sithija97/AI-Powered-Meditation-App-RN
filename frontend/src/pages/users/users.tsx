@@ -143,8 +143,9 @@ export const Users = () => {
             mb={2}
           >
             <Box>
-            {/* <Divider orientation='vertical'  sx={{ borderRightWidth: 2, mr:3, color:'red' }}  /> */}
+            <Divider orientation='vertical'  sx={{ borderRightWidth: 2, mr:3, color:'red' }}  />
             <Typography variant="h2" gutterBottom>
+            
               Users
             </Typography>
             </Box>
@@ -222,16 +223,16 @@ export const Users = () => {
           </ThemeProvider>
           </Box> */}
           <Grid container rowSpacing={3} columnSpacing={3}>
-            <Grid item xs={12} md={6} xl={3}>
+            <Grid item xs={12} md={6} lg={4} xl={3}>
               <UserCard/>
             </Grid>
-            <Grid item xs={12} md={6} xl={3}>   
+            <Grid item xs={12} md={6} lg={4} xl={3}>   
               <UserCard/>
             </Grid>
-            <Grid item xs={12} md={6} xl={3}>   
+            <Grid item xs={12} md={6} lg={4} xl={3}>   
               <UserCard/>
             </Grid>
-            <Grid item xs={12} md={6} xl={3}>   
+            <Grid item xs={12} md={6} lg={4} xl={3}>   
               <UserCard/>
             </Grid>
           </Grid>

@@ -17,6 +17,9 @@ const Drawer = styled(MuiDrawer, {
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
     position: "relative",
+    [theme.breakpoints.down("sm")]: {
+      position: "absolute",
+    },
     whiteSpace: "nowrap",
     width: drawerWidth,
     background:"#FCEFE6",
@@ -35,6 +38,9 @@ const Drawer = styled(MuiDrawer, {
       width: theme.spacing(7),
       [theme.breakpoints.up("sm")]: {
         width: theme.spacing(9),
+      },
+      [theme.breakpoints.down("sm")]: {
+        display:'none'
       },
     }),
   },
@@ -62,16 +68,24 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
         </IconButton>
       </Toolbar>
       <Divider />
-      <Box sx={{ display: 'flex', justifyContent: 'center',marginTop: theme.spacing(2)}}>
+      {open ? 
+      <>
+       <Box  sx={{ display: 'flex', justifyContent: 'center',marginTop: theme.spacing(2)}}>
         <Avatar
           alt="Remy Sharp"
           src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-          sx={{ width: 90, height: 90, boxShadow: theme.shadows[3], border: `6px solid ${theme.palette.background.paper}` }}
-        />
+          sx={{ width: 90, height: 90, boxShadow: theme.shadows[3], border: `6px solid ${theme.palette.background.paper}` }}/>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: theme.spacing(2) }}>
-        <Typography variant='h4' align="center" sx={{}}  >Hi, Paul Van </Typography>
-      </Box>
+       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: theme.spacing(2) }}>
+       <Typography variant='h4' align="center" sx={{}}  >Hi, Paul Van </Typography>
+     </Box>
+      </>
+       
+      :
+      <></>
+    }
+      
+     
       <Box sx={{marginTop: theme.spacing(2) }}>
       <List component="nav">
         <MainListItems />

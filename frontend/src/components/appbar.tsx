@@ -91,7 +91,7 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
           noWrap
           sx={{ flexGrow: 1 }}
         >
-          Dashboard
+         
         </Typography>
         <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
