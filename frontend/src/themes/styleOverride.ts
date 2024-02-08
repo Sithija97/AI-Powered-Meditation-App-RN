@@ -125,6 +125,50 @@ export default function componentStyleOverrides(theme:any) {
           }
         }
       },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            color: theme.darkTextPrimary,
+            paddingTop: '10px',
+            paddingBottom: '10px',
+            '&.Mui-selected': {
+              color: "#E9833D !important",
+              backgroundColor: '#fff !important',
+              '&:hover': {
+                backgroundColor: '#fff !important'
+              },
+              '& .MuiListItemIcon-root': {
+                color: "#E9833D !important",
+                '&:Mui-selected': {
+                  backgroundColor: theme.darkTextPrimary
+                },
+              }
+            },
+            '&:hover': {
+              backgroundColor: '#fff !important',
+              color: "#E9833D !important",
+              '& .MuiListItemIcon-root': {
+                color:  "#E9833D !important"
+              }
+            }
+          }
+        }
+      },
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: {
+            color: theme.darkTextPrimary,
+            minWidth: '36px',
+          }
+        }
+      },
+      MuiListItemText: {
+        styleOverrides: {
+          primary: {
+            color: theme.textDark
+          }
+        }
+      },
       
       MuiSwitch: {
         styleOverrides: {

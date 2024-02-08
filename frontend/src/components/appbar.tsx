@@ -13,7 +13,8 @@ import Menu from "@mui/material/Menu";
 import { logout } from "../store/auth/authSlice";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { useNavigate } from "react-router-dom";
-import { ListItemIcon, ListItemText } from "@mui/material";
+import { Avatar, ListItemIcon, ListItemText, useTheme } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -45,6 +46,7 @@ interface IProps {
 }
 
 export const Appbar = ({ open, toggleDrawer }: IProps) => {
+  const theme = useTheme();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { userInfo } = useAppSelector((state: RootState) => state.auth);
@@ -91,25 +93,30 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
           noWrap
           sx={{ flexGrow: 1 }}
         >
-          Dashboard
+         
         </Typography>
-        <IconButton color="inherit">
+        {/* <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
             <NotificationsIcon />
           </Badge>
-        </IconButton>
+        </IconButton> */}
         {userInfo && (
           <div>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            
+            <Avatar
+            id="profile_btn"
+            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+            sx={{
+              marginRight: '20px',
+              cursor: 'pointer',
+              width: 42, 
+              height: 42
+            }}
+            aria-controls={open ? 'menu-list-grow' : undefined}
+            aria-haspopup="true"
+            color="inherit"
+            onClick={handleMenu}
+          />
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
@@ -141,6 +148,18 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
             </Menu>
           </div>
         )}
+         <Avatar
+        id="logout_btn"
+        sx={{
+          color: '#E9833D',
+          backgroundColor: theme.palette.background.paper,
+          border:`1px solid #ddd`,
+          margin: '0 8px 0 0',
+          cursor:'pointer'
+        }}
+      >
+       <LogoutIcon/>
+      </Avatar>
       </Toolbar>
     </AppBar>
   );
