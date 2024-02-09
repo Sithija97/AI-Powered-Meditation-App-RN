@@ -6,7 +6,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import { Dashboard } from "../../layouts";
-import { Card } from "@mui/material";
+import { Card, useTheme } from "@mui/material";
+import banner from '../../assets/images/banner.png';
+import truck from '../../assets/images/old-truck.png';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -95,16 +97,14 @@ function Copyright(props: any) {
 }
 
 export const Home = () => {
+  const theme = useTheme();
   const { userInfo } = useAppSelector((state: RootState) => state.auth);
   return (
     <Dashboard>
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
+
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
@@ -112,49 +112,51 @@ export const Home = () => {
       >
         <Toolbar />
         <Container maxWidth={false} sx={{ mt: 4, mb: 4 }}>
-          <Typography variant="h3" sx={{ mb: 4 }}>
-            {` Hi, Welcome Back ${userInfo.name}`}
-          </Typography>
 
-          <Grid sx={{ mb: 3 }} container spacing={3}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                <Typography variant="h3">120</Typography>
+          <Grid container>
+            <Grid item xs={12}>
+              <Box mt={theme.spacing(3.752)} p={theme.spacing(4)} borderRadius={'20px'} sx={{ backgroundImage: `url(${banner})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} >
+                <Box display={'flex'} flexWrap={'wrap'} justifyContent={'space-between'} sx={{ flexDirection: { xs: 'column', lg: 'row' } }}>
+                  <Box flexGrow={1}>
+                    <Typography variant="h2" sx={{ mb: 4, color: '#fff' }}>
+                      {` Hi, Welcome Back ${userInfo.name}`}
+                    </Typography>
+                    <Grid sx={{ mb: 3 }} container spacing={3}>
+                      <Grid item xs={12} sm={6} md={6} lg={4}>
+                        <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
+                          <Typography variant="h1" color={'#E9833D '}>120</Typography>
 
-                <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                  Users
-                </Typography>
-              </Card>
-            </Grid>
+                          <Typography variant="h3" sx={{ opacity: 0.72 }}>
+                            Users
+                          </Typography>
+                        </Card>
+                      </Grid>
+                      <Grid item xs={12} sm={6} md={6} lg={4}>
+                        <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
+                          <Typography variant="h1" color={'#E9833D '}>120</Typography>
 
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                <Typography variant="h3">100</Typography>
+                          <Typography variant="h3" sx={{ opacity: 0.72 }}>
+                            Users
+                          </Typography>
+                        </Card>
+                      </Grid>
+                      <Grid item xs={12} sm={6} md={6} lg={4}>
+                        <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
+                          <Typography variant="h1" color={'#E9833D '}>120</Typography>
 
-                <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                  Vehicles
-                </Typography>
-              </Card>
-            </Grid>
+                          <Typography variant="h3" sx={{ opacity: 0.72 }}>
+                            Users
+                          </Typography>
+                        </Card>
+                      </Grid>
+                    </Grid>
+                  </Box>
 
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                <Typography variant="h3">180</Typography>
-
-                <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                  Hires
-                </Typography>
-              </Card>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                <Typography variant="h3">160</Typography>
-
-                <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                  Transactions
-                </Typography>
-              </Card>
+                  <Box sx={{ order: { xs: 1, md: 2 }, mb: { xs: theme.spacing(2), md: 0 }, mt: { xs: theme.spacing(7), lg: '-7rem' }, ml:'2rem' }}>
+                    <img src={truck} style={{ maxWidth: '100%', height: 'auto', padding: 0, margin: 0 }} alt='user-img' />
+                  </Box>
+                </Box>
+              </Box>
             </Grid>
           </Grid>
 
