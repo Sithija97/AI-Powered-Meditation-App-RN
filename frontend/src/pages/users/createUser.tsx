@@ -20,6 +20,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { ImageUploader } from "../../components/imageuploader";
 
 export const CreateUsers = () => {
   return (
@@ -34,7 +35,8 @@ export const CreateUsers = () => {
         </IconButton>
       </Box>
       <Divider sx={{ mb: 3, mt: 2 }} />
-      <Grid container spacing={2}>
+      <ImageUploader />
+      <Grid container spacing={2} mt={2}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Type</InputLabel>
@@ -106,6 +108,15 @@ export const CreateUsers = () => {
             />
           </LocalizationProvider>
         </Grid>
+        <Grid item xs={12}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Martial Status</InputLabel>
+            <Select label="Gender">
+              <MenuItem value={10}>Single</MenuItem>
+              <MenuItem value={20}>Married</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
       </Grid>
       <Divider sx={{ mt: 2, mb: 2 }} />
       <Typography variant="h6" gutterBottom>
@@ -131,6 +142,8 @@ export const CreateUsers = () => {
             />
           </LocalizationProvider>
         </Grid>
+
+        <ImageUploader />
       </Grid>
 
       <Divider sx={{ mt: 2, mb: 2 }} />
@@ -163,6 +176,8 @@ export const CreateUsers = () => {
             />
           </LocalizationProvider>
         </Grid>
+
+        <ImageUploader />
       </Grid>
       <Divider sx={{ mt: 2, mb: 2 }} />
       <Typography variant="h6" gutterBottom>
@@ -194,6 +209,8 @@ export const CreateUsers = () => {
             />
           </LocalizationProvider>
         </Grid>
+
+        <ImageUploader />
       </Grid>
       <Button sx={{ mt: 3, mb: 2, ms: 3 }} variant="contained">
         Save
