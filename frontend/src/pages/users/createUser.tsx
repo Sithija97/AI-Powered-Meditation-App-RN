@@ -35,7 +35,8 @@ export const CreateUsers = () => {
         </IconButton>
       </Box>
       <Divider sx={{ mb: 3, mt: 2 }} />
-      <Grid container spacing={2}>
+      <ImageUploader />
+      <Grid container spacing={2} mt={2}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Type</InputLabel>
@@ -106,6 +107,15 @@ export const CreateUsers = () => {
               label="Date Of Birth"
             />
           </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Martial Status</InputLabel>
+            <Select label="Gender">
+              <MenuItem value={10}>Single</MenuItem>
+              <MenuItem value={20}>Married</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
       </Grid>
       <Divider sx={{ mt: 2, mb: 2 }} />
