@@ -20,6 +20,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { ImageUploader } from "../../components/imageuploader";
 
 export const CreateUsers = () => {
   return (
@@ -131,6 +132,8 @@ export const CreateUsers = () => {
             />
           </LocalizationProvider>
         </Grid>
+
+        <ImageUploader />
       </Grid>
 
       <Divider sx={{ mt: 2, mb: 2 }} />
@@ -163,6 +166,8 @@ export const CreateUsers = () => {
             />
           </LocalizationProvider>
         </Grid>
+
+        <ImageUploader />
       </Grid>
       <Divider sx={{ mt: 2, mb: 2 }} />
       <Typography variant="h6" gutterBottom>
@@ -194,6 +199,8 @@ export const CreateUsers = () => {
             />
           </LocalizationProvider>
         </Grid>
+
+        <ImageUploader />
       </Grid>
       <Button sx={{ mt: 3, mb: 2, ms: 3 }} variant="contained">
         Save
