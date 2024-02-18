@@ -8,7 +8,7 @@ const userSchema = new Schema<IUser>(
     name: { type: String, required: true },
     nic: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    title: { type: String, required: true },
+    title: { type: String },
     role: { type: String, default: UserRole.IDLE },
     maritalStatus: { type: String },
     email: { type: String },

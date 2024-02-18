@@ -7,8 +7,8 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import { Dashboard } from "../../layouts";
 import { Card, useTheme } from "@mui/material";
-import banner from '../../assets/images/banner.png';
-import truck from '../../assets/images/old-truck.png';
+import banner from "../../assets/images/banner.png";
+import truck from "../../assets/images/old-truck.png";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -104,7 +104,6 @@ export const Home = () => {
       <Box
         component="main"
         sx={{
-
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
@@ -112,19 +111,34 @@ export const Home = () => {
       >
         <Toolbar />
         <Container maxWidth={false} sx={{ mt: 4, mb: 4 }}>
-
           <Grid container>
             <Grid item xs={12}>
-              <Box mt={theme.spacing(3.752)} p={theme.spacing(4)} borderRadius={'20px'} sx={{ backgroundImage: `url(${banner})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} >
-                <Box display={'flex'} flexWrap={'wrap'} justifyContent={'space-between'} sx={{ flexDirection: { xs: 'column', lg: 'row' } }}>
+              <Box
+                mt={theme.spacing(3.752)}
+                p={theme.spacing(4)}
+                borderRadius={"20px"}
+                sx={{
+                  backgroundImage: `url(${banner})`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                }}
+              >
+                <Box
+                  display={"flex"}
+                  flexWrap={"wrap"}
+                  justifyContent={"space-between"}
+                  sx={{ flexDirection: { xs: "column", lg: "row" } }}
+                >
                   <Box flexGrow={1}>
-                    <Typography variant="h2" sx={{ mb: 4, color: '#fff' }}>
-                      {` Hi, Welcome Back ${userInfo.name}`}
+                    <Typography variant="h2" sx={{ mb: 4, color: "#fff" }}>
+                      {/* {` Hi, Welcome Back ${userInfo?.name}`} */}
                     </Typography>
                     <Grid sx={{ mb: 3 }} container spacing={3}>
                       <Grid item xs={12} sm={6} md={6} lg={4}>
                         <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                          <Typography variant="h1" color={'#E9833D '}>120</Typography>
+                          <Typography variant="h1" color={"#E9833D "}>
+                            120
+                          </Typography>
 
                           <Typography variant="h3" sx={{ opacity: 0.72 }}>
                             Users
@@ -133,7 +147,9 @@ export const Home = () => {
                       </Grid>
                       <Grid item xs={12} sm={6} md={6} lg={4}>
                         <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                          <Typography variant="h1" color={'#E9833D '}>120</Typography>
+                          <Typography variant="h1" color={"#E9833D "}>
+                            120
+                          </Typography>
 
                           <Typography variant="h3" sx={{ opacity: 0.72 }}>
                             Users
@@ -142,7 +158,9 @@ export const Home = () => {
                       </Grid>
                       <Grid item xs={12} sm={6} md={6} lg={4}>
                         <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                          <Typography variant="h1" color={'#E9833D '}>120</Typography>
+                          <Typography variant="h1" color={"#E9833D "}>
+                            120
+                          </Typography>
 
                           <Typography variant="h3" sx={{ opacity: 0.72 }}>
                             Users
@@ -152,8 +170,24 @@ export const Home = () => {
                     </Grid>
                   </Box>
 
-                  <Box sx={{ order: { xs: 1, md: 2 }, mb: { xs: theme.spacing(2), md: 0 }, mt: { xs: theme.spacing(7), lg: '-7rem' }, ml:'2rem' }}>
-                    <img src={truck} style={{ maxWidth: '100%', height: 'auto', padding: 0, margin: 0 }} alt='user-img' />
+                  <Box
+                    sx={{
+                      order: { xs: 1, md: 2 },
+                      mb: { xs: theme.spacing(2), md: 0 },
+                      mt: { xs: theme.spacing(7), lg: "-7rem" },
+                      ml: "2rem",
+                    }}
+                  >
+                    <img
+                      src={truck}
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                        padding: 0,
+                        margin: 0,
+                      }}
+                      alt="user-img"
+                    />
                   </Box>
                 </Box>
               </Box>

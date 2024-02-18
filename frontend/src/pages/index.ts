@@ -6,4 +6,5 @@ export * from "./vehicle/vehicles";
 export * from "./users/createUser";
 export * from "./vehicle/createVehicle";
 export * from "./hire/hire";
+export * from "./layout";
 export * from "./404";

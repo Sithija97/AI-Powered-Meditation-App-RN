@@ -3,9 +3,7 @@ import { authService } from "../../services";
 import { userLoginData, userRegistrationData } from "../../models";
 
 const initialState = {
-  userInfo: localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo")!)
-    : null,
+  userInfo: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
