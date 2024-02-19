@@ -6,7 +6,7 @@ export const LOGIN = "/login";
 export const REGISTER = "/register";
 
 export const PROTECTED = "/";
-export const HOME = "home";
+export const HOME = "/home";
 export const USERS = "users";
 export const HIRE = "hire";
 export const VEHICLES = "vehicles";

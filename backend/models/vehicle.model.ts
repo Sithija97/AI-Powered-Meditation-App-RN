@@ -24,6 +24,37 @@ const vehicleSchema = new Schema<IVehicle>(
       type: String,
       required: [true, "Please add vehicle's fuel type"],
     },
+    revenueLicenceDetails: {
+      amount: { type: Number },
+      effectiveDate: { type: Date },
+      renewalDate: { type: Date },
+      licenceImgUrl: { type: String },
+    },
+    insuaranceDetails: {
+      amount: { type: Number },
+      effectiveDate: { type: Date },
+      renewalDate: { type: Date },
+      insuranceImgUrl: { type: String },
+    },
+    smokeTestDetails: {
+      amount: { type: Number },
+      effectiveDate: { type: Date },
+      renewalDate: { type: Date },
+      smokeTestImgUrl: { type: String },
+    },
+    portPermitDetails: {
+      amount: { type: Number },
+      effectiveDate: { type: Date },
+      renewalDate: { type: Date },
+      portPermitImgUrl: { type: String },
+    },
+    leasingDetails: {
+      company: { type: String },
+      amount: { type: Number },
+      effectiveDate: { type: Date },
+      renewalDate: { type: Date },
+      leasingImgUrl: { type: String },
+    },
   },
   {
     timestamps: true,

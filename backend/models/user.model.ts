@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 import { IUser } from "../interfaces/index.js";
 import { UserRole } from "../enums/index.js";
@@ -13,8 +13,27 @@ const userSchema = new Schema<IUser>(
     maritalStatus: { type: String },
     email: { type: String },
     address: { type: String },
-    dob: { type: String },
+    dob: { type: Date },
     gender: { type: String },
+    profileImgUrl: { type: String },
+    nicDetails: {
+      nic: { type: String },
+      startDate: { type: Date },
+      endDate: { type: Date },
+      nicImageUrl: { type: String },
+    },
+    policeReportsDetails: {
+      reportNumber: { type: Schema.Types.Mixed },
+      startDate: { type: Date },
+      endDate: { type: Date },
+      policeReportImageUrl: { type: String },
+    },
+    drivingLicenceDetails: {
+      licenceNumber: { type: Schema.Types.Mixed },
+      startDate: { type: Date },
+      endDate: { type: Date },
+      drivingLicenceImageUrl: { type: String },
+    },
   },
   {
     timestamps: true,

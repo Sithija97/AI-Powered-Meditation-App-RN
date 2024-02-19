@@ -31,7 +31,8 @@ import loginImg from "../../assets/images/lgo.png";
 import logo from "../../assets/images/logo.png";
 import loginBgImg from "../../assets/images/login-back.png";
 import trucimg from "../../assets/images/truck.png";
-import themes from '../../themes';
+import themes from "../../themes";
+import { LOGIN } from "../../routes";
 function Copyright(props: any) {
   return (
     <Typography
@@ -110,7 +111,7 @@ export const Register = () => {
 
         dispatch(register(userData)).then((res) => {
           if (res.meta.requestStatus === RequestStatus.Fulfiled) {
-            navigate("/login");
+            navigate(LOGIN);
           }
         });
       } catch (error: any) {
@@ -121,7 +122,7 @@ export const Register = () => {
 
   if (isLoading) {
     return (
-      <Box sx={{ display: "flex", justifyContent:"center",padding:"15px"}}>
+      <Box sx={{ display: "flex", justifyContent: "center", padding: "15px" }}>
         <CircularProgress />
       </Box>
     );
@@ -139,97 +140,151 @@ export const Register = () => {
   } = formData;
   return (
     <ThemeProvider theme={themes}>
-    <Grid container component="main" sx={{ height: "100vh", backgroundImage: `url(${loginBgImg})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-           padding: { xs: '20px 25px 40px 25px', sm:'40px 100px 40px 100px', xl: '40px 250px 40px 250px' }}}>
-      <CssBaseline />
       <Grid
-        item
-        xs={false}
-        sm={false}
-        md={6}
+        container
+        component="main"
         sx={{
-          height: { xs: '200px', md: 'auto' },
-          backgroundImage: `url(${loginImg})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          position: 'relative'
+          height: "100vh",
+          backgroundImage: `url(${loginBgImg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          padding: {
+            xs: "20px 25px 40px 25px",
+            sm: "40px 100px 40px 100px",
+            xl: "40px 250px 40px 250px",
+          },
         }}
       >
-        <img style={{ position:'absolute', bottom:0, left:'20px', maxWidth: '100%', height: 'auto', padding: 0, margin: 0 }} src={trucimg} alt="truck" width={732} height={434}/>
-      </Grid>
-      <Grid item xs={12} sm={12} md={6}  component={Paper} elevation={6} square>
-      <Box>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={false}
+          md={6}
+          sx={{
+            height: { xs: "200px", md: "auto" },
+            backgroundImage: `url(${loginImg})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            position: "relative",
+          }}
+        >
+          <img
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: "20px",
+              maxWidth: "100%",
+              height: "auto",
+              padding: 0,
+              margin: 0,
+            }}
+            src={trucimg}
+            alt="truck"
+            width={732}
+            height={434}
+          />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          component={Paper}
+          elevation={6}
+          square
+        >
+          <Box>
             <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ p: 4 }}
-          >
-            <Box sx={{ display: 'flex',mb:4 }}>
-                <img src={logo} width={72} height={68} alt="logo"/>
-                <Box sx={{ display: 'flex', flexDirection: 'column', marginTop: '4px', marginLeft: '10px' }}>
-                  <Typography variant='h1' lineHeight={'28px'} fontWeight={'200'} color={'#6b6b6b'} >Transport Management</Typography>
-                  <Typography variant='h3' mt={2} fontWeight={'200'} color={defaultTheme.palette.primary.main} >/ Signup</Typography>
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ p: 4 }}
+            >
+              <Box sx={{ display: "flex", mb: 4 }}>
+                <img src={logo} width={72} height={68} alt="logo" />
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: "4px",
+                    marginLeft: "10px",
+                  }}
+                >
+                  <Typography
+                    variant="h1"
+                    lineHeight={"28px"}
+                    fontWeight={"200"}
+                    color={"#6b6b6b"}
+                  >
+                    Transport Management
+                  </Typography>
+                  <Typography
+                    variant="h3"
+                    mt={2}
+                    fontWeight={"200"}
+                    color={defaultTheme.palette.primary.main}
+                  >
+                    / Signup
+                  </Typography>
                 </Box>
               </Box>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  name="name"
-                  type="text"
-                  value={name}
-                  autoComplete="name"
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="nic"
-                  label="NIC"
-                  name="nic"
-                  type="text"
-                  value={nic}
-                  autoComplete="nic"
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="password"
-                  label="Password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  autoComplete="password"
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="confirmPassword"
-                  label="Confirm Password"
-                  name="confirmPassword"
-                  type="password"
-                  value={confirmPassword}
-                  autoComplete="confirmPassword"
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="name"
+                    label="Name"
+                    name="name"
+                    type="text"
+                    value={name}
+                    autoComplete="name"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="nic"
+                    label="NIC"
+                    name="nic"
+                    type="text"
+                    value={nic}
+                    autoComplete="nic"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="password"
+                    label="Password"
+                    name="password"
+                    type="password"
+                    value={password}
+                    autoComplete="password"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="confirmPassword"
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    type="password"
+                    value={confirmPassword}
+                    autoComplete="confirmPassword"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -241,21 +296,21 @@ export const Register = () => {
                   autoComplete="title"
                   onChange={handleChange}
                 />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  type="email"
-                  value={email}
-                  autoComplete="email"
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
+              </Grid> */}
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    value={email}
+                    autoComplete="email"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -267,8 +322,8 @@ export const Register = () => {
                   autoComplete="address"
                   onChange={handleChange}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6}>
+              </Grid> */}
+                {/* <Grid item xs={12} sm={6}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <CustomDatePicker
                     name="dob"
@@ -277,8 +332,8 @@ export const Register = () => {
                     onChange={handleChange}
                   />
                 </LocalizationProvider>
-              </Grid>
-              <Grid item xs={12} sm={6}>
+              </Grid> */}
+                {/* <Grid item xs={12} sm={6}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">
                     Marital status
@@ -296,36 +351,35 @@ export const Register = () => {
                     <MenuItem value={"unmarried"}>Unmarried</MenuItem>
                   </Select>
                 </FormControl>
+              </Grid> */}
               </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{ mt: 3, mb: 2, width: '124px', borderRadius: '25px', boxShadow: 'none', padding: '10px' }}
-              disabled={
-                !name ||
-                !nic ||
-                !title ||
-                !password ||
-                !confirmPassword ||
-                !email ||
-                !address ||
-                !dob ||
-                !maritalStatus
-              }
-            >
-              Sign Up
-            </Button>
-            <Divider sx={{mt:1,mb:2}}/>
-            <Grid container justifyContent="center">
-              <Grid item>
-                <Link to="/login">Already have an account? Sign in</Link>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  width: "124px",
+                  borderRadius: "25px",
+                  boxShadow: "none",
+                  padding: "10px",
+                }}
+                disabled={
+                  !name || !nic || !password || !confirmPassword || !email
+                }
+              >
+                Sign Up
+              </Button>
+              <Divider sx={{ mt: 1, mb: 2 }} />
+              <Grid container justifyContent="center">
+                <Grid item>
+                  <Link to="/login">Already have an account? Sign in</Link>
+                </Grid>
               </Grid>
-            </Grid>
+            </Box>
           </Box>
-          </Box>
+        </Grid>
       </Grid>
-    </Grid>
-  </ThemeProvider>
+    </ThemeProvider>
   );
 };
