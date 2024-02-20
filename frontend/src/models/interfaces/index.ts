@@ -13,14 +13,55 @@ export interface userLoginData {
   nic: string;
   password: string;
 }
+interface RevenueLicenceDetails {
+  amount: number;
+  effectiveDate: string;
+  renewalDate: string;
+  licenceImgUrl: string;
+}
 
-export interface Vehicle {
-  _id: string;
-  user: string;
-  type: string;
+interface InsuaranceDetails {
+  amount: number;
+  effectiveDate: string;
+  renewalDate: string;
+  insuranceImgUrl: string;
+}
+
+interface SmokeTestDetails {
+  amount: number;
+  effectiveDate: string;
+  renewalDate: string;
+  smokeTestImgUrl: string;
+}
+
+interface PortPermitDetails {
+  amount: number;
+  effectiveDate: string;
+  renewalDate: string;
+  portPermitImgUrl: string;
+}
+
+interface LeasingDetails {
+  company: string;
+  amount: number;
+  effectiveDate: string;
+  renewalDate: string;
+  leasingImgUrl: string;
+}
+
+export interface IVehicle {
+  _id?: string;
+  user?: string;
   ownership: string;
+  type: string;
   fuelType: string;
   chassieNumber: string;
+  revenueLicenceDetails: RevenueLicenceDetails;
+  insuaranceDetails: InsuaranceDetails;
+  smokeTestDetails: SmokeTestDetails;
+  portPermitDetails: PortPermitDetails;
+  leasingDetails: LeasingDetails;
+  [key: string]: any; // Index signature allowing string indexing
 }
 
 export interface VehicleData {

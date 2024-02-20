@@ -1,13 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { router } from "./routes";
 
 export const App = () => {
   return (
     <>
       <ToastContainer />
-      <Outlet />
+      <RouterProvider router={router} />
     </>
   );
 };

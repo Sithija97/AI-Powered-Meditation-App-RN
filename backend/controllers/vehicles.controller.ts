@@ -14,7 +14,17 @@ import { CustomRequest } from "../interfaces/common.js";
 
 export const registerVehicle = asyncHandler(
   async (req: CustomRequest, res: Response) => {
-    const { ownership, type, chassieNumber, fuelType } = req.body;
+    const {
+      ownership,
+      type,
+      chassieNumber,
+      fuelType,
+      revenueLicenceDetails,
+      insuaranceDetails,
+      smokeTestDetails,
+      portPermitDetails,
+      leasingDetails,
+    } = req.body;
     const vehicleExists = await Vehicle.findOne({ chassieNumber });
 
     if (vehicleExists) {
@@ -28,6 +38,11 @@ export const registerVehicle = asyncHandler(
       type,
       chassieNumber,
       fuelType,
+      revenueLicenceDetails,
+      insuaranceDetails,
+      smokeTestDetails,
+      portPermitDetails,
+      leasingDetails,
     });
 
     if (vehicle) {

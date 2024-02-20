@@ -4,7 +4,7 @@ import colors from "colors";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
-import { userRouter, vehicleRouter } from "./routes/index.js";
+import { hireRouter, userRouter, vehicleRouter } from "./routes/index.js";
 import { errorHandler, notFound } from "./middleware/error.middleware.js";
 
 dotenv.config();
@@ -20,6 +20,7 @@ app.use(cookieParser());
 
 app.use("/api/users", userRouter);
 app.use("/api/vehicles", vehicleRouter);
+app.use("/api/hires", hireRouter);
 
 app.use(notFound);
 app.use(errorHandler);

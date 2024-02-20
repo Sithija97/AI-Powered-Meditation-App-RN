@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IVehicle } from "../../models";
 
 const API_URL = "/api/vehicles";
 
@@ -11,7 +12,8 @@ export const getVehicles = async () => {
 };
 
 // add vehicle
-export const addVehicle = async (data: {}) => {
+export const addVehicle = async (data: IVehicle) => {
+  console.log("service :", data);
   const response = await axios.post(`${API_URL}`, data);
   if (response.data) {
     return response.data;
