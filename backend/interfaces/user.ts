@@ -9,7 +9,7 @@ export interface IUser extends Document {
   maritalStatus: string; // martial status
   email: string;
   address: string; // address
-  dob: Date; // dob
+  dob: string; // dob
   gender: string; // gender
   profileImgUrl: string;
   nicDetails: {
