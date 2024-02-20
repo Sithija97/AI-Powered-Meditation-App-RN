@@ -14,7 +14,7 @@ const hireSchema = new Schema<IHire>(
       ref: "User",
       required: true,
     },
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
     startTime: { type: String, required: true },
     startLocation: { type: String, required: true },
     endTime: { type: String, required: true },

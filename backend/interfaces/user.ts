@@ -14,20 +14,20 @@ export interface IUser extends Document {
   profileImgUrl: string;
   nicDetails: {
     nic: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     nicImageUrl: string;
   };
   policeReportsDetails: {
     reportNumber: number | string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     policeReportImageUrl: string;
   };
   drivingLicenceDetails: {
     licenceNumber: number | string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     drivingLicenceImageUrl: string;
   };
   matchPassword(enteredPassword: string): Promise<boolean>;

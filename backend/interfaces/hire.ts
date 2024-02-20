@@ -4,7 +4,7 @@ export interface IHire extends Document {
   hireType: string;
   vehicle: Types.ObjectId;
   driver: Types.ObjectId;
-  date: Date;
+  date: string;
   startTime: string;
   startLocation: string;
   endTime: string;

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { vehicleService } from "../../services";
-import { VehicleData } from "../../models";
+import { IVehicle } from "../../models";
 
 const initialState = {
   vehicleInfo: [],
@@ -40,8 +40,9 @@ export const getVehicles = createAsyncThunk(
 // add vehicle
 export const addVehicle = createAsyncThunk(
   "vehicles/addVehicle",
-  async (vehicleData: VehicleData, thunkAPI) => {
+  async (vehicleData: IVehicle, thunkAPI) => {
     try {
+      console.log("slice :", vehicleData);
       return await vehicleService.addVehicle(vehicleData);
     } catch (error: any) {
       const message =

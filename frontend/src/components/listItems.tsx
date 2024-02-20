@@ -12,11 +12,11 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { HOME } from "../routes";
 
 export const MainListItems = () => {
-  const customization = useSelector((state: any) => state.customization);
+  // const customization = useSelector((state: any) => state.customization);
   const navigate = useNavigate();
   const item = {
     borderTop: `1px solid #ddd`,

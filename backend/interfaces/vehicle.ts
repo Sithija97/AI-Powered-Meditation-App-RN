@@ -8,33 +8,33 @@ export interface IVehicle extends Document {
   chassieNumber: string;
   revenueLicenceDetails: {
     amount: number;
-    effectiveDate: Date;
-    reneivalDate: Date;
+    effectiveDate: string;
+    reneivalDate: string;
     licenceImgUrl: string;
   };
   insuaranceDetails: {
     amount: number;
-    effectiveDate: Date;
-    reneivalDate: Date;
+    effectiveDate: string;
+    reneivalDate: string;
     insuranceImgUrl: string;
   };
   smokeTestDetails: {
     amount: number;
-    effectiveDate: Date;
-    reneivalDate: Date;
+    effectiveDate: string;
+    reneivalDate: string;
     smokeTestImgUrl: string;
   };
   portPermitDetails: {
     amount: number;
-    effectiveDate: Date;
-    reneivalDate: Date;
+    effectiveDate: string;
+    reneivalDate: string;
     portPermitImgUrl: string;
   };
   leasingDetails: {
     company: string;
     amount: number;
-    effectiveDate: Date;
-    reneivalDate: Date;
+    effectiveDate: string;
+    reneivalDate: string;
     leasingImgUrl: string;
   };
 }
