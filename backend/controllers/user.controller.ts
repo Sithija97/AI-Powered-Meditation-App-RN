@@ -43,6 +43,10 @@ export const registerUser = asyncHandler(
         address: user.address,
         dob: user.dob,
         gender: user.gender,
+        profileImgUrl: user.profileImgUrl,
+        nicDetails: user.nicDetails,
+        policeReportsDetails: user.policeReportsDetails,
+        drivingLicenceDetails: user.drivingLicenceDetails,
       });
     } else {
       res.status(400);
@@ -69,6 +73,10 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
       address: user.address,
       dob: user.dob,
       gender: user.gender,
+      profileImgUrl: user.profileImgUrl,
+      nicDetails: user.nicDetails,
+      policeReportsDetails: user.policeReportsDetails,
+      drivingLicenceDetails: user.drivingLicenceDetails,
     });
   } else {
     res.status(401);
@@ -97,6 +105,10 @@ export const getUserProfile = asyncHandler(
       address: req.user?.address,
       dob: req.user?.dob,
       gender: req.user?.gender,
+      profileImgUrl: req.user?.profileImgUrl,
+      nicDetails: req.user?.nicDetails,
+      policeReportsDetails: req.user?.policeReportsDetails,
+      drivingLicenceDetails: req.user?.drivingLicenceDetails,
     };
     res.status(200).json(user);
   }
@@ -116,6 +128,12 @@ export const updateUserProfile = asyncHandler(
       user.address = req.body.address || user.address;
       user.dob = req.body.dob || user.dob;
       user.gender = req.body.gender || user.gender;
+      user.profileImgUrl = req.body.profileImgUrl || user.profileImgUrl;
+      user.nicDetails = req.body.nicDetails || user.nicDetails;
+      user.policeReportsDetails =
+        req.body.policeReportsDetails || user.policeReportsDetails;
+      user.drivingLicenceDetails =
+        req.body.drivingLicenceDetails || user.drivingLicenceDetails;
 
       if (req.body.password) {
         user.password = req.body.password;
@@ -134,6 +152,10 @@ export const updateUserProfile = asyncHandler(
         address: updatedUser.address,
         dob: updatedUser.dob,
         gender: updatedUser.gender,
+        profileImgUrl: user.profileImgUrl,
+        nicDetails: user.nicDetails,
+        policeReportsDetails: user.policeReportsDetails,
+        drivingLicenceDetails: user.drivingLicenceDetails,
       });
     } else {
       res.status(404);

@@ -11,6 +11,25 @@ export interface CustomRequest extends Request {
     address: string;
     dob: string;
     gender: string;
+    profileImgUrl: string;
+    nicDetails: {
+      nic: string;
+      startDate: string;
+      endDate: string;
+      nicImageUrl: string;
+    };
+    policeReportsDetails: {
+      reportNumber: number | string;
+      startDate: string;
+      endDate: string;
+      policeReportImageUrl: string;
+    };
+    drivingLicenceDetails: {
+      licenceNumber: number | string;
+      startDate: string;
+      endDate: string;
+      drivingLicenceImageUrl: string;
+    };
   };
 }
 

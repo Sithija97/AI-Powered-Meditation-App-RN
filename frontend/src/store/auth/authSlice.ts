@@ -54,7 +54,6 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       state.userInfo = action.payload;
-      localStorage.setItem("userInfo", JSON.stringify(action.payload));
     },
     logout: (state) => {
       state.userInfo = null;
@@ -80,7 +79,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.userInfo = action.payload;
-        localStorage.setItem("userInfo", JSON.stringify(action.payload));
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
@@ -94,7 +92,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.userInfo = action.payload;
-        localStorage.setItem("userInfo", JSON.stringify(action.payload));
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;

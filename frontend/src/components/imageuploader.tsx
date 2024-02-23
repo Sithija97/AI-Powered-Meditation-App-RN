@@ -4,6 +4,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../config/firebase";
 import { toast } from "react-toastify";
+import dayjs from "dayjs";
 
 interface IProps {
   setter?: any;
@@ -21,10 +22,15 @@ export const ImageUploader: React.FC<IProps> = ({
   ) => {
     const selectedFile = event.target?.files?.[0];
     if (selectedFile) {
+      const timestamp = dayjs().format("YYYYMMDD_HHmmss");
+
+      const modifiedFileName = `${timestamp}_${selectedFile.name}`;
+
       const storageRef = ref(
         storage,
-        `images/${folderName}/` + selectedFile.name
+        `images/${folderName}/${modifiedFileName}`
       );
+
       try {
         // Upload the image file
         await uploadBytes(storageRef, selectedFile);
