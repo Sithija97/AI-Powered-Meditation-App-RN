@@ -135,7 +135,6 @@ export const CreateVehicles: FC<IProps> = () => {
       },
     };
 
-    console.log("side panel :", payload);
     dispatch(addVehicle(payload)).then((res) => {
       if (res.meta.requestStatus === RequestStatus.Fulfiled) {
         // navigate("/vehicles");
@@ -262,7 +261,7 @@ export const CreateVehicles: FC<IProps> = () => {
         <ImageUploader
           setter={setRevenueLicenceData}
           name="licenceImgUrl"
-          folderName="revenue_licences"
+          folderName="vehicle - revenue_licences"
         />
       </Grid>
 
@@ -306,7 +305,7 @@ export const CreateVehicles: FC<IProps> = () => {
         <ImageUploader
           setter={setInsuaranceData}
           name="insuranceImgUrl"
-          folderName="insuarance_licences"
+          folderName="vehicle - insuarance_licences"
         />
       </Grid>
 
@@ -350,7 +349,7 @@ export const CreateVehicles: FC<IProps> = () => {
         <ImageUploader
           setter={setSmokeTestData}
           name="smokeTestImgUrl"
-          folderName="smoke_test_licences"
+          folderName="vehicle - smoke_test_licences"
         />
       </Grid>
 
@@ -394,7 +393,7 @@ export const CreateVehicles: FC<IProps> = () => {
         <ImageUploader
           setter={setPortPermitData}
           name="portPermitImgUrl"
-          folderName="port_permits"
+          folderName="vehicle - port_permits"
         />
       </Grid>
 
@@ -449,7 +448,7 @@ export const CreateVehicles: FC<IProps> = () => {
         <ImageUploader
           setter={setLeasingDetailsData}
           name="leasingImgUrl"
-          folderName="leasing_documents"
+          folderName="vehicle - leasing_documents"
         />
       </Grid>
 
