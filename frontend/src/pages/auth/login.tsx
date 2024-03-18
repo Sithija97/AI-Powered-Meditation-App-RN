@@ -18,30 +18,11 @@ import { login, reset } from "../../store/auth/authSlice";
 import { CircularProgress, Divider, useTheme } from "@mui/material";
 import { toast } from "react-toastify";
 import { RequestStatus } from "../../models";
-import loginBgImg from "../../assets/images/login-back.png";
-import loginImg from "../../assets/images/lgo.png";
-import trucimg from "../../assets/images/truck.png";
+import loginBgImg from "../../assets/images/bg.png";
+import loginImg from "../../assets/images/login.png";
 import logo from "../../assets/images/logo.png";
 import themes from "../../themes";
 import { HOME } from "../../routes";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      {/* <Link color="inherit" href="https://mui.com/"> */}
-      Your Website
-      {/* </Link>{" "} */}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -125,21 +106,6 @@ export const Login = () => {
             position: "relative",
           }}
         >
-          <img
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: "60px",
-              maxWidth: "100%",
-              height: "auto",
-              padding: 0,
-              margin: 0,
-            }}
-            src={trucimg}
-            alt="truck"
-            width={732}
-            height={434}
-          />
         </Grid>
 
         <Grid
@@ -182,7 +148,7 @@ export const Login = () => {
                   variant="h3"
                   mt={1}
                   fontWeight={"200"}
-                  color={"#E9833D"}
+                  color={"#3273b7"}
                 >
                   / Login
                 </Typography>

@@ -159,7 +159,7 @@ export const CreateVehicles: FC<IProps> = () => {
         </IconButton>
       </Box>
       <Divider sx={{ mb: 3, mt: 2 }} />
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Ownership</InputLabel>
@@ -207,7 +207,7 @@ export const CreateVehicles: FC<IProps> = () => {
         </Grid>
       </Grid>
 
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
@@ -225,7 +225,7 @@ export const CreateVehicles: FC<IProps> = () => {
       <Typography variant="h6" gutterBottom>
         Revenue Licence Details
       </Typography>
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
@@ -269,7 +269,7 @@ export const CreateVehicles: FC<IProps> = () => {
       <Typography variant="h6" gutterBottom>
         Insurance Details
       </Typography>
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
@@ -313,7 +313,7 @@ export const CreateVehicles: FC<IProps> = () => {
       <Typography variant="h6" gutterBottom>
         Smoke Test Details
       </Typography>
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
@@ -357,7 +357,7 @@ export const CreateVehicles: FC<IProps> = () => {
       <Typography variant="h6" gutterBottom>
         Port permit Details
       </Typography>
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
@@ -401,7 +401,7 @@ export const CreateVehicles: FC<IProps> = () => {
       <Typography variant="h6" gutterBottom>
         Leasing Details
       </Typography>
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required

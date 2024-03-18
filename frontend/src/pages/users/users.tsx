@@ -32,7 +32,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { ViewUsers } from "./viewUser";
 import { UpdateUsers } from "./updateUser";
-import UserCard from "./userCard";
 
 
 type Person = {
@@ -149,15 +148,11 @@ export const Users = () => {
               Users
             </Typography>
             </Box>
-             
-            <Button variant="contained" onClick={toggleDrawer('create', true)}>
-              Add User
-            </Button>
           </Stack>
 
           <Divider/>
           <Box mt={4}>
-          {/* <Box boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
+          <Box boxShadow={'0px 1px 18px 1px #BFD5EB'} padding={theme.spacing(5)}>
           <ThemeProvider theme={tableTheme}>
           <MaterialReactTable columns={columns} data={data} 
            enableRowActions
@@ -221,8 +216,8 @@ export const Users = () => {
           )}
           />
           </ThemeProvider>
-          </Box> */}
-          <Grid container rowSpacing={3} columnSpacing={3}>
+          </Box>
+          {/* <Grid container rowSpacing={3} columnSpacing={3}>
             <Grid item xs={12} md={6} lg={4} xl={3}>
               <UserCard/>
             </Grid>
@@ -235,10 +230,10 @@ export const Users = () => {
             <Grid item xs={12} md={6} lg={4} xl={3}>   
               <UserCard/>
             </Grid>
-          </Grid>
-            <Stack mt={theme.spacing(4)} spacing={2} justifyContent={'end'}>
+          </Grid> */}
+            {/* <Stack mt={theme.spacing(4)} spacing={2} justifyContent={'end'}>
               <Pagination count={10} shape="rounded" />
-            </Stack>
+            </Stack> */}
           </Box>
         </Container>
       </Box>
@@ -255,7 +250,7 @@ export const Users = () => {
       >
         {modalContent.view && <ViewUsers/>}
         {modalContent.create && <CreateUsers/>}
-        {modalContent.update && <UpdateUsers />}
+        {modalContent.update && <CreateUsers />}
       </Drawer>
 
       <Dialog

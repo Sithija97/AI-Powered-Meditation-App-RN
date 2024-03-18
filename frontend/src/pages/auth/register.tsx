@@ -22,15 +22,11 @@ import {
   Paper,
   Select,
 } from "@mui/material";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { CustomDatePicker } from "../../components/customDatePicker";
 import { RequestStatus } from "../../models";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { formatDate } from "../../utils/dateFormatter";
 import loginImg from "../../assets/images/lgo.png";
 import logo from "../../assets/images/logo.png";
-import loginBgImg from "../../assets/images/login-back.png";
-import trucimg from "../../assets/images/truck.png";
+import loginBgImg from "../../assets/images/bg.png";
 import themes from "../../themes";
 import { LOGIN } from "../../routes";
 function Copyright(props: any) {
@@ -171,21 +167,6 @@ export const Register = () => {
             position: "relative",
           }}
         >
-          <img
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: "20px",
-              maxWidth: "100%",
-              height: "auto",
-              padding: 0,
-              margin: 0,
-            }}
-            src={trucimg}
-            alt="truck"
-            width={732}
-            height={434}
-          />
         </Grid>
         <Grid
           item

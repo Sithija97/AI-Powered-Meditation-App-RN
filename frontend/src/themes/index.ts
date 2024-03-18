@@ -15,7 +15,7 @@ import themeTypography from "./typography";
 const themeOption = {
   heading: "#515151",
   divider: "#E2E4EB",
-  menuSelected:"#E9833D"
+  menuSelected:"#3273b7"
 };
 
 export const theme = () => {

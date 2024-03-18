@@ -29,7 +29,7 @@ export const CreateUsers = () => {
       sx={{ padding: '20px' }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
-        <Typography variant="h3">Create User</Typography>
+        <Typography variant="h3">Update User</Typography>
         <IconButton aria-label="delete">
           <CloseOutlinedIcon />
         </IconButton>
@@ -50,7 +50,7 @@ export const CreateUsers = () => {
         </Grid>
       </Grid>
 
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Title</InputLabel>
@@ -81,7 +81,7 @@ export const CreateUsers = () => {
         </Grid>
       </Grid>
 
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
@@ -122,7 +122,7 @@ export const CreateUsers = () => {
       <Typography variant="h6" gutterBottom>
         Licence Details
       </Typography>
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField required id="nic" name="nic" label="NIC" fullWidth />
         </Grid>
@@ -150,7 +150,7 @@ export const CreateUsers = () => {
       <Typography variant="h3" gutterBottom>
         Police Report Details
       </Typography>
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
@@ -183,7 +183,7 @@ export const CreateUsers = () => {
       <Typography variant="h6" gutterBottom>
         Driving Licence Details
       </Typography>
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
