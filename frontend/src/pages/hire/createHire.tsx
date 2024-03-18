@@ -39,7 +39,7 @@ const CreateHire = () => {
         </IconButton>
       </Box>
       <Divider sx={{ mb: 3, mt: 2 }} />
-      <Grid container spacing={2}>
+      <Grid container rowSpacing={4}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Hire Type</InputLabel>
@@ -51,7 +51,7 @@ const CreateHire = () => {
         </Grid>
       </Grid>
 
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Vehicle</InputLabel>
@@ -72,7 +72,7 @@ const CreateHire = () => {
         </Grid>
       </Grid>
 
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -82,7 +82,7 @@ const CreateHire = () => {
           </LocalizationProvider>
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
+      <Grid container rowSpacing={4}>
         <Grid item xs={12}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={['TimePicker']}>

@@ -22,8 +22,8 @@ const Drawer = styled(MuiDrawer, {
     },
     whiteSpace: "nowrap",
     width: drawerWidth,
-    background:"#FCEFE6",
-    boxShadow:"inset 0px 1px 18px 1px #fdc59e",
+    background:"#f8f7ff",
+    boxShadow:"inset 0px 1px 18px 1px #f8f7ff",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,

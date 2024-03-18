@@ -20,6 +20,7 @@ export const CustomDatePicker = ({ label, name, value, onChange }: IProps) => {
   };
   return (
     <DatePicker
+      sx={{width:'100%'}}
       slotProps={{ textField: { error: false } }}
       label={label}
       value={value}

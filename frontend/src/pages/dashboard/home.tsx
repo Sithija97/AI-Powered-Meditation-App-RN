@@ -136,7 +136,7 @@ export const Home = () => {
                     <Grid sx={{ mb: 3 }} container spacing={3}>
                       <Grid item xs={12} sm={6} md={6} lg={4}>
                         <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                          <Typography variant="h1" color={"#E9833D "}>
+                          <Typography variant="h1" color={"#3273b7 "}>
                             120
                           </Typography>
 
@@ -147,7 +147,7 @@ export const Home = () => {
                       </Grid>
                       <Grid item xs={12} sm={6} md={6} lg={4}>
                         <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                          <Typography variant="h1" color={"#E9833D "}>
+                          <Typography variant="h1" color={"#3273b7 "}>
                             120
                           </Typography>
 
@@ -158,7 +158,7 @@ export const Home = () => {
                       </Grid>
                       <Grid item xs={12} sm={6} md={6} lg={4}>
                         <Card sx={{ py: 5, boxShadow: 0, textAlign: "center" }}>
-                          <Typography variant="h1" color={"#E9833D "}>
+                          <Typography variant="h1" color={"#3273b7 "}>
                             120
                           </Typography>
 

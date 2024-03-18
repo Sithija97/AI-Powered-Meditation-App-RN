@@ -132,13 +132,13 @@ export default function componentStyleOverrides(theme:any) {
             paddingTop: '10px',
             paddingBottom: '10px',
             '&.Mui-selected': {
-              color: "#E9833D !important",
+              color: "#3273b7 !important",
               backgroundColor: '#fff !important',
               '&:hover': {
                 backgroundColor: '#fff !important'
               },
               '& .MuiListItemIcon-root': {
-                color: "#E9833D !important",
+                color: "#3273b7 !important",
                 '&:Mui-selected': {
                   backgroundColor: theme.darkTextPrimary
                 },
@@ -146,9 +146,9 @@ export default function componentStyleOverrides(theme:any) {
             },
             '&:hover': {
               backgroundColor: '#fff !important',
-              color: "#E9833D !important",
+              color: "#3273b7 !important",
               '& .MuiListItemIcon-root': {
-                color:  "#E9833D !important"
+                color:  "#3273b7 !important"
               }
             }
           }

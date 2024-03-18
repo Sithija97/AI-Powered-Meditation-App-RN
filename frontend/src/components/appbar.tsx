@@ -151,7 +151,7 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
          <Avatar
         id="logout_btn"
         sx={{
-          color: '#E9833D',
+          color: '#3273b7',
           backgroundColor: theme.palette.background.paper,
           border:`1px solid #ddd`,
           margin: '0 8px 0 0',
