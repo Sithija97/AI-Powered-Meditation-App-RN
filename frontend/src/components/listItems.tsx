@@ -19,7 +19,7 @@ export const MainListItems = () => {
   // const customization = useSelector((state: any) => state.customization);
   const navigate = useNavigate();
   const item = {
-    borderTop: `1px solid #ddd`,
+    borderTop: `1px solid #e8e8e8`,
     height: 52,
   };
   return (
@@ -28,43 +28,43 @@ export const MainListItems = () => {
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
-        <Divider orientation="vertical" sx={{ borderRightWidth: 2, mr: 3 }} />
-        <ListItemText primary="Home" />
+        <Divider orientation="vertical" sx={{ borderRightWidth: 1, mr: 3 }} />
+        <ListItemText sx={{color:'#494949'}} primary="Home" />
       </ListItemButton>
       <ListItemButton sx={item} onClick={() => navigate("/vehicles")}>
         <ListItemIcon>
           <CommuteIcon />
         </ListItemIcon>
-        <Divider orientation="vertical" sx={{ borderRightWidth: 2, mr: 3 }} />
-        <ListItemText primary="Vehicles" />
+        <Divider orientation="vertical" sx={{ borderRightWidth: 1, mr: 3 }} />
+        <ListItemText sx={{color:'#494949'}} primary="Vehicles" />
       </ListItemButton>
       <ListItemButton sx={item} onClick={() => navigate("/users")}>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <Divider orientation="vertical" sx={{ borderRightWidth: 2, mr: 3 }} />
+        <Divider orientation="vertical" sx={{ borderRightWidth: 1, mr: 3 }} />
         <ListItemText primary="Users" />
       </ListItemButton>
       <ListItemButton sx={item} onClick={() => navigate("/hire")}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
-        <Divider orientation="vertical" sx={{ borderRightWidth: 2, mr: 3 }} />
-        <ListItemText primary="Hire" />
+        <Divider orientation="vertical" sx={{ borderRightWidth: 1, mr: 3 }} />
+        <ListItemText sx={{color:'#494949'}} primary="Hire" />
       </ListItemButton>
       <ListItemButton sx={item} disabled>
         <ListItemIcon>
           <PaymentIcon />
         </ListItemIcon>
-        <Divider orientation="vertical" sx={{ borderRightWidth: 2, mr: 3 }} />
-        <ListItemText primary="Expenses" />
+        <Divider orientation="vertical" sx={{ borderRightWidth: 1, mr: 3 }} />
+        <ListItemText sx={{color:'#494949'}} primary="Expenses" />
       </ListItemButton>
       <ListItemButton sx={item} disabled>
         <ListItemIcon>
           <SettingsIcon />
         </ListItemIcon>
-        <Divider orientation="vertical" sx={{ borderRightWidth: 2, mr: 3 }} />
-        <ListItemText primary="Settings" />
+        <Divider orientation="vertical" sx={{ borderRightWidth: 1, mr: 3 }} />
+        <ListItemText sx={{color:'#494949'}} primary="Settings" />
       </ListItemButton>
     </React.Fragment>
   );
