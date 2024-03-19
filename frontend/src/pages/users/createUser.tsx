@@ -119,7 +119,7 @@ export const CreateUsers = () => {
         </Grid>
       </Grid>
       <Divider sx={{ mt: 2, mb: 2 }} />
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Licence Details
       </Typography>
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>
@@ -180,7 +180,7 @@ export const CreateUsers = () => {
         <ImageUploader />
       </Grid>
       <Divider sx={{ mt: 2, mb: 2 }} />
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Driving Licence Details
       </Typography>
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>

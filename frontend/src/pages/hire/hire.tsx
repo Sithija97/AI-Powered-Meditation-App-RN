@@ -180,7 +180,7 @@ export const Hire = () => {
                         sx={{
                           color: "#00c853",
                           background: "#b9f6ca61",
-                          margin: "0 8px 0 0",
+                          margin: "0 15px 0 0",
                         }}
                       >
                         <VisibilityIcon />
@@ -192,7 +192,7 @@ export const Hire = () => {
                         sx={{
                           color: "#1e88e5",
                           background: "#eef2f6",
-                          margin: "0 8px 0 0",
+                          margin: "0 15px 0 0",
                         }}
                       >
                         <EditNoteIcon />

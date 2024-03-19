@@ -159,7 +159,7 @@ export const CreateVehicles: FC<IProps> = () => {
         </IconButton>
       </Box>
       <Divider sx={{ mb: 3, mt: 2 }} />
-      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+      <Grid container rowSpacing={4}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Ownership</InputLabel>
@@ -222,7 +222,7 @@ export const CreateVehicles: FC<IProps> = () => {
       </Grid>
 
       <Divider sx={{ mt: 2, mb: 2 }} />
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Revenue Licence Details
       </Typography>
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>
@@ -266,7 +266,7 @@ export const CreateVehicles: FC<IProps> = () => {
       </Grid>
 
       <Divider sx={{ mt: 2, mb: 2 }} />
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Insurance Details
       </Typography>
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>
@@ -310,7 +310,7 @@ export const CreateVehicles: FC<IProps> = () => {
       </Grid>
 
       <Divider sx={{ mt: 2, mb: 2 }} />
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Smoke Test Details
       </Typography>
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>
@@ -354,7 +354,7 @@ export const CreateVehicles: FC<IProps> = () => {
       </Grid>
 
       <Divider sx={{ mt: 2, mb: 2 }} />
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Port permit Details
       </Typography>
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>
@@ -398,7 +398,7 @@ export const CreateVehicles: FC<IProps> = () => {
       </Grid>
 
       <Divider sx={{ mt: 2, mb: 2 }} />
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Leasing Details
       </Typography>
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>

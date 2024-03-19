@@ -15,6 +15,7 @@ import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import { Avatar, ListItemIcon, ListItemText, useTheme } from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;

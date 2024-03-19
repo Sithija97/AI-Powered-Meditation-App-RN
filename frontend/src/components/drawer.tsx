@@ -9,7 +9,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { MainListItems } from ".";
 import { Avatar, Box, Typography, useTheme } from "@mui/material";
 import sidebarimg from '../assets/images/asset.png';
-
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 const drawerWidth: number = 301;
 
 const Drawer = styled(MuiDrawer, {
@@ -23,7 +23,8 @@ const Drawer = styled(MuiDrawer, {
     whiteSpace: "nowrap",
     width: drawerWidth,
     background:"#f8f7ff",
-    boxShadow:"inset 0px 1px 18px 1px #f8f7ff",
+    borderRight:'none !important',
+    boxShadow:"inset 0px 1px 18px 1px #e9f4ff",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -64,7 +65,7 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
         }}
       >
         <IconButton onClick={toggleDrawer}>
-          <ChevronLeftIcon />
+          <MenuOpenIcon sx={{color:'#999999'}} />
         </IconButton>
       </Toolbar>
       <Divider />
