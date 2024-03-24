@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { vehicleService } from "../../services";
-import { IVehicle } from "../../models";
+import { IInitialState, IVehicle } from "../../models";
 
-const initialState = {
+const initialState: IInitialState = {
   vehicleInfo: [],
+  selectedVehicle: null,
   getVehiclesError: false,
   getVehiclesSuccess: false,
   getVehiclesLoading: false,
@@ -79,7 +80,14 @@ export const deleteVehicle = createAsyncThunk(
 const vehicleSlice = createSlice({
   name: "vehicles",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedVehicle: (state, { payload }) => {
+      state.selectedVehicle = payload;
+    },
+    clearSelectedVehicle: (state) => {
+      state.selectedVehicle = null;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getVehicles.pending, (state) => {
@@ -122,4 +130,6 @@ const vehicleSlice = createSlice({
   },
 });
 
+export const { setSelectedVehicle, clearSelectedVehicle } =
+  vehicleSlice.actions;
 export default vehicleSlice.reducer;

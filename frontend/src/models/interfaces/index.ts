@@ -70,3 +70,20 @@ export interface VehicleData {
   fuelType: string;
   chassieNumber: string;
 }
+
+export interface IInitialState {
+  vehicleInfo: IVehicle[];
+  selectedVehicle: IVehicle | null;
+  getVehiclesError: boolean;
+  getVehiclesSuccess: boolean;
+  getVehiclesLoading: boolean;
+  getVehiclesMessage: string;
+  addVehicleError: boolean;
+  addVehicleSuccess: boolean;
+  addVehicleLoading: boolean;
+  addVehicleMessage: string;
+  deleteVehicleError: boolean;
+  deleteVehicleSuccess: boolean;
+  deleteVehicleLoading: boolean;
+  deleteVehicleMessage: string;
+}
