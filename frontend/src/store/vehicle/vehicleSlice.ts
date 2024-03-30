@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { vehicleService } from "../../services";
-import { IInitialState, IVehicle } from "../../models";
+import { IInitialVehicleState, IVehicle } from "../../models";
 
-const initialState: IInitialState = {
+const initialState: IInitialVehicleState = {
   vehicleInfo: [],
   selectedVehicle: null,
   getVehiclesError: false,

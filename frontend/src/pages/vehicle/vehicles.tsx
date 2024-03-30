@@ -53,8 +53,6 @@ export const Vehicles = () => {
   };
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  // const [vehicleId, setVehicleId] = useState<string>("");
 
   const { vehicleInfo, getVehiclesLoading } = useAppSelector(
     (state: RootState) => state.vehicles
@@ -99,15 +97,6 @@ export const Vehicles = () => {
       dispatch(deleteVehicle(vehicleId));
       dispatch(getVehicles());
     }
-    handleClose();
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const tableTheme = useMemo(
@@ -218,7 +207,7 @@ export const Vehicles = () => {
                       </Tooltip>
                       <Tooltip title="Delete">
                         <Avatar
-                          onClick={handleClickOpen}
+                          onClick={() => deleteVehicleData(row?.original?._id)}
                           sx={{
                             color: "#d84315",
                             background: "#fbe9e7",
