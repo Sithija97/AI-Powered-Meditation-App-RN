@@ -9,9 +9,13 @@ import {
 const initialState: IInitialAuthState = {
   userInfo: null,
   selectedUser: null,
+  allRegisteredUsers: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
+  isgetAllUsersLoading: false,
+  isgetAllUsersSuccess: false,
+  isgetAllUsersError: false,
   message: "",
 };
 
@@ -53,6 +57,44 @@ export const login = createAsyncThunk(
   }
 );
 
+// get all users
+export const getAllUsers = createAsyncThunk(
+  "auth/getAllUsers",
+  async (_, thunkAPI) => {
+    try {
+      return await authService.getAllRegisteredUsers();
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// delete user
+export const deleteUser = createAsyncThunk(
+  "auth/deleteUser",
+  async (userId: string, thunkAPI) => {
+    try {
+      return await authService.deleteUserData(userId);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -66,13 +108,18 @@ const authSlice = createSlice({
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";
-      localStorage.removeItem("userInfo");
     },
     reset: (state) => {
       state.isError = false;
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";
+    },
+    setSelectedUser: (state, { payload }) => {
+      state.selectedUser = payload;
+    },
+    clearSelectedUser: (state) => {
+      state.selectedUser = null;
     },
   },
   extraReducers: (builder) => {
@@ -102,10 +149,29 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload as string;
+      })
+      .addCase(getAllUsers.pending, (state) => {
+        state.isgetAllUsersLoading = true;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.isgetAllUsersLoading = false;
+        state.isgetAllUsersSuccess = true;
+        state.allRegisteredUsers = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state, action) => {
+        state.isgetAllUsersLoading = false;
+        state.isgetAllUsersError = true;
+        state.message = action.payload as string;
       });
   },
 });
 
-export const { setCredentials, logout, reset } = authSlice.actions;
+export const {
+  setCredentials,
+  logout,
+  reset,
+  setSelectedUser,
+  clearSelectedUser,
+} = authSlice.actions;
 
 export default authSlice.reducer;

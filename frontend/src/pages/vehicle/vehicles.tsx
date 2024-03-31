@@ -47,6 +47,7 @@ export const Vehicles = () => {
     ) {
       return;
     }
+    console.log(row);
     dispatch(setSelectedVehicle(row?.original));
     setModalContent({ ...modalContentInitValues, [type]: true });
     setIsModalOpen(status);
@@ -88,9 +89,9 @@ export const Vehicles = () => {
     dispatch(getVehicles());
 
     return () => {
-      clearSelectedVehicle();
+      dispatch(clearSelectedVehicle());
     };
-  }, []);
+  }, [dispatch]);
 
   const deleteVehicleData = (vehicleId: string) => {
     if (vehicleId) {

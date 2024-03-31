@@ -124,7 +124,7 @@ export const deleteVehicle = asyncHandler(
 
     if (!vehicle) {
       res.status(400);
-      throw new Error("Goal not found");
+      throw new Error("Vehicle not found");
     }
 
     if (vehicle.user.toString() !== req.user._id.toString()) {

@@ -5,11 +5,13 @@ import generateToken from "../utils/generateToken.js";
 import { CustomRequest } from "../interfaces/index.js";
 
 /*
-~ POST : /api/users          - [public]  - register a user
-~ POST : /api/users/auth     - [public]  - authenticate a user and get token
-~ POST : /api/users/logout   - [public]  - logout user and clear cookie
-~ GET  : /api/users/profile  - [private] - get user profile
-~ PUT  : /api/users/profile  - [private] - update user profile
+~ POST    : /api/users          - [public]  - register a user
+~ POST    : /api/users/auth     - [public]  - authenticate a user and get token
+~ POST    : /api/users/logout   - [public]  - logout user and clear cookie
+~ GET     : /api/users/profile  - [private] - get user profile
+~ PUT     : /api/users/profile  - [private] - update user profile
+~ GET     : /api/users/all      - [private] - get all registered users 
+~ DELETE  : /api/users/:id   - [private] - delete user profile
 */
 
 export const registerUser = asyncHandler(
@@ -161,5 +163,29 @@ export const updateUserProfile = asyncHandler(
       res.status(404);
       throw new Error("User not found");
     }
+  }
+);
+
+export const getAllRegisterdUsers = asyncHandler(
+  async (req: Request, res: Response) => {
+    const users = await User.find().lean().select("-createdAt -updatedAt -__v");
+    res.status(200).json(users);
+  }
+);
+
+export const deleteUser = asyncHandler(
+  async (req: CustomRequest, res: Response) => {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      res.status(400);
+      throw new Error("User not found");
+    }
+
+    // need to add another check to check whether the user has admin role
+
+    await User.findByIdAndRemove(req.params.id);
+
+    res.status(200).json({ id: req.params.id });
   }
 );

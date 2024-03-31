@@ -87,6 +87,7 @@ export interface IVehicle {
 }
 
 export interface IUser {
+  _id?: string;
   name: string;
   nic: string;
   role: string;
@@ -128,8 +129,12 @@ export interface IInitialVehicleState {
 export interface IInitialAuthState {
   userInfo: IUser | null;
   selectedUser: IUser | null;
+  allRegisteredUsers: IUser[];
   isError: boolean;
   isSuccess: boolean;
   isLoading: boolean;
+  isgetAllUsersLoading: boolean;
+  isgetAllUsersSuccess: boolean;
+  isgetAllUsersError: boolean;
   message: string;
 }
