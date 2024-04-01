@@ -18,7 +18,12 @@ import {
   Divider,
 } from "@mui/material";
 import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
-import { deleteVehicle, getVehicles } from "../../store/vehicle/vehicleSlice";
+import {
+  clearSelectedVehicle,
+  deleteVehicle,
+  getVehicles,
+  setSelectedVehicle,
+} from "../../store/vehicle/vehicleSlice";
 import { useNavigate } from "react-router-dom";
 import { CreateVehicles } from "./createVehicle";
 import { MRT_ColumnDef, MaterialReactTable } from "material-react-table";
@@ -35,21 +40,20 @@ export const Vehicles = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(modalContentInitValues);
 
-  const toggleDrawer = (type: any, status: any, row:any) => (event: any) => {
-    console.log(row);
+  const toggleDrawer = (type: any, status: any, row: any) => (event: any) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
+    console.log(row);
+    dispatch(setSelectedVehicle(row?.original));
     setModalContent({ ...modalContentInitValues, [type]: true });
     setIsModalOpen(status);
   };
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  // const [vehicleId, setVehicleId] = useState<string>("");
 
   const { vehicleInfo, getVehiclesLoading } = useAppSelector(
     (state: RootState) => state.vehicles
@@ -83,22 +87,17 @@ export const Vehicles = () => {
 
   useEffect(() => {
     dispatch(getVehicles());
-  }, []);
+
+    return () => {
+      dispatch(clearSelectedVehicle());
+    };
+  }, [dispatch]);
 
   const deleteVehicleData = (vehicleId: string) => {
     if (vehicleId) {
       dispatch(deleteVehicle(vehicleId));
       dispatch(getVehicles());
     }
-    handleClose();
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const tableTheme = useMemo(
@@ -132,7 +131,10 @@ export const Vehicles = () => {
             <Typography variant="h2" gutterBottom>
               Vehicles
             </Typography>
-            <Button variant="contained" onClick={toggleDrawer("create", true,'')}>
+            <Button
+              variant="contained"
+              onClick={toggleDrawer("create", true, "")}
+            >
               Add Vehicle
             </Button>
           </Stack>
@@ -182,7 +184,7 @@ export const Vehicles = () => {
                     <Box sx={{ display: "flex" }}>
                       <Tooltip title="View">
                         <Avatar
-                          onClick={toggleDrawer("view", true,row)}
+                          onClick={toggleDrawer("view", true, row)}
                           sx={{
                             color: "#00c853",
                             background: "#b9f6ca61",
@@ -194,7 +196,7 @@ export const Vehicles = () => {
                       </Tooltip>
                       <Tooltip title="Update">
                         <Avatar
-                          onClick={toggleDrawer("update", true,row)}
+                          onClick={toggleDrawer("update", true, row)}
                           sx={{
                             color: "#1e88e5",
                             background: "#eef2f6",
@@ -206,7 +208,7 @@ export const Vehicles = () => {
                       </Tooltip>
                       <Tooltip title="Delete">
                         <Avatar
-                          onClick={handleClickOpen}
+                          onClick={() => deleteVehicleData(row?.original?._id)}
                           sx={{
                             color: "#d84315",
                             background: "#fbe9e7",
@@ -232,7 +234,7 @@ export const Vehicles = () => {
         }}
         anchor="right"
         open={isModalOpen}
-        onClose={toggleDrawer(null, false,'')}
+        onClose={toggleDrawer(null, false, "")}
       >
         {modalContent.view && <ViewVehicle />}
         {modalContent.create && <CreateVehicles />}

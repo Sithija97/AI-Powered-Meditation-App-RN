@@ -13,6 +13,28 @@ export interface userLoginData {
   nic: string;
   password: string;
 }
+
+export interface NicDetails {
+  nic: string;
+  startDate: string | null;
+  endDate: string | null;
+  nicImageUrl: string;
+}
+
+export interface PoliceReportsDetails {
+  reportNumber: string | null;
+  startDate: string | null;
+  endDate: string | null;
+  policeReportImageUrl: string;
+}
+
+export interface DrivingLicenceDetails {
+  licenceNumber: string | number;
+  startDate: string | null;
+  endDate: string | null;
+  drivingLicenceImageUrl: string;
+}
+
 interface RevenueLicenceDetails {
   amount: number;
   effectiveDate: string;
@@ -64,9 +86,55 @@ export interface IVehicle {
   [key: string]: any; // Index signature allowing string indexing
 }
 
+export interface IUser {
+  _id?: string;
+  name: string;
+  nic: string;
+  role: string;
+  maritalStatus: string;
+  email: string;
+  address: string;
+  dob: string | null;
+  gender: string;
+  profileImgUrl: string;
+  nicDetails: NicDetails;
+  policeReportDetails: PoliceReportsDetails;
+  drivingLicenceDetails: DrivingLicenceDetails;
+}
+
 export interface VehicleData {
   type: string;
   ownership: string;
   fuelType: string;
   chassieNumber: string;
+}
+
+export interface IInitialVehicleState {
+  vehicleInfo: IVehicle[];
+  selectedVehicle: IVehicle | null;
+  getVehiclesError: boolean;
+  getVehiclesSuccess: boolean;
+  getVehiclesLoading: boolean;
+  getVehiclesMessage: string;
+  addVehicleError: boolean;
+  addVehicleSuccess: boolean;
+  addVehicleLoading: boolean;
+  addVehicleMessage: string;
+  deleteVehicleError: boolean;
+  deleteVehicleSuccess: boolean;
+  deleteVehicleLoading: boolean;
+  deleteVehicleMessage: string;
+}
+
+export interface IInitialAuthState {
+  userInfo: IUser | null;
+  selectedUser: IUser | null;
+  allRegisteredUsers: IUser[];
+  isError: boolean;
+  isSuccess: boolean;
+  isLoading: boolean;
+  isgetAllUsersLoading: boolean;
+  isgetAllUsersSuccess: boolean;
+  isgetAllUsersError: boolean;
+  message: string;
 }

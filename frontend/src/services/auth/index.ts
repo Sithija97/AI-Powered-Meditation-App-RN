@@ -18,3 +18,19 @@ export const userLogin = async (userData: userLoginData) => {
     return response.data;
   }
 };
+
+// get all registered users
+export const getAllRegisteredUsers = async () => {
+  const response = await axios.get(`${API_URL}/all`);
+  if (response.data) {
+    return response.data;
+  }
+};
+
+// delete user
+export const deleteUserData = async (id: string) => {
+  const response = await axios.delete(`${API_URL}/${id}`);
+  if (response.data) {
+    return response.data;
+  }
+};

@@ -13,8 +13,15 @@ export const getVehicles = async () => {
 
 // add vehicle
 export const addVehicle = async (data: IVehicle) => {
-  console.log("service :", data);
   const response = await axios.post(`${API_URL}`, data);
+  if (response.data) {
+    return response.data;
+  }
+};
+
+// update vehicle
+export const updateVehicle = async (data: IVehicle, id: string) => {
+  const response = await axios.put(`${API_URL}/${id}`, data);
   if (response.data) {
     return response.data;
   }
