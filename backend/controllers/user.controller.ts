@@ -11,7 +11,8 @@ import { CustomRequest } from "../interfaces/index.js";
 ~ GET     : /api/users/profile  - [private] - get user profile
 ~ PUT     : /api/users/profile  - [private] - update user profile
 ~ GET     : /api/users/all      - [private] - get all registered users 
-~ DELETE  : /api/users/:id   - [private] - delete user profile
+~ DELETE  : /api/users/:id      - [private] - delete user
+~ PUT     : /api/users/:id      - [private] - update user
 */
 
 export const registerUser = asyncHandler(
@@ -187,5 +188,55 @@ export const deleteUser = asyncHandler(
     await User.findByIdAndRemove(req.params.id);
 
     res.status(200).json({ id: req.params.id });
+  }
+);
+
+export const updateUser = asyncHandler(
+  async (req: CustomRequest, res: Response) => {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.nic = req.body.nic || user.nic;
+      user.title = req.body.title || user.title;
+      user.role = req.body.role || user.role;
+      user.maritalStatus = req.body.maritalStatus || user.maritalStatus;
+      user.email = req.body.email || user.email;
+      user.address = req.body.address || user.address;
+      user.dob = req.body.dob || user.dob;
+      user.gender = req.body.gender || user.gender;
+      user.profileImgUrl = req.body.profileImgUrl || user.profileImgUrl;
+      user.nicDetails = req.body.nicDetails || user.nicDetails;
+      user.policeReportsDetails =
+        req.body.policeReportsDetails || user.policeReportsDetails;
+      user.drivingLicenceDetails =
+        req.body.drivingLicenceDetails || user.drivingLicenceDetails;
+
+      if (req.body.password) {
+        user.password = req.body.password;
+      }
+
+      const updatedUser = await user.save();
+
+      res.status(200).json({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        nic: updatedUser.nic,
+        title: updatedUser.title,
+        role: updatedUser.role,
+        maritalStatus: updatedUser.maritalStatus,
+        email: updatedUser.email,
+        address: updatedUser.address,
+        dob: updatedUser.dob,
+        gender: updatedUser.gender,
+        profileImgUrl: user.profileImgUrl,
+        nicDetails: user.nicDetails,
+        policeReportsDetails: user.policeReportsDetails,
+        drivingLicenceDetails: user.drivingLicenceDetails,
+      });
+    } else {
+      res.status(404);
+      throw new Error("User not found");
+    }
   }
 );

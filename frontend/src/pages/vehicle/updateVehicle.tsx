@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import { Dashboard } from "../../layouts";
+import { FC, useState } from "react";
 import {
   Box,
   Button,
-  Card,
-  Container,
   Divider,
   FormControl,
   Grid,
@@ -13,37 +10,124 @@ import {
   MenuItem,
   Select,
   TextField,
-  Toolbar,
   Typography,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useAppDispatch } from "../../store/store";
-import { addVehicle, getVehicles } from "../../store/vehicle/vehicleSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
+import {
+  addVehicle,
+  getVehicles,
+  updateVehicle,
+} from "../../store/vehicle/vehicleSlice";
 import { useNavigate } from "react-router-dom";
-import { RequestStatus } from "../../models";
+import { IVehicle, RequestStatus } from "../../models";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-
-const InitialState = {
-  type: "",
-  ownership: "",
-  fuelType: "",
-  chassieNumber: "",
-};
+import { ImageUploader } from "../../components/imageuploader";
+import {
+  InitialBaseState,
+  initialInsuranceState,
+  initialLeasingDetailsState,
+  initialPortPermitState,
+  initialRevenueLicenceState,
+  initialSmokeTestState,
+} from "./data";
+import { CustomDatePicker } from "../../components/customDatePicker";
+import { formatDate } from "../../utils/dateFormatter";
 
 interface IProps {
-  onClose: () => void;
+  // onClose: () => void;
 }
 
-export const UpdateVehicles = () => {
+export const UpdateVehicles: FC<IProps> = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [formData, setFormData] = useState(InitialState);
 
-  const handleChange = (event: any) => {
+  const { selectedVehicle } = useAppSelector(
+    (state: RootState) => state.vehicles
+  );
+
+  const [baseData, setBaseData] = useState({
+    type: selectedVehicle?.type!,
+    ownership: selectedVehicle?.ownership!,
+    fuelType: selectedVehicle?.fuelType!,
+    chassieNumber: selectedVehicle?.chassieNumber!,
+  });
+  const [revenueLicenceData, setRevenueLicenceData] = useState({
+    amount: selectedVehicle?.revenueLicenceDetails.amount,
+    effectiveDate: selectedVehicle?.revenueLicenceDetails.effectiveDate,
+    renewalDate: selectedVehicle?.revenueLicenceDetails.renewalDate,
+    licenceImgUrl: selectedVehicle?.revenueLicenceDetails.licenceImgUrl,
+  });
+  const [insuaranceData, setInsuaranceData] = useState({
+    amount: selectedVehicle?.insuaranceDetails.amount,
+    effectiveDate: selectedVehicle?.insuaranceDetails.effectiveDate,
+    renewalDate: selectedVehicle?.insuaranceDetails.renewalDate,
+    insuranceImgUrl: selectedVehicle?.insuaranceDetails.insuranceImgUrl,
+  });
+  const [smokeTestData, setSmokeTestData] = useState({
+    amount: selectedVehicle?.smokeTestDetails.amount,
+    effectiveDate: selectedVehicle?.smokeTestDetails.effectiveDate,
+    renewalDate: selectedVehicle?.smokeTestDetails.renewalDate,
+    smokeTestImgUrl: selectedVehicle?.smokeTestDetails.smokeTestImgUrl,
+  });
+  const [portPermitData, setPortPermitData] = useState({
+    amount: selectedVehicle?.portPermitDetails.amount,
+    effectiveDate: selectedVehicle?.portPermitDetails.effectiveDate,
+    renewalDate: selectedVehicle?.portPermitDetails.renewalDate,
+    portPermitImgUrl: selectedVehicle?.portPermitDetails.portPermitImgUrl,
+  });
+  const [leasingDetailsData, setLeasingDetailsData] = useState({
+    company: selectedVehicle?.leasingDetails.company,
+    amount: selectedVehicle?.leasingDetails.amount,
+    effectiveDate: selectedVehicle?.leasingDetails.effectiveDate,
+    renewalDate: selectedVehicle?.leasingDetails.renewalDate,
+    leasingImgUrl: selectedVehicle?.leasingDetails.leasingImgUrl,
+  });
+
+  const handleBaseChange = (event: any) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
+    setBaseData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleRevenueLicenceChange = (event: any) => {
+    const { name, value } = event.target;
+    setRevenueLicenceData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleInsuaranceChange = (event: any) => {
+    const { name, value } = event.target;
+    setInsuaranceData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSmokeTestChange = (event: any) => {
+    const { name, value } = event.target;
+    setSmokeTestData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handlePortPermitChange = (event: any) => {
+    const { name, value } = event.target;
+    setPortPermitData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleLeasingDataChange = (event: any) => {
+    const { name, value } = event.target;
+    setLeasingDetailsData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -51,16 +135,55 @@ export const UpdateVehicles = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    // dispatch(addVehicle(formData)).then((res) => {
-    //   if (res.meta.requestStatus === RequestStatus.Fulfiled) {
-    //     // navigate("/vehicles");
-    //     dispatch(getVehicles());
+    const payload: IVehicle = {
+      ...baseData,
+      revenueLicenceDetails: {
+        amount: revenueLicenceData.amount!,
+        effectiveDate: formatDate(revenueLicenceData.effectiveDate!),
+        renewalDate: formatDate(revenueLicenceData.renewalDate!),
+        licenceImgUrl: revenueLicenceData.licenceImgUrl!,
+      },
+      insuaranceDetails: {
+        amount: insuaranceData.amount!,
+        effectiveDate: formatDate(insuaranceData.effectiveDate!),
+        renewalDate: formatDate(insuaranceData.renewalDate!),
+        insuranceImgUrl: insuaranceData.insuranceImgUrl!,
+      },
+      smokeTestDetails: {
+        amount: smokeTestData.amount!,
+        effectiveDate: formatDate(smokeTestData.effectiveDate!),
+        renewalDate: formatDate(smokeTestData.renewalDate!),
+        smokeTestImgUrl: smokeTestData.smokeTestImgUrl!,
+      },
+      portPermitDetails: {
+        amount: portPermitData.amount!,
+        effectiveDate: formatDate(portPermitData.effectiveDate!),
+        renewalDate: formatDate(portPermitData.renewalDate!),
+        portPermitImgUrl: portPermitData.portPermitImgUrl!,
+      },
+      leasingDetails: {
+        company: leasingDetailsData.company!,
+        amount: leasingDetailsData.amount!,
+        effectiveDate: formatDate(leasingDetailsData.effectiveDate!),
+        renewalDate: formatDate(leasingDetailsData.renewalDate!),
+        leasingImgUrl: leasingDetailsData.leasingImgUrl!,
+      },
+    };
 
-    //   }
-    // });
+    console.log(payload);
+
+    const vehicleData = {
+      id: selectedVehicle?._id!,
+      data: payload,
+    };
+
+    dispatch(updateVehicle(vehicleData)).then((res) => {
+      if (res.meta.requestStatus === RequestStatus.Fulfiled) {
+        dispatch(getVehicles());
+        navigate("/vehicles");
+      }
+    });
   };
-
-  const { type, ownership, fuelType, chassieNumber } = formData;
 
   return (
     <Box sx={{ padding: "20px" }}>
@@ -78,15 +201,15 @@ export const UpdateVehicles = () => {
         </IconButton>
       </Box>
       <Divider sx={{ mb: 3, mt: 2 }} />
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid container rowSpacing={4}>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Ownership</InputLabel>
             <Select
               label="Ownership"
               name="ownership"
-              value={ownership}
-              onChange={handleChange}
+              value={baseData.ownership}
+              onChange={handleBaseChange}
             >
               <MenuItem value={"owned"}>Owned</MenuItem>
               <MenuItem value={"hired"}>Hired</MenuItem>
@@ -99,8 +222,8 @@ export const UpdateVehicles = () => {
             <Select
               label="Type"
               name="type"
-              value={type}
-              onChange={handleChange}
+              value={baseData.type}
+              onChange={handleBaseChange}
             >
               <MenuItem value={"car"}>Car</MenuItem>
               <MenuItem value={"van"}>Van</MenuItem>
@@ -116,8 +239,8 @@ export const UpdateVehicles = () => {
             <Select
               label="Fuel Type"
               name="fuelType"
-              value={fuelType}
-              onChange={handleChange}
+              value={baseData.fuelType}
+              onChange={handleBaseChange}
             >
               <MenuItem value={"diesol"}>Diesol</MenuItem>
               <MenuItem value={"petrol"}>Petrol</MenuItem>
@@ -126,38 +249,249 @@ export const UpdateVehicles = () => {
         </Grid>
       </Grid>
 
-      <Grid sx={{ mt: 1 }} container spacing={2}>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField
             required
             id="chassieNumber"
             name="chassieNumber"
             label="Chassie Number"
-            value={chassieNumber}
-            onChange={handleChange}
+            value={baseData.chassieNumber}
+            onChange={handleBaseChange}
             fullWidth
+          />
+        </Grid>
+      </Grid>
+
+      <Divider sx={{ mt: 2, mb: 2 }} />
+      <Typography variant="h3" gutterBottom>
+        Revenue Licence Details
+      </Typography>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="amount"
+            name="amount"
+            label="Amount"
+            fullWidth
+            value={revenueLicenceData.amount}
+            onChange={handleRevenueLicenceChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="effectiveDate"
+              label="Effective Date"
+              value={revenueLicenceData.effectiveDate}
+              onChange={handleRevenueLicenceChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="renewalDate"
+              label="Reneival Date"
+              value={revenueLicenceData.renewalDate}
+              onChange={handleRevenueLicenceChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+
+        <ImageUploader
+          setter={setRevenueLicenceData}
+          name="licenceImgUrl"
+          folderName="vehicle - revenue_licences"
+        />
+      </Grid>
+
+      <Divider sx={{ mt: 2, mb: 2 }} />
+      <Typography variant="h3" gutterBottom>
+        Insurance Details
+      </Typography>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="amount"
+            name="amount"
+            label="Amount"
+            fullWidth
+            value={insuaranceData.amount}
+            onChange={handleInsuaranceChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="effectiveDate"
+              label="Effective Date"
+              value={insuaranceData.effectiveDate}
+              onChange={handleInsuaranceChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="renewalDate"
+              label="Reneival Date"
+              value={insuaranceData.renewalDate}
+              onChange={handleInsuaranceChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+
+        <ImageUploader
+          setter={setInsuaranceData}
+          name="insuranceImgUrl"
+          folderName="vehicle - insuarance_licences"
+        />
+      </Grid>
+
+      <Divider sx={{ mt: 2, mb: 2 }} />
+      <Typography variant="h3" gutterBottom>
+        Smoke Test Details
+      </Typography>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="amount"
+            name="amount"
+            label="Amount"
+            fullWidth
+            value={smokeTestData.amount}
+            onChange={handleSmokeTestChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="effectiveDate"
+              label="Effective Date"
+              value={smokeTestData.effectiveDate}
+              onChange={handleSmokeTestChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="renewalDate"
+              label="Reneival Date"
+              value={smokeTestData.renewalDate}
+              onChange={handleSmokeTestChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+
+        <ImageUploader
+          setter={setSmokeTestData}
+          name="smokeTestImgUrl"
+          folderName="vehicle - smoke_test_licences"
+        />
+      </Grid>
+
+      <Divider sx={{ mt: 2, mb: 2 }} />
+      <Typography variant="h3" gutterBottom>
+        Port permit Details
+      </Typography>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="amount"
+            name="amount"
+            label="Amount"
+            fullWidth
+            value={portPermitData.amount}
+            onChange={handlePortPermitChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="effectiveDate"
+              label="Effective Date"
+              value={portPermitData.effectiveDate}
+              onChange={handlePortPermitChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="renewalDate"
+              label="Reneival Date"
+              value={portPermitData.renewalDate}
+              onChange={handlePortPermitChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+
+        <ImageUploader
+          setter={setPortPermitData}
+          name="portPermitImgUrl"
+          folderName="vehicle - port_permits"
+        />
+      </Grid>
+
+      <Divider sx={{ mt: 2, mb: 2 }} />
+      <Typography variant="h3" gutterBottom>
+        Leasing Details
+      </Typography>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="compnay"
+            name="company"
+            label="Company"
+            fullWidth
+            value={leasingDetailsData.company}
+            onChange={handleLeasingDataChange}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
-            disabled
             required
-            id="licenses"
-            name="licenses"
-            label="Licenses"
+            id="amount"
+            name="amount"
+            label="Amount"
             fullWidth
+            value={leasingDetailsData.amount}
+            onChange={handleLeasingDataChange}
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            disabled
-            required
-            id="leasing"
-            name="leasing"
-            label="Leasing"
-            fullWidth
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="effectiveDate"
+              label="Effective Date"
+              value={leasingDetailsData.effectiveDate}
+              onChange={handleLeasingDataChange}
+            />
+          </LocalizationProvider>
         </Grid>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CustomDatePicker
+              name="renewalDate"
+              label="Reneival Date"
+              value={leasingDetailsData.renewalDate}
+              onChange={handleLeasingDataChange}
+            />
+          </LocalizationProvider>
+        </Grid>
+
+        <ImageUploader
+          setter={setLeasingDetailsData}
+          name="leasingImgUrl"
+          folderName="vehicle - leasing_documents"
+        />
       </Grid>
 
       <Button

@@ -43,8 +43,29 @@ export const addVehicle = createAsyncThunk(
   "vehicles/addVehicle",
   async (vehicleData: IVehicle, thunkAPI) => {
     try {
-      console.log("slice :", vehicleData);
       return await vehicleService.addVehicle(vehicleData);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// update vehicle
+export const updateVehicle = createAsyncThunk(
+  "vehicles/updateVehicle",
+  async (vehicleData: any, thunkAPI) => {
+    try {
+      return await vehicleService.updateVehicle(
+        vehicleData.data,
+        vehicleData.id
+      );
     } catch (error: any) {
       const message =
         (error.response &&

@@ -4,7 +4,12 @@ import {
   getAllRegisteredUsers,
   deleteUserData,
 } from "./auth";
-import { getVehicles, addVehicle, deleteVehicle } from "./vehicles";
+import {
+  getVehicles,
+  addVehicle,
+  updateVehicle,
+  deleteVehicle,
+} from "./vehicles";
 
 export const authService = {
   userLogin,
@@ -16,5 +21,6 @@ export const authService = {
 export const vehicleService = {
   getVehicles,
   addVehicle,
+  updateVehicle,
   deleteVehicle,
 };

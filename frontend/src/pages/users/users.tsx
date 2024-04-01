@@ -266,7 +266,7 @@ export const Users = () => {
       >
         {modalContent.view && <ViewUsers />}
         {modalContent.create && <CreateUsers />}
-        {modalContent.update && <CreateUsers />}
+        {modalContent.update && <UpdateUsers />}
       </Drawer>
 
       <Dialog
