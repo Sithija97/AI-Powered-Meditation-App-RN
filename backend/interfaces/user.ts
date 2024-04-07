@@ -1,16 +1,17 @@
 import { Document } from "mongoose";
 
 export interface IUser extends Document {
-  name: string; // full name
+  name: string;
   nic: string;
   password: string;
-  title: string; // title
+  title: string;
   role: string; // type
-  maritalStatus: string; // martial status
+  maritalStatus: string;
   email: string;
-  address: string; // address
-  dob: string; // dob
-  gender: string; // gender
+  mobileNumber: string;
+  address: string;
+  dob: string;
+  gender: string;
   profileImgUrl: string;
   nicDetails: {
     nic: string;

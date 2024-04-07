@@ -13,6 +13,7 @@ export interface IVehicle extends Document {
     licenceImgUrl: string;
   };
   insuaranceDetails: {
+    company: string;
     amount: number;
     effectiveDate: string;
     reneivalDate: string;
