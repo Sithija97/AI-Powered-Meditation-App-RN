@@ -109,6 +109,7 @@ export const CreateVehicles: FC<IProps> = () => {
         licenceImgUrl: revenueLicenceData.licenceImgUrl,
       },
       insuaranceDetails: {
+        company: insuaranceData.company,
         amount: insuaranceData.amount,
         effectiveDate: formatDate(insuaranceData.effectiveDate),
         renewalDate: formatDate(insuaranceData.renewalDate),
@@ -269,6 +270,19 @@ export const CreateVehicles: FC<IProps> = () => {
       <Typography variant="h3" gutterBottom>
         Insurance Details
       </Typography>
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="company"
+            name="company"
+            label="Company"
+            value={insuaranceData.company}
+            onChange={handleInsuaranceChange}
+            fullWidth
+          />
+        </Grid>
+      </Grid>
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <TextField

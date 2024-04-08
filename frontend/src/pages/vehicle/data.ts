@@ -13,6 +13,7 @@ export const initialRevenueLicenceState = {
 };
 
 export const initialInsuranceState = {
+  company: "",
   amount: 0,
   effectiveDate: "",
   renewalDate: "",
