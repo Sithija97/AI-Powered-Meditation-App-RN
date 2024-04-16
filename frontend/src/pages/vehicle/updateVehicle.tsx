@@ -24,16 +24,9 @@ import { useNavigate } from "react-router-dom";
 import { IVehicle, RequestStatus } from "../../models";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { ImageUploader } from "../../components/imageuploader";
-import {
-  InitialBaseState,
-  initialInsuranceState,
-  initialLeasingDetailsState,
-  initialPortPermitState,
-  initialRevenueLicenceState,
-  initialSmokeTestState,
-} from "./data";
 import { CustomDatePicker } from "../../components/customDatePicker";
 import { formatDate } from "../../utils/dateFormatter";
+import dayjs from "dayjs";
 
 interface IProps {
   // onClose: () => void;

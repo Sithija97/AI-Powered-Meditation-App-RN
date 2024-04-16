@@ -47,7 +47,7 @@ export const Vehicles = () => {
     ) {
       return;
     }
-    console.log(row);
+    console.log(row?.original);
     dispatch(setSelectedVehicle(row?.original));
     setModalContent({ ...modalContentInitValues, [type]: true });
     setIsModalOpen(status);
