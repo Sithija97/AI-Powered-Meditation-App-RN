@@ -43,6 +43,7 @@ interface RevenueLicenceDetails {
 }
 
 interface InsuaranceDetails {
+  company: string;
   amount: number;
   effectiveDate: string;
   renewalDate: string;

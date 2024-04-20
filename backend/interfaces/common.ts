@@ -1,6 +1,7 @@
 import { Request } from "express";
 export interface CustomRequest extends Request {
   user: {
+    [x: string]: any;
     _id: string;
     name: string;
     nic: string;
@@ -8,6 +9,7 @@ export interface CustomRequest extends Request {
     role: number;
     maritalStatus: string;
     email: string;
+    mobileNumber: string;
     address: string;
     dob: string;
     gender: string;
