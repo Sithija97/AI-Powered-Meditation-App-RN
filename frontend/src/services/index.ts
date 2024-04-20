@@ -5,6 +5,13 @@ import {
   deleteUserData,
 } from "./auth";
 import {
+  addHire,
+  deleteHire,
+  getAllHires,
+  getHires,
+  updateHire,
+} from "./hires";
+import {
   getVehicles,
   addVehicle,
   updateVehicle,
@@ -23,4 +30,12 @@ export const vehicleService = {
   addVehicle,
   updateVehicle,
   deleteVehicle,
+};
+
+export const hireService = {
+  getHires,
+  getAllHires,
+  addHire,
+  updateHire,
+  deleteHire,
 };

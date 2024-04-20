@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/authSlice";
 import vehicleReducer from "./vehicle/vehicleSlice";
+import hireReducer from "./hire/hireSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import {
   persistStore,
@@ -26,6 +27,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
     vehicles: vehicleReducer,
+    hires: hireReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

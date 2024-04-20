@@ -102,6 +102,20 @@ export interface IUser {
   drivingLicenceDetails: DrivingLicenceDetails;
 }
 
+export interface IHire {
+  _id?: string;
+  hireType: string;
+  vehicle: string;
+  driver: string;
+  date: string;
+  startTime: string;
+  startLocation: string;
+  endTime: string;
+  endLocation: string;
+  distance: string;
+  amount: number;
+}
+
 export interface VehicleData {
   type: string;
   ownership: string;
@@ -137,4 +151,10 @@ export interface IInitialAuthState {
   isgetAllUsersSuccess: boolean;
   isgetAllUsersError: boolean;
   message: string;
+}
+
+export interface IIniitalHireState {
+  hires: IHire[];
+  allHires: IHire[];
+  selectedHire: IHire | null;
 }
