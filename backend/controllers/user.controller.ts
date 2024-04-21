@@ -43,6 +43,7 @@ export const registerUser = asyncHandler(
         role: user.role,
         maritalStatus: user.maritalStatus,
         email: user.email,
+        mobileNumber: user.mobileNumber,
         address: user.address,
         dob: user.dob,
         gender: user.gender,
@@ -74,6 +75,7 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
       role: user.role,
       maritalStatus: user.maritalStatus,
       email: user.email,
+      mobileNumber: user.mobileNumber,
       address: user.address,
       dob: user.dob,
       gender: user.gender,
@@ -106,6 +108,7 @@ export const getUserProfile = asyncHandler(
       role: req.user?.role,
       maritalStatus: req.user?.maritalStatus,
       email: req.user?.email,
+      mobileNumber: req.user?.mobileNumber,
       address: req.user?.address,
       dob: req.user?.dob,
       gender: req.user?.gender,
@@ -129,6 +132,7 @@ export const updateUserProfile = asyncHandler(
       user.role = req.body.role || user.role;
       user.maritalStatus = req.body.maritalStatus || user.maritalStatus;
       user.email = req.body.email || user.email;
+      user.mobileNumber = req.body.mobileNumber || user.mobileNumber;
       user.address = req.body.address || user.address;
       user.dob = req.body.dob || user.dob;
       user.gender = req.body.gender || user.gender;
@@ -153,6 +157,7 @@ export const updateUserProfile = asyncHandler(
         role: updatedUser.role,
         maritalStatus: updatedUser.maritalStatus,
         email: updatedUser.email,
+        mobileNumber: updatedUser.mobileNumber,
         address: updatedUser.address,
         dob: updatedUser.dob,
         gender: updatedUser.gender,
@@ -203,6 +208,7 @@ export const updateUser = asyncHandler(
       user.role = req.body.role || user.role;
       user.maritalStatus = req.body.maritalStatus || user.maritalStatus;
       user.email = req.body.email || user.email;
+      user.mobileNumber = req.body.mobileNumber || user.mobileNumber;
       user.address = req.body.address || user.address;
       user.dob = req.body.dob || user.dob;
       user.gender = req.body.gender || user.gender;
@@ -227,6 +233,7 @@ export const updateUser = asyncHandler(
         role: updatedUser.role,
         maritalStatus: updatedUser.maritalStatus,
         email: updatedUser.email,
+        mobileNumber: updatedUser.mobileNumber,
         address: updatedUser.address,
         dob: updatedUser.dob,
         gender: updatedUser.gender,

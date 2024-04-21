@@ -132,7 +132,7 @@ export const deleteVehicle = asyncHandler(
       throw new Error("User not authorized");
     }
 
-    const removedVehicle = await Vehicle.findByIdAndRemove(req.params.id);
+    await Vehicle.findByIdAndRemove(req.params.id);
 
     res.status(200).json({ id: req.params.id });
   }

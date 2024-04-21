@@ -12,6 +12,7 @@ const userSchema = new Schema<IUser>(
     role: { type: String, default: UserRole.IDLE },
     maritalStatus: { type: String, default: "unmarried" },
     email: { type: String },
+    mobileNumber: { type: String, default: "" },
     address: { type: String, default: "" },
     dob: { type: String, default: null },
     gender: { type: String, default: "Male" },

@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const InitialBaseState = {
   type: "",
   ownership: "",
@@ -13,6 +15,7 @@ export const initialRevenueLicenceState = {
 };
 
 export const initialInsuranceState = {
+  company: "",
   amount: 0,
   effectiveDate: "",
   renewalDate: "",
