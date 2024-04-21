@@ -6,6 +6,10 @@ const initialState: IIniitalHireState = {
   hires: [],
   allHires: [],
   selectedHire: null,
+  getHiresLoading: false,
+  getHiresSuccess: false,
+  getHiresError: false,
+  getHiresMessage: "",
 };
 
 // get hires
@@ -115,9 +119,20 @@ const hireSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    // builder.addCase(getVehicles.pending, (state) => {
-    //   state.getVehiclesLoading = true;
-    // });
+    builder
+      .addCase(getHires.pending, (state) => {
+        state.getHiresLoading = true;
+      })
+      .addCase(getHires.fulfilled, (state, action) => {
+        state.getHiresLoading = false;
+        state.getHiresSuccess = true;
+        state.hires = action.payload;
+      })
+      .addCase(getHires.rejected, (state, action) => {
+        state.getHiresLoading = false;
+        state.getHiresError = true;
+        state.getHiresMessage = action.payload as string;
+      });
   },
 });
 

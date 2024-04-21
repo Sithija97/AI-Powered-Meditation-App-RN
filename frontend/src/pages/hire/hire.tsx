@@ -19,9 +19,10 @@ import {
   createTheme,
   useTheme,
   Divider,
+  CircularProgress,
 } from "@mui/material";
 import { Dashboard } from "../../layouts";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CreateHire from "./createHire";
 import { MaterialReactTable, type MRT_ColumnDef } from "material-react-table";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -29,31 +30,17 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { ViewHire } from "./viewHire";
 import UpdateHire from "./updateHire";
+import {
+  clearSelectedHire,
+  getHires,
+  setSelectedHire,
+} from "../../store/hire/hireSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
+import { IHire } from "../../models";
 // ==============================|| HIRE PAGE ||============================== //
-type Person = {
-  HireType: string;
-  Vehicle: string;
-  Driver: string;
-  amount: string;
-};
-
-//nested data is ok, see accessorKeys in ColumnDef below
-const data: Person[] = [
-  {
-    HireType: "Adam Easton",
-    Vehicle: "261 Erdman Ford",
-    Driver: "077345667",
-    amount: "1990-04-20",
-  },
-  {
-    HireType: "John Doe",
-    Vehicle: "769 Dominic Grove",
-    Driver: "077345667",
-    amount: "1990-04-20",
-  },
-];
 
 export const Hire = () => {
+  const dispatch = useAppDispatch();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -61,12 +48,27 @@ export const Hire = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(modalContentInitValues);
 
-  const toggleDrawer = (type: any, status: any) => (event: any) => {
+  const { getHiresLoading, hires } = useAppSelector(
+    (state: RootState) => state.hires
+  );
+
+  useEffect(() => {
+    dispatch(getHires());
+
+    return () => {
+      dispatch(clearSelectedHire());
+    };
+  }, [dispatch]);
+
+  const toggleDrawer = (type: any, status: any, row?: any) => (event: any) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
+    }
+    if (row) {
+      dispatch(setSelectedHire(row?.original));
     }
     setModalContent({ ...modalContentInitValues, [type]: true });
     setIsModalOpen(status);
@@ -80,20 +82,20 @@ export const Hire = () => {
     setOpen(false);
   };
 
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
+  const columns = useMemo<MRT_ColumnDef<IHire>[]>(
     () => [
       {
-        accessorKey: "HireType", //access nested data with dot notation
+        accessorKey: "hireType", //access nested data with dot notation
         header: "Hire Type",
         size: 150,
       },
       {
-        accessorKey: "Vehicle", //normal accessorKey
+        accessorKey: "vehicle.type", //normal accessorKey
         header: "Vehicle",
         size: 200,
       },
       {
-        accessorKey: "Driver",
+        accessorKey: "driver.name",
         header: "Driver",
         size: 150,
       },
@@ -143,77 +145,89 @@ export const Hire = () => {
             </Button>
           </Stack>
           <Divider />
-          <Box
-            mt={4}
-            boxShadow={"0px 1px 18px 1px #BFD5EB"}
-            padding={theme.spacing(5)}
-          >
-            <ThemeProvider theme={tableTheme}>
-              <MaterialReactTable
-                columns={columns}
-                data={data}
-                enableRowActions
-                positionActionsColumn="last"
-                muiTableHeadCellProps={{
-                  sx: () => ({
-                    borderTop: "1px solid #ddd",
-                    background: "#FBFBFB",
-                    fontFamily: "poppins",
-                    fontWeight: 500,
-                  }),
-                }}
-                muiTablePaperProps={{
-                  sx: () => ({
-                    boxShadow: "none",
-                  }),
-                }}
-                displayColumnDefOptions={{
-                  "mrt-row-actions": {
-                    size: 120, //make actions column wider
-                  },
-                }}
-                renderRowActions={({ row }) => (
-                  <Box sx={{ display: "flex" }}>
-                    <Tooltip title="View">
-                      <Avatar
-                        onClick={toggleDrawer("view", true)}
-                        sx={{
-                          color: "#00c853",
-                          background: "#b9f6ca61",
-                          margin: "0 15px 0 0",
-                        }}
-                      >
-                        <VisibilityIcon />
-                      </Avatar>
-                    </Tooltip>
-                    <Tooltip title="Update">
-                      <Avatar
-                        onClick={toggleDrawer("update", true)}
-                        sx={{
-                          color: "#1e88e5",
-                          background: "#eef2f6",
-                          margin: "0 15px 0 0",
-                        }}
-                      >
-                        <EditNoteIcon />
-                      </Avatar>
-                    </Tooltip>
-                    <Tooltip title="Delete">
-                      <Avatar
-                        onClick={handleClickOpen}
-                        sx={{
-                          color: "#d84315",
-                          background: "#fbe9e7",
-                        }}
-                      >
-                        <DeleteOutlineIcon />
-                      </Avatar>
-                    </Tooltip>
-                  </Box>
-                )}
-              />
-            </ThemeProvider>
-          </Box>
+          {getHiresLoading ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "15px",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ) : (
+            <Box
+              mt={4}
+              boxShadow={"0px 1px 18px 1px #BFD5EB"}
+              padding={theme.spacing(5)}
+            >
+              <ThemeProvider theme={tableTheme}>
+                <MaterialReactTable
+                  columns={columns}
+                  data={hires}
+                  enableRowActions
+                  positionActionsColumn="last"
+                  muiTableHeadCellProps={{
+                    sx: () => ({
+                      borderTop: "1px solid #ddd",
+                      background: "#FBFBFB",
+                      fontFamily: "poppins",
+                      fontWeight: 500,
+                    }),
+                  }}
+                  muiTablePaperProps={{
+                    sx: () => ({
+                      boxShadow: "none",
+                    }),
+                  }}
+                  displayColumnDefOptions={{
+                    "mrt-row-actions": {
+                      size: 120, //make actions column wider
+                    },
+                  }}
+                  renderRowActions={({ row }) => (
+                    <Box sx={{ display: "flex" }}>
+                      <Tooltip title="View">
+                        <Avatar
+                          onClick={toggleDrawer("view", true, row)}
+                          sx={{
+                            color: "#00c853",
+                            background: "#b9f6ca61",
+                            margin: "0 15px 0 0",
+                          }}
+                        >
+                          <VisibilityIcon />
+                        </Avatar>
+                      </Tooltip>
+                      <Tooltip title="Update">
+                        <Avatar
+                          onClick={toggleDrawer("update", true)}
+                          sx={{
+                            color: "#1e88e5",
+                            background: "#eef2f6",
+                            margin: "0 15px 0 0",
+                          }}
+                        >
+                          <EditNoteIcon />
+                        </Avatar>
+                      </Tooltip>
+                      <Tooltip title="Delete">
+                        <Avatar
+                          onClick={handleClickOpen}
+                          sx={{
+                            color: "#d84315",
+                            background: "#fbe9e7",
+                          }}
+                        >
+                          <DeleteOutlineIcon />
+                        </Avatar>
+                      </Tooltip>
+                    </Box>
+                  )}
+                />
+              </ThemeProvider>
+            </Box>
+          )}
         </Container>
       </Box>
       <Drawer

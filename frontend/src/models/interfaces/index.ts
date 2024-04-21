@@ -105,8 +105,8 @@ export interface IUser {
 export interface IHire {
   _id?: string;
   hireType: string;
-  vehicle: string;
-  driver: string;
+  vehicle: IVehicle;
+  driver: IUser;
   date: string;
   startTime: string;
   startLocation: string;
@@ -157,4 +157,8 @@ export interface IIniitalHireState {
   hires: IHire[];
   allHires: IHire[];
   selectedHire: IHire | null;
+  getHiresLoading: boolean;
+  getHiresSuccess: boolean;
+  getHiresError: boolean;
+  getHiresMessage: string;
 }

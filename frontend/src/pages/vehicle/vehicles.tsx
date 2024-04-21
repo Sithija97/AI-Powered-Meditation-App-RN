@@ -24,7 +24,6 @@ import {
   getVehicles,
   setSelectedVehicle,
 } from "../../store/vehicle/vehicleSlice";
-import { useNavigate } from "react-router-dom";
 import { CreateVehicles } from "./createVehicle";
 import { MRT_ColumnDef, MaterialReactTable } from "material-react-table";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -47,7 +46,6 @@ export const Vehicles = () => {
     ) {
       return;
     }
-    console.log(row);
     dispatch(setSelectedVehicle(row?.original));
     setModalContent({ ...modalContentInitValues, [type]: true });
     setIsModalOpen(status);
