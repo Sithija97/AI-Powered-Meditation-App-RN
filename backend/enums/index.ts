@@ -6,3 +6,14 @@ export enum UserRole {
   DRIVER = "driver",
   HELPER = "helper",
 }
+
+export enum Gender {
+  MALE = "male",
+  FEMALE = "female",
+  OTHER = "other",
+}
+
+export enum MaritalStatus {
+  UNMARRIED = "unmarried",
+  MARRIED = "married",
+}

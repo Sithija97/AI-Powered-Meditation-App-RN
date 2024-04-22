@@ -64,6 +64,14 @@ export const getHire = asyncHandler(
 export const getHiresByUser = asyncHandler(
   async (req: CustomRequest, res: Response) => {
     const hires = await Hire.find({ driver: req.user._id })
+      .populate({
+        path: "vehicle",
+        select: "-__v",
+      })
+      .populate({
+        path: "driver",
+        select: "-__v,",
+      })
       .lean()
       .select("-createdAt -updatedAt -__v");
     res.status(200).json(hires);
@@ -71,7 +79,17 @@ export const getHiresByUser = asyncHandler(
 );
 
 export const getAllHires = asyncHandler(async (req: Request, res: Response) => {
-  const hires = await Hire.find().lean().select("-createdAt -updatedAt -__v");
+  const hires = await Hire.find()
+    .populate({
+      path: "vehicle",
+      select: "-__v",
+    })
+    .populate({
+      path: "driver",
+      select: "-__v",
+    })
+    .lean()
+    .select("-createdAt -updatedAt -__v");
   res.status(200).json(hires);
 });
 

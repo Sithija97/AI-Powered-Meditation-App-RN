@@ -17,7 +17,16 @@ import { CustomRequest } from "../interfaces/index.js";
 
 export const registerUser = asyncHandler(
   async (req: Request, res: Response) => {
-    const { name, nic, password, role, email } = req.body;
+    const {
+      name,
+      nic,
+      password,
+      role,
+      email,
+      nicDetails,
+      policeReportsDetails,
+      drivingLicenceDetails,
+    } = req.body;
     const userExists = await User.findOne({ nic });
 
     if (userExists) {
@@ -31,6 +40,9 @@ export const registerUser = asyncHandler(
       password,
       role,
       email,
+      nicDetails,
+      policeReportsDetails,
+      drivingLicenceDetails,
     });
 
     if (user) {
@@ -68,6 +80,7 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
     generateToken(res, user._id);
 
     res.json({
+      _id: user._id,
       name: user.name,
       nic: user.nic,
       title: user.title,
