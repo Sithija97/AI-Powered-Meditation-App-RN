@@ -21,8 +21,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ImageUploader } from "../../components/imageuploader";
+import PropTypes from 'prop-types';
 
-export const CreateUsers = () => {
+export const CreateUsers = ({ onClose }:any) => {
   return (
 
     <Box
@@ -30,7 +31,7 @@ export const CreateUsers = () => {
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
         <Typography variant="h3">Update User</Typography>
-        <IconButton aria-label="delete">
+        <IconButton aria-label="delete" onClick={onClose}>
           <CloseOutlinedIcon />
         </IconButton>
       </Box>
@@ -218,4 +219,10 @@ export const CreateUsers = () => {
 
     </Box>
   );
+};
+
+export default CreateUsers;
+
+CreateUsers.propTypes = {
+  onClose: PropTypes.func
 };

@@ -22,8 +22,9 @@ import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { IUser, RequestStatus } from "../../models";
 import { getAllUsers, updateUser } from "../../store/auth/authSlice";
+import PropTypes from 'prop-types';
 
-export const UpdateUsers = () => {
+export const UpdateUsers = ({ onClose }:any) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -145,7 +146,7 @@ export const UpdateUsers = () => {
         }}
       >
         <Typography variant="h3">Update User</Typography>
-        <IconButton aria-label="delete">
+        <IconButton aria-label="delete" onClick={onClose}>
           <CloseOutlinedIcon />
         </IconButton>
       </Box>
@@ -417,4 +418,10 @@ export const UpdateUsers = () => {
       </Button>
     </Box>
   );
+};
+
+export default UpdateUsers;
+
+UpdateUsers.propTypes = {
+  onClose: PropTypes.func
 };

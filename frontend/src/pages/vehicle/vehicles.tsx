@@ -234,9 +234,9 @@ export const Vehicles = () => {
         open={isModalOpen}
         onClose={toggleDrawer(null, false, "")}
       >
-        {modalContent.view && <ViewVehicle />}
-        {modalContent.create && <CreateVehicles />}
-        {modalContent.update && <UpdateVehicles />}
+        {modalContent.view && <ViewVehicle onClose={toggleDrawer('view', false, '')} />}
+        {modalContent.create && <CreateVehicles onClose={toggleDrawer('create', false, '')}  />}
+        {modalContent.update && <UpdateVehicles onClose={toggleDrawer('update', false, '')} />}
       </Drawer>
       {/* <Drawer open={show} onClose={toggleDrawer} anchor="right">
         <CreateVehicles onClose={toggleDrawer} />

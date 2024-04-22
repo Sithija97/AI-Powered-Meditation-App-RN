@@ -268,9 +268,9 @@ export const Users = () => {
         open={isModalOpen}
         onClose={toggleDrawer(null, false)}
       >
-        {modalContent.view && <ViewUsers />}
-        {modalContent.create && <CreateUsers />}
-        {modalContent.update && <UpdateUsers />}
+        {modalContent.view && <ViewUsers onClose={toggleDrawer('view', false, '')} />}
+        {modalContent.create && <CreateUsers onClose={toggleDrawer('create', false, '')} />}
+        {modalContent.update && <UpdateUsers onClose={toggleDrawer('update', false, '')} />}
       </Drawer>
 
       <Dialog

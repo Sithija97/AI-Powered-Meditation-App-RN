@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { RootState, useAppSelector } from "../../store/store";
+import PropTypes from 'prop-types';
 
-export const ViewVehicle = () => {
+export const ViewVehicle = ({ onClose }:any) => {
   const { selectedVehicle } = useAppSelector(
     (state: RootState) => state.vehicles
   );
@@ -28,7 +29,7 @@ export const ViewVehicle = () => {
           }}
         >
           <Typography variant="h3">View Vehicle</Typography>
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={onClose}>
             <CloseOutlinedIcon />
           </IconButton>
         </Box>
@@ -56,6 +57,7 @@ export const ViewVehicle = () => {
       <Stack>
         <Box>
           <Button
+          onClick={onClose}
             size="large"
             type="submit"
             variant="contained"
@@ -67,4 +69,10 @@ export const ViewVehicle = () => {
       </Stack>
     </Box>
   );
+};
+
+export default ViewVehicle;
+
+ViewVehicle.propTypes = {
+  onClose: PropTypes.func
 };
