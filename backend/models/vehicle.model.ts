@@ -31,6 +31,7 @@ const vehicleSchema = new Schema<IVehicle>(
       licenceImgUrl: { type: String, default: "" },
     },
     insuaranceDetails: {
+      company: { type: String, default: "" },
       amount: { type: Number, default: 0 },
       effectiveDate: { type: String, default: null },
       renewalDate: { type: String, default: null },

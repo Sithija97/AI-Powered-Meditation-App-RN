@@ -16,23 +16,24 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-
-// project imports
-
-// ==============================|| SAMPLE PAGE ||============================== //
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const CreateHire = () => {
   return (
-    <Box
-      sx={{ padding: '20px' }}
-    >
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
+    <Box sx={{ padding: "20px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
         <Typography variant="h3">Create Hire</Typography>
         <IconButton aria-label="delete">
           <CloseOutlinedIcon />
@@ -85,13 +86,13 @@ const CreateHire = () => {
       <Grid container rowSpacing={4}>
         <Grid item xs={12}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={['TimePicker']}>
-        <TimePicker sx={{width:'100%'}} label="Start time " />
-      </DemoContainer>
-      </LocalizationProvider>
+            <DemoContainer components={["TimePicker"]}>
+              <TimePicker sx={{ width: "100%" }} label="Start time " />
+            </DemoContainer>
+          </LocalizationProvider>
         </Grid>
         <Grid item xs={12}>
-        <TextField
+          <TextField
             required
             id="location"
             name="location"
@@ -102,13 +103,13 @@ const CreateHire = () => {
 
         <Grid item xs={12}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={['TimePicker']}>
-        <TimePicker sx={{width:'100%'}} label="End time " />
-      </DemoContainer>
-      </LocalizationProvider>
+            <DemoContainer components={["TimePicker"]}>
+              <TimePicker sx={{ width: "100%" }} label="End time " />
+            </DemoContainer>
+          </LocalizationProvider>
         </Grid>
         <Grid item xs={12}>
-        <TextField
+          <TextField
             required
             id="location"
             name="location"
@@ -117,7 +118,7 @@ const CreateHire = () => {
           />
         </Grid>
         <Grid item xs={12}>
-        <TextField
+          <TextField
             required
             id="distance"
             name="distance"
@@ -126,7 +127,7 @@ const CreateHire = () => {
           />
         </Grid>
         <Grid item xs={12}>
-        <TextField
+          <TextField
             required
             id="amount"
             name="amount"
@@ -139,7 +140,7 @@ const CreateHire = () => {
         Save
       </Button>
     </Box>
-  )
+  );
 };
 
 export default CreateHire;
