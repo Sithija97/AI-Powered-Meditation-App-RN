@@ -2,14 +2,14 @@
 export const LightPalette = {
   primary: {
     light: '#eef2f6',
-    main: '#3273b7',
-    dark: '#3273b7',
+    main: '#1E88E5',
+    dark: '#1E88E5',
     200: '#90caf9',
     800: '#1565c0'
   },
   secondary: {
     light: '#eef2f6',
-    main: '#3273b7',
+    main: '#1E88E5',
     dark: '#1e88e5',
     200: '#90caf9',
     800: '#1565c0'

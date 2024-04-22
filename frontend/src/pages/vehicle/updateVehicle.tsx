@@ -22,12 +22,11 @@ import { useNavigate } from "react-router-dom";
 import { IVehicle, RequestStatus } from "../../models";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { ImageUploader } from "../../components/imageuploader";
+import PropTypes from 'prop-types';
 
-interface IProps {
-  // onClose: () => void;
-}
 
-export const UpdateVehicles: FC<IProps> = () => {
+
+export const UpdateVehicles = ({ onClose }:any) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -184,7 +183,7 @@ export const UpdateVehicles: FC<IProps> = () => {
         }}
       >
         <Typography variant="h3">Update Vehicle</Typography>
-        <IconButton aria-label="delete">
+        <IconButton aria-label="delete" onClick={onClose}>
           <CloseOutlinedIcon />
         </IconButton>
       </Box>
@@ -517,4 +516,10 @@ export const UpdateVehicles: FC<IProps> = () => {
       </Button>
     </Box>
   );
+};
+
+export default UpdateVehicles;
+
+UpdateVehicles.propTypes = {
+  onClose: PropTypes.func
 };

@@ -18,20 +18,25 @@ import { HOME } from "../routes";
 export const MainListItems = () => {
   // const customization = useSelector((state: any) => state.customization);
   const navigate = useNavigate();
+  const [selectedIndex, setSelectedIndex] = React.useState(null);
+
+  const setActive = (index:any) => {
+      setSelectedIndex(index);
+  };
   const item = {
     borderTop: `1px solid #e8e8e8`,
     height: 52,
   };
   return (
     <React.Fragment>
-      <ListItemButton selected={true} sx={item} onClick={() => navigate(HOME)}>
+      <ListItemButton selected={1 === selectedIndex} sx={item} onClick={() => {navigate(HOME);setActive(1)}}>
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
         <Divider orientation="vertical" sx={{ borderRightWidth: 1, mr: 3 }} />
         <ListItemText sx={{color:'#494949'}} primary="Home" />
       </ListItemButton>
-      <ListItemButton sx={item} onClick={() => navigate("/vehicles")}>
+      <ListItemButton selected={2 === selectedIndex} sx={item} onClick={() => {setActive(2);navigate("/vehicles");}}>
         <ListItemIcon>
           <CommuteIcon />
         </ListItemIcon>

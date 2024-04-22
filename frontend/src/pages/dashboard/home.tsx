@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import { Dashboard } from "../../layouts";
-import { Card, useTheme } from "@mui/material";
+import { Avatar, Card, useTheme } from "@mui/material";
 import banner from "../../assets/images/bg.png";
 import truck from "../../assets/images/Logistics-bro.png";
 import {
@@ -21,6 +21,7 @@ import {
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { RootState, useAppSelector } from "../../store/store";
+import SettingsVoiceOutlinedIcon from '@mui/icons-material/SettingsVoiceOutlined';
 
 ChartJS.register(
   CategoryScale,
@@ -131,12 +132,34 @@ export const Home = () => {
                 >
                   <Box flexGrow={1}>
                     <Typography variant="h2" sx={{ mb: 4, color: "#fff" }}>
-                      {/* {` Hi, Welcome Back ${userInfo?.name}`} */}
+                      {` Hi, Welcome Back ${userInfo?.name}`}
                     </Typography>
                     <Grid sx={{ mb: 3 }} container spacing={3}>
                       <Grid item xs={12} sm={6} md={6} lg={4}>
+                        <Box sx={{backgroundColor:'#fff',boxShadow: theme.shadows[1], padding:'28px'}}>
+                        {/* <Box display={'flex'} justifyContent={'end'}>
+                          <p>Today</p>
+                        </Box> */}
+                        <Box sx={{ textAlign: "center", display:'flex' , alignItems:'center'}}>
+                        <Avatar sx={{ width: 72, height: 72, background: theme.palette.background.paper, border: `1px solid #EBEBEB`,marginRight:'20px' }}>
+                            <Avatar sx={{ width: 48, height: 48, boxShadow: theme.shadows[5], background: theme.palette.background.paper }}>
+                              <SettingsVoiceOutlinedIcon/>
+                            </Avatar>
+                          </Avatar>
+                          <Typography variant="h1" color={"#1E88E5 "}>
+                            120
+                          </Typography>
+
+                          <Typography variant="h3" sx={{ opacity: 0.72 }}>
+                            Users
+                          </Typography>
+                        </Box>
+                       
+                        </Box>
+                      </Grid>
+                      <Grid item xs={12} sm={6} md={6} lg={4}>
                         <Card sx={{ py: 5, textAlign: "center" }}>
-                          <Typography variant="h1" color={"#3273b7 "}>
+                          <Typography variant="h1" color={"#1E88E5 "}>
                             120
                           </Typography>
 
@@ -147,18 +170,7 @@ export const Home = () => {
                       </Grid>
                       <Grid item xs={12} sm={6} md={6} lg={4}>
                         <Card sx={{ py: 5, textAlign: "center" }}>
-                          <Typography variant="h1" color={"#3273b7 "}>
-                            120
-                          </Typography>
-
-                          <Typography variant="h3" sx={{ opacity: 0.72 }}>
-                            Users
-                          </Typography>
-                        </Card>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={6} lg={4}>
-                        <Card sx={{ py: 5, textAlign: "center" }}>
-                          <Typography variant="h1" color={"#3273b7 "}>
+                          <Typography variant="h1" color={"#1E88E5 "}>
                             120
                           </Typography>
 

@@ -24,7 +24,7 @@ const Drawer = styled(MuiDrawer, {
     width: drawerWidth,
     background:"#f8f7ff",
     borderRight:'none !important',
-    boxShadow:"inset 0px 1px 18px 1px #e9f4ff",
+    boxShadow:"inset 0px 1px 18px 1px #BFD5EB",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -68,7 +68,7 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
           <MenuOpenIcon sx={{color:'#999999'}} />
         </IconButton>
       </Toolbar>
-      <Divider />
+      {/* <Divider /> */}
       {open ? 
       <>
        <Box  sx={{ display: 'flex', justifyContent: 'center',marginTop: theme.spacing(2)}}>
@@ -86,7 +86,6 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
       <></>
     }
       
-     
       <Box sx={{marginTop: theme.spacing(2) }}>
       <List component="nav">
         <MainListItems />

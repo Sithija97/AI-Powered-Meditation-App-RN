@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -16,15 +13,11 @@ import { register, reset } from "../../store/auth/authSlice";
 import {
   CircularProgress,
   Divider,
-  FormControl,
-  InputLabel,
-  MenuItem,
   Paper,
-  Select,
 } from "@mui/material";
 import { RequestStatus } from "../../models";
 import { formatDate } from "../../utils/dateFormatter";
-import loginImg from "../../assets/images/lgo.png";
+import loginImg from "../../assets/images/login.png";
 import logo from "../../assets/images/logo.png";
 import loginBgImg from "../../assets/images/bg.png";
 import themes from "../../themes";
@@ -220,7 +213,7 @@ export const Register = () => {
                 </Box>
               </Box>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{marginBottom:'10px'}}>
                   <TextField
                     required
                     fullWidth
@@ -233,7 +226,7 @@ export const Register = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12}  sx={{marginBottom:'10px'}}>
                   <TextField
                     required
                     fullWidth
@@ -246,7 +239,7 @@ export const Register = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12}  sx={{marginBottom:'10px'}}>
                   <TextField
                     required
                     fullWidth
@@ -259,7 +252,7 @@ export const Register = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12}  sx={{marginBottom:'10px'}}>
                   <TextField
                     required
                     fullWidth

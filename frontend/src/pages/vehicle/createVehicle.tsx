@@ -26,13 +26,10 @@ import {
   initialRevenueLicenceState,
   initialSmokeTestState,
 } from "./data";
-interface IProps {
-  // onClose: () => void;
-}
+import PropTypes from 'prop-types';
 
-export const CreateVehicles: FC<IProps> = () => {
+export const CreateVehicles = ({ onClose }:any) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [baseData, setBaseData] = useState(InitialBaseState);
   const [revenueLicenceData, setRevenueLicenceData] = useState(
@@ -149,7 +146,7 @@ export const CreateVehicles: FC<IProps> = () => {
         }}
       >
         <Typography variant="h3">Create Vehicle</Typography>
-        <IconButton aria-label="delete">
+        <IconButton aria-label="delete" onClick={onClose}>
           <CloseOutlinedIcon />
         </IconButton>
       </Box>
@@ -480,4 +477,11 @@ export const CreateVehicles: FC<IProps> = () => {
       </Button>
     </Box>
   );
+};
+
+
+export default CreateVehicles;
+
+CreateVehicles.propTypes = {
+  onClose: PropTypes.func
 };
