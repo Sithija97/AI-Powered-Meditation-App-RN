@@ -1,5 +1,5 @@
 import axios from "axios";
-import { userLoginData, userRegistrationData } from "../../models";
+import { IUser, userLoginData, userRegistrationData } from "../../models";
 
 const API_URL = "/api/users";
 
@@ -22,6 +22,16 @@ export const userLogin = async (userData: userLoginData) => {
 // get all registered users
 export const getAllRegisteredUsers = async () => {
   const response = await axios.get(`${API_URL}/all`);
+  if (response.data) {
+    return response.data;
+  }
+};
+
+// update user profile
+
+// update user
+export const updateUserData = async (id: string, data: IUser) => {
+  const response = await axios.put(`${API_URL}/${id}`, data);
   if (response.data) {
     return response.data;
   }

@@ -50,16 +50,16 @@ export const Users = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(modalContentInitValues);
 
-  const { allRegisteredUsers, isgetAllUsersLoading } = useAppSelector(
+  const { allRegisteredUsers, isgetAllUsersLoading, userInfo } = useAppSelector(
     (state: RootState) => state.auth
   );
 
   useEffect(() => {
     dispatch(getAllUsers());
 
-    return () => {
-      dispatch(clearSelectedUser());
-    };
+    // return () => {
+    //   dispatch(clearSelectedUser());
+    // };
   }, [dispatch]);
 
   const toggleDrawer = (type: any, status: any, row?: any) => (event: any) => {
@@ -84,8 +84,12 @@ export const Users = () => {
 
   const deleteUsers = (userId: string) => {
     if (userId) {
-      dispatch(deleteUser(userId));
-      dispatch(getAllUsers());
+      if (userId === userInfo?._id) {
+        alert("Not allowed to delete your own Account");
+      } else {
+        dispatch(deleteUser(userId));
+        dispatch(getAllUsers());
+      }
     }
   };
 

@@ -80,19 +80,22 @@ export const ViewUsers = () => {
         <Grid item xs={6}>
           <Typography>Report No</Typography>
           <Typography>
-            {selectedUser?.policeReportDetails?.reportNumber}
+            {selectedUser?.policeReportsDetails?.reportNumber}
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Start Date</Typography>
           <Typography>
             {" "}
-            {selectedUser?.policeReportDetails?.startDate}
+            {selectedUser?.policeReportsDetails?.startDate}
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>End Date</Typography>
-          <Typography> {selectedUser?.policeReportDetails?.endDate}</Typography>
+          <Typography>
+            {" "}
+            {selectedUser?.policeReportsDetails?.endDate}
+          </Typography>
         </Grid>
 
         <Grid item xs={12}>

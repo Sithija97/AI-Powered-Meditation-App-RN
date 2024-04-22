@@ -1,8 +1,10 @@
+import { updateUser } from "../store/auth/authSlice";
 import {
   userLogin,
   userRegistration,
   getAllRegisteredUsers,
   deleteUserData,
+  updateUserData,
 } from "./auth";
 import {
   addHire,
@@ -22,6 +24,7 @@ export const authService = {
   userLogin,
   userRegistration,
   getAllRegisteredUsers,
+  updateUserData,
   deleteUserData,
 };
 

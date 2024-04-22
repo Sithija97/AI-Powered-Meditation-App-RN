@@ -76,6 +76,25 @@ export const getAllUsers = createAsyncThunk(
   }
 );
 
+// update user
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async (userData: any, thunkAPI) => {
+    try {
+      return await authService.updateUserData(userData.id, userData.data);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // delete user
 export const deleteUser = createAsyncThunk(
   "auth/deleteUser",

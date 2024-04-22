@@ -47,7 +47,7 @@ export const Login = () => {
     };
   }, [userInfo, isError, isSuccess, message, dispatch]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isError) toast.error(message);
     try {
@@ -55,7 +55,7 @@ export const Login = () => {
         nic,
         password,
       };
-      dispatch(login(userData)).then((res) => {
+      await dispatch(login(userData)).then((res) => {
         if (res.meta.requestStatus === RequestStatus.Fulfiled) {
           navigate(HOME);
         }
@@ -105,8 +105,7 @@ export const Login = () => {
             backgroundPosition: "center",
             position: "relative",
           }}
-        >
-        </Grid>
+        ></Grid>
 
         <Grid
           item

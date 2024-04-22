@@ -12,8 +12,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useAppDispatch } from "../../store/store";
 import { addVehicle, getVehicles } from "../../store/vehicle/vehicleSlice";
 import { useNavigate } from "react-router-dom";
@@ -95,7 +93,7 @@ export const CreateVehicles: FC<IProps> = () => {
     }));
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     const payload: IVehicle = {
       ...baseData,
@@ -133,7 +131,7 @@ export const CreateVehicles: FC<IProps> = () => {
       },
     };
 
-    dispatch(addVehicle(payload)).then((res) => {
+    await dispatch(addVehicle(payload)).then((res) => {
       if (res.meta.requestStatus === RequestStatus.Fulfiled) {
         dispatch(getVehicles());
       }
@@ -235,24 +233,26 @@ export const CreateVehicles: FC<IProps> = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="effectiveDate"
-              label="Effective Date"
-              value={revenueLicenceData.effectiveDate}
-              onChange={handleRevenueLicenceChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="effectiveDate"
+            label="Effective Date"
+            placeholder="YYYY.MM.DD"
+            value={revenueLicenceData.effectiveDate}
+            onChange={handleRevenueLicenceChange}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="renewalDate"
-              label="Reneival Date"
-              value={revenueLicenceData.renewalDate}
-              onChange={handleRevenueLicenceChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="renewalDate"
+            label="Reneival Date"
+            placeholder="YYYY.MM.DD"
+            value={revenueLicenceData.renewalDate}
+            onChange={handleRevenueLicenceChange}
+            fullWidth
+          />
         </Grid>
 
         <ImageUploader
@@ -292,24 +292,26 @@ export const CreateVehicles: FC<IProps> = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="effectiveDate"
-              label="Effective Date"
-              value={insuaranceData.effectiveDate}
-              onChange={handleInsuaranceChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="effectiveDate"
+            label="Effective Date"
+            placeholder="YYYY.MM.DD"
+            value={insuaranceData.effectiveDate}
+            onChange={handleInsuaranceChange}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="renewalDate"
-              label="Reneival Date"
-              value={insuaranceData.renewalDate}
-              onChange={handleInsuaranceChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="renewalDate"
+            label="Reneival Date"
+            placeholder="YYYY.MM.DD"
+            value={insuaranceData.renewalDate}
+            onChange={handleInsuaranceChange}
+            fullWidth
+          />
         </Grid>
 
         <ImageUploader
@@ -336,24 +338,26 @@ export const CreateVehicles: FC<IProps> = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="effectiveDate"
-              label="Effective Date"
-              value={smokeTestData.effectiveDate}
-              onChange={handleSmokeTestChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="effectiveDate"
+            label="Effective Date"
+            placeholder="YYYY.MM.DD"
+            value={smokeTestData.effectiveDate}
+            onChange={handleSmokeTestChange}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="renewalDate"
-              label="Reneival Date"
-              value={smokeTestData.renewalDate}
-              onChange={handleSmokeTestChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="renewalDate"
+            label="Reneival Date"
+            placeholder="YYYY.MM.DD"
+            value={smokeTestData.renewalDate}
+            onChange={handleSmokeTestChange}
+            fullWidth
+          />
         </Grid>
 
         <ImageUploader
@@ -380,24 +384,26 @@ export const CreateVehicles: FC<IProps> = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="effectiveDate"
-              label="Effective Date"
-              value={portPermitData.effectiveDate}
-              onChange={handlePortPermitChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="effectiveDate"
+            label="Effective Date"
+            placeholder="YYYY.MM.DD"
+            value={portPermitData.effectiveDate}
+            onChange={handlePortPermitChange}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="renewalDate"
-              label="Reneival Date"
-              value={portPermitData.renewalDate}
-              onChange={handlePortPermitChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="renewalDate"
+            label="Reneival Date"
+            placeholder="YYYY.MM.DD"
+            value={portPermitData.renewalDate}
+            onChange={handlePortPermitChange}
+            fullWidth
+          />
         </Grid>
 
         <ImageUploader
@@ -435,24 +441,26 @@ export const CreateVehicles: FC<IProps> = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="effectiveDate"
-              label="Effective Date"
-              value={leasingDetailsData.effectiveDate}
-              onChange={handleLeasingDataChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="effectiveDate"
+            label="Effective Date"
+            placeholder="YYYY.MM.DD"
+            value={leasingDetailsData.effectiveDate}
+            onChange={handleLeasingDataChange}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <CustomDatePicker
-              name="renewalDate"
-              label="Reneival Date"
-              value={leasingDetailsData.renewalDate}
-              onChange={handleLeasingDataChange}
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            name="renewalDate"
+            label="Reneival Date"
+            placeholder="YYYY.MM.DD"
+            value={leasingDetailsData.renewalDate}
+            onChange={handleLeasingDataChange}
+            fullWidth
+          />
         </Grid>
 
         <ImageUploader

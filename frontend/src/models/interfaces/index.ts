@@ -16,22 +16,22 @@ export interface userLoginData {
 
 export interface NicDetails {
   nic: string;
-  startDate: string | null;
-  endDate: string | null;
+  startDate: string;
+  endDate: string;
   nicImageUrl: string;
 }
 
 export interface PoliceReportsDetails {
-  reportNumber: string | null;
-  startDate: string | null;
-  endDate: string | null;
+  reportNumber: string | number;
+  startDate: string;
+  endDate: string;
   policeReportImageUrl: string;
 }
 
 export interface DrivingLicenceDetails {
   licenceNumber: string | number;
-  startDate: string | null;
-  endDate: string | null;
+  startDate: string;
+  endDate: string;
   drivingLicenceImageUrl: string;
 }
 
@@ -90,16 +90,18 @@ export interface IVehicle {
 export interface IUser {
   _id?: string;
   name: string;
+  title: string;
   nic: string;
   role: string;
   maritalStatus: string;
+  mobileNumber: string;
   email: string;
   address: string;
   dob: string | null;
   gender: string;
   profileImgUrl: string;
   nicDetails: NicDetails;
-  policeReportDetails: PoliceReportsDetails;
+  policeReportsDetails: PoliceReportsDetails;
   drivingLicenceDetails: DrivingLicenceDetails;
 }
 
