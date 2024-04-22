@@ -122,7 +122,7 @@ export const UpdateVehicles: FC<IProps> = () => {
     }));
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     const payload: IVehicle = {
       ...baseData,
@@ -160,14 +160,12 @@ export const UpdateVehicles: FC<IProps> = () => {
       },
     };
 
-    console.log(payload);
-
     const vehicleData = {
       id: selectedVehicle?._id!,
       data: payload,
     };
 
-    dispatch(updateVehicle(vehicleData)).then((res) => {
+    await dispatch(updateVehicle(vehicleData)).then((res) => {
       if (res.meta.requestStatus === RequestStatus.Fulfiled) {
         dispatch(getVehicles());
         navigate("/vehicles");

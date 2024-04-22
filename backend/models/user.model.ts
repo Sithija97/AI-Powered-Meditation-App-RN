@@ -1,21 +1,21 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 import { IUser } from "../interfaces/index.js";
-import { UserRole } from "../enums/index.js";
+import { Gender, MaritalStatus, UserRole } from "../enums/index.js";
 
 const userSchema = new Schema<IUser>(
   {
     name: { type: String, required: true },
     nic: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    title: { type: String },
+    title: { type: String, default: "untitled" },
     role: { type: String, default: UserRole.IDLE },
-    maritalStatus: { type: String, default: "unmarried" },
+    maritalStatus: { type: String, default: MaritalStatus.UNMARRIED },
     email: { type: String },
     mobileNumber: { type: String, default: "" },
     address: { type: String, default: "" },
-    dob: { type: String, default: null },
-    gender: { type: String, default: "Male" },
+    dob: { type: String, default: "" },
+    gender: { type: String, default: Gender.MALE },
     profileImgUrl: { type: String, default: "" },
     nicDetails: {
       nic: { type: String, default: "" },
@@ -24,13 +24,13 @@ const userSchema = new Schema<IUser>(
       nicImageUrl: { type: String, default: "" },
     },
     policeReportsDetails: {
-      reportNumber: { type: Schema.Types.Mixed, default: null },
+      reportNumber: { type: Schema.Types.Mixed, default: "" },
       startDate: { type: String, default: null },
       endDate: { type: String, default: null },
       policeReportImageUrl: { type: String, default: "" },
     },
     drivingLicenceDetails: {
-      licenceNumber: { type: Schema.Types.Mixed, default: null },
+      licenceNumber: { type: Schema.Types.Mixed, default: "" },
       startDate: { type: String, default: null },
       endDate: { type: String, default: null },
       drivingLicenceImageUrl: { type: String, default: "" },

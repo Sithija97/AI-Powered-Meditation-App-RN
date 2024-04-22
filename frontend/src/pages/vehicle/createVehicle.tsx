@@ -12,7 +12,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useAppDispatch } from "../../store/store";
 import { addVehicle, getVehicles } from "../../store/vehicle/vehicleSlice";
 import { useNavigate } from "react-router-dom";
@@ -94,7 +93,7 @@ export const CreateVehicles: FC<IProps> = () => {
     }));
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     const payload: IVehicle = {
       ...baseData,
@@ -132,7 +131,7 @@ export const CreateVehicles: FC<IProps> = () => {
       },
     };
 
-    dispatch(addVehicle(payload)).then((res) => {
+    await dispatch(addVehicle(payload)).then((res) => {
       if (res.meta.requestStatus === RequestStatus.Fulfiled) {
         dispatch(getVehicles());
       }

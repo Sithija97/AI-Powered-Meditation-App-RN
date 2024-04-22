@@ -29,6 +29,11 @@ import logo from "../../assets/images/logo.png";
 import loginBgImg from "../../assets/images/bg.png";
 import themes from "../../themes";
 import { LOGIN } from "../../routes";
+import {
+  initialDrivingLicenceDetails,
+  initialNicDetails,
+  initialPoliceReportDetails,
+} from "./data";
 function Copyright(props: any) {
   return (
     <Typography
@@ -88,7 +93,7 @@ export const Register = () => {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -101,11 +106,14 @@ export const Register = () => {
           password,
           email,
           address,
-          dob: formatDate(dob),
+          dob,
           maritalStatus,
+          nicDetails: initialNicDetails,
+          policeReportsDetails: initialPoliceReportDetails,
+          drivingLicenceDetails: initialDrivingLicenceDetails,
         };
 
-        dispatch(register(userData)).then((res) => {
+        await dispatch(register(userData)).then((res) => {
           if (res.meta.requestStatus === RequestStatus.Fulfiled) {
             navigate(LOGIN);
           }
@@ -166,8 +174,7 @@ export const Register = () => {
             backgroundPosition: "center",
             position: "relative",
           }}
-        >
-        </Grid>
+        ></Grid>
         <Grid
           item
           xs={12}
