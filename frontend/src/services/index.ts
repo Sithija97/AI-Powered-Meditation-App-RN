@@ -3,6 +3,7 @@ import {
   userLogin,
   userRegistration,
   getAllRegisteredUsers,
+  getDrivers,
   deleteUserData,
   updateUserData,
 } from "./auth";
@@ -15,6 +16,7 @@ import {
 } from "./hires";
 import {
   getVehicles,
+  getAllVehicles,
   addVehicle,
   updateVehicle,
   deleteVehicle,
@@ -23,6 +25,7 @@ import {
 export const authService = {
   userLogin,
   userRegistration,
+  getDrivers,
   getAllRegisteredUsers,
   updateUserData,
   deleteUserData,
@@ -30,6 +33,7 @@ export const authService = {
 
 export const vehicleService = {
   getVehicles,
+  getAllVehicles,
   addVehicle,
   updateVehicle,
   deleteVehicle,

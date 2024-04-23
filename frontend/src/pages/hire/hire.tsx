@@ -32,11 +32,15 @@ import { ViewHire } from "./viewHire";
 import UpdateHire from "./updateHire";
 import {
   clearSelectedHire,
+  deleteHire,
+  getAllHires,
   getHires,
   setSelectedHire,
 } from "../../store/hire/hireSlice";
 import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
 import { IHire } from "../../models";
+import { getDrivers } from "../../store/auth/authSlice";
+import { getAllVehicles } from "../../store/vehicle/vehicleSlice";
 // ==============================|| HIRE PAGE ||============================== //
 
 export const Hire = () => {
@@ -48,12 +52,14 @@ export const Hire = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(modalContentInitValues);
 
-  const { getHiresLoading, hires } = useAppSelector(
+  const { getAllHiresLoading, allHires } = useAppSelector(
     (state: RootState) => state.hires
   );
 
   useEffect(() => {
-    dispatch(getHires());
+    dispatch(getAllHires());
+    dispatch(getDrivers());
+    dispatch(getAllVehicles());
 
     return () => {
       dispatch(clearSelectedHire());
@@ -80,6 +86,13 @@ export const Hire = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const deleteHireData = (Id: string) => {
+    if (Id) {
+      dispatch(deleteHire(Id));
+      dispatch(getAllHires());
+    }
   };
 
   const columns = useMemo<MRT_ColumnDef<IHire>[]>(
@@ -145,7 +158,7 @@ export const Hire = () => {
             </Button>
           </Stack>
           <Divider />
-          {getHiresLoading ? (
+          {getAllHiresLoading ? (
             <Box
               sx={{
                 display: "flex",
@@ -164,7 +177,7 @@ export const Hire = () => {
               <ThemeProvider theme={tableTheme}>
                 <MaterialReactTable
                   columns={columns}
-                  data={hires}
+                  data={allHires}
                   enableRowActions
                   positionActionsColumn="last"
                   muiTableHeadCellProps={{
@@ -201,7 +214,7 @@ export const Hire = () => {
                       </Tooltip>
                       <Tooltip title="Update">
                         <Avatar
-                          onClick={toggleDrawer("update", true)}
+                          onClick={toggleDrawer("update", true, row)}
                           sx={{
                             color: "#1e88e5",
                             background: "#eef2f6",
@@ -213,7 +226,7 @@ export const Hire = () => {
                       </Tooltip>
                       <Tooltip title="Delete">
                         <Avatar
-                          onClick={handleClickOpen}
+                          onClick={() => deleteHireData(row?.original?._id!)}
                           sx={{
                             color: "#d84315",
                             background: "#fbe9e7",

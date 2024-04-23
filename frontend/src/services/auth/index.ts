@@ -27,6 +27,14 @@ export const getAllRegisteredUsers = async () => {
   }
 };
 
+// get drivers
+export const getDrivers = async () => {
+  const response = await axios.get(`${API_URL}/drivers`);
+  if (response.data) {
+    return response.data;
+  }
+};
+
 // update user profile
 
 // update user

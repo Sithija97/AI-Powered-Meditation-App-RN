@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import User from "../models/user.model.js";
 import generateToken from "../utils/generateToken.js";
 import { CustomRequest } from "../interfaces/index.js";
+import { UserRole } from "../enums/index.js";
 
 /*
 ~ POST    : /api/users          - [public]  - register a user
@@ -191,6 +192,13 @@ export const getAllRegisterdUsers = asyncHandler(
     res.status(200).json(users);
   }
 );
+
+export const getDrivers = asyncHandler(async (req: Request, res: Response) => {
+  const drivers = await User.find({ role: UserRole.DRIVER })
+    .lean()
+    .select("-createdAt -updatedAt -__v");
+  res.status(200).json(drivers);
+});
 
 export const deleteUser = asyncHandler(
   async (req: CustomRequest, res: Response) => {

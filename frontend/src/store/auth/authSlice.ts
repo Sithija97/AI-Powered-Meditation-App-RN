@@ -10,12 +10,17 @@ const initialState: IInitialAuthState = {
   userInfo: null,
   selectedUser: null,
   allRegisteredUsers: [],
+  drivers: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   isgetAllUsersLoading: false,
   isgetAllUsersSuccess: false,
   isgetAllUsersError: false,
+  getDriversLoading: false,
+  getDriversSuccess: false,
+  getDriversError: false,
+  getDriversMessage: "",
   message: "",
 };
 
@@ -63,6 +68,25 @@ export const getAllUsers = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       return await authService.getAllRegisteredUsers();
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// get drivers
+export const getDrivers = createAsyncThunk(
+  "auth/getDrivers",
+  async (_, thunkAPI) => {
+    try {
+      return await authService.getDrivers();
     } catch (error: any) {
       const message =
         (error.response &&
@@ -181,6 +205,19 @@ const authSlice = createSlice({
         state.isgetAllUsersLoading = false;
         state.isgetAllUsersError = true;
         state.message = action.payload as string;
+      })
+      .addCase(getDrivers.pending, (state) => {
+        state.getDriversLoading = true;
+      })
+      .addCase(getDrivers.fulfilled, (state, action) => {
+        state.getDriversLoading = false;
+        state.getDriversSuccess = true;
+        state.drivers = action.payload;
+      })
+      .addCase(getDrivers.rejected, (state, action) => {
+        state.getDriversLoading = false;
+        state.getDriversError = true;
+        state.getDriversMessage = action.payload as string;
       });
   },
 });

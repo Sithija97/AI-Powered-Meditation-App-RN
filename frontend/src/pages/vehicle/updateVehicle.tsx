@@ -22,11 +22,9 @@ import { useNavigate } from "react-router-dom";
 import { IVehicle, RequestStatus } from "../../models";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { ImageUploader } from "../../components/imageuploader";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-
-
-export const UpdateVehicles = ({ onClose }:any) => {
+export const UpdateVehicles = ({ onClose }: any) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -167,7 +165,6 @@ export const UpdateVehicles = ({ onClose }:any) => {
     await dispatch(updateVehicle(vehicleData)).then((res) => {
       if (res.meta.requestStatus === RequestStatus.Fulfiled) {
         dispatch(getVehicles());
-        navigate("/vehicles");
       }
     });
   };
@@ -521,5 +518,5 @@ export const UpdateVehicles = ({ onClose }:any) => {
 export default UpdateVehicles;
 
 UpdateVehicles.propTypes = {
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
 };
