@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import { Dashboard } from "../../layouts";
-import { Avatar, Card, useTheme } from "@mui/material";
+import { Avatar, Card, FormControl, InputLabel, MenuItem, Select, ThemeProvider, createTheme, useTheme } from "@mui/material";
 import banner from "../../assets/images/bg.png";
 import truck from "../../assets/images/Logistics-bro.png";
 import {
@@ -21,7 +21,16 @@ import {
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { RootState, useAppSelector } from "../../store/store";
-import SettingsVoiceOutlinedIcon from '@mui/icons-material/SettingsVoiceOutlined';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import MaterialReactTable, { MRT_ColumnDef } from "material-react-table";
+import { UserAnalytics } from "../analytics/userAnalytics";
+import { VehicleAnalytics } from "../analytics/vehicleAnalytics";
+import { HireAnalytics } from "../analytics/hireAnalytics";
+import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+
+//nested data is ok, see accessorKeys in ColumnDef below
+
 
 ChartJS.register(
   CategoryScale,
@@ -100,6 +109,8 @@ function Copyright(props: any) {
 export const Home = () => {
   const theme = useTheme();
   const { userInfo } = useAppSelector((state: RootState) => state.auth);
+
+
   return (
     <Dashboard>
       <Box
@@ -131,53 +142,68 @@ export const Home = () => {
                   sx={{ flexDirection: { xs: "column", lg: "row" } }}
                 >
                   <Box flexGrow={1}>
-                    <Typography variant="h2" sx={{ mb: 4, color: "#fff" }}>
+                    <Typography variant="h2" sx={{ mb: 4, color: "#717171" }}>
                       {` Hi, Welcome Back ${userInfo?.name}`}
                     </Typography>
-                    <Grid sx={{ mb: 3 }} container spacing={3}>
-                      <Grid item xs={12} sm={6} md={6} lg={4}>
-                        <Box sx={{backgroundColor:'#fff',boxShadow: theme.shadows[1], padding:'28px'}}>
-                        {/* <Box display={'flex'} justifyContent={'end'}>
-                          <p>Today</p>
-                        </Box> */}
-                        <Box sx={{ textAlign: "center", display:'flex' , alignItems:'center'}}>
-                        <Avatar sx={{ width: 72, height: 72, background: theme.palette.background.paper, border: `1px solid #EBEBEB`,marginRight:'20px' }}>
-                            <Avatar sx={{ width: 48, height: 48, boxShadow: theme.shadows[5], background: theme.palette.background.paper }}>
-                              <SettingsVoiceOutlinedIcon/>
-                            </Avatar>
-                          </Avatar>
-                          <Typography variant="h1" color={"#1E88E5 "}>
-                            120
-                          </Typography>
+                    <Grid container spacing={3}>
+                      <Grid item xs={12}>
+                        <Grid container spacing={3}>
+                          <Grid item lg={4} md={6} sm={6} xs={12}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', backgroundColor: '#fff', padding: '28px', boxShadow: theme.shadows[1] }}>
+                              <Avatar sx={{ width: 72, height: 72, background: theme.palette.background.paper, border: `1px solid #EBEBEB`, marginRight: '20px' }}>
+                                <Avatar sx={{ width: 48, height: 48, boxShadow: theme.shadows[5], background: theme.palette.background.paper }}>
+                                  <AttachMoneyIcon color="primary" />
+                                </Avatar>
+                              </Avatar>
+                              <Box display={'flex'} flexDirection={'column'}>
+                                <Typography variant="h1" color={"#1E88E5 "}>
+                                  120,0000
+                                </Typography>
 
-                          <Typography variant="h3" sx={{ opacity: 0.72 }}>
-                            Users
-                          </Typography>
-                        </Box>
-                       
-                        </Box>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={6} lg={4}>
-                        <Card sx={{ py: 5, textAlign: "center" }}>
-                          <Typography variant="h1" color={"#1E88E5 "}>
-                            120
-                          </Typography>
+                                <Typography variant="h3" sx={{ opacity: 0.72, mt: 1 }}>
+                                  Hire Income
+                                </Typography>
+                              </Box>
 
-                          <Typography variant="h3" sx={{ opacity: 0.72 }}>
-                            Users
-                          </Typography>
-                        </Card>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={6} lg={4}>
-                        <Card sx={{ py: 5, textAlign: "center" }}>
-                          <Typography variant="h1" color={"#1E88E5 "}>
-                            120
-                          </Typography>
+                            </Box>
+                          </Grid>
+                          <Grid item lg={4} md={6} sm={6} xs={12}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', backgroundColor: '#fff', padding: '28px', boxShadow: theme.shadows[1] }}>
+                              <Avatar sx={{ width: 72, height: 72, background: theme.palette.background.paper, border: `1px solid #EBEBEB`, marginRight: '20px' }}>
+                                <Avatar sx={{ width: 48, height: 48, boxShadow: theme.shadows[5], background: theme.palette.background.paper }}>
+                                  <DirectionsBusIcon color="primary" />
+                                </Avatar>
+                              </Avatar>
+                              <Box display={'flex'} flexDirection={'column'}>
+                                <Typography variant="h1" color={"#1E88E5 "}>
+                                  12
+                                </Typography>
 
-                          <Typography variant="h3" sx={{ opacity: 0.72 }}>
-                            Users
-                          </Typography>
-                        </Card>
+                                <Typography variant="h3" sx={{ opacity: 0.72, mt: 1 }}>
+                                  Hire Count
+                                </Typography>
+                              </Box>
+                            </Box>
+                          </Grid>
+                          <Grid item lg={4} md={6} sm={6} xs={12}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', backgroundColor: '#fff', padding: '28px', boxShadow: theme.shadows[1] }}>
+                              <Avatar sx={{ width: 72, height: 72, background: theme.palette.background.paper, border: `1px solid #EBEBEB`, marginRight: '20px' }}>
+                                <Avatar sx={{ width: 48, height: 48, boxShadow: theme.shadows[5], background: theme.palette.background.paper }}>
+                                  <MonetizationOnOutlinedIcon color="primary"/>
+                                </Avatar>
+                              </Avatar>
+                              <Box display={'flex'} flexDirection={'column'}>
+                                <Typography variant="h1" color={"#1E88E5 "}>
+                                  10,0000
+                                </Typography>
+
+                                <Typography variant="h3" sx={{ opacity: 0.72, mt: 1 }}>
+                                  Hire Expenses
+                                </Typography>
+                              </Box>
+                            </Box>
+                          </Grid>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Box>
@@ -206,21 +232,62 @@ export const Home = () => {
             </Grid>
           </Grid>
 
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={8} lg={9}>
-              <Card sx={{ p: 4 }}>
-                <Bar options={options} data={data} />;
-              </Card>
+          <Grid sx={{ marginTop: '28px' }} container spacing={3}>
+            <Grid item xs={12} md={6} lg={6}>
+              <UserAnalytics />
             </Grid>
 
-            <Grid item xs={12} md={4} lg={3}>
-              <Card sx={{ p: 4 }}>
-                <Doughnut data={data2} />
-              </Card>
+            <Grid item xs={12} md={6} lg={6}>
+              <VehicleAnalytics />
             </Grid>
           </Grid>
 
-          <Copyright sx={{ pt: 4 }} />
+          {/* <Grid sx={{marginTop:'28px'}} container spacing={3}>
+            <Grid item xs={12} md={12} lg={12}>
+                  <HireAnalytics/>
+            </Grid>
+
+          </Grid> */}
+          <Box sx={{ marginTop: '28px' }}
+            boxShadow={"0px 1px 18px 1px #BFD5EB"}
+            padding={theme.spacing(5)}
+          >
+            <Typography flex={1} variant="h3" mb={4}>Hire Anlytics</Typography>
+            <Grid container spacing={3}>
+
+
+              <Grid item xs={12} md={8} lg={8}>
+                <Card sx={{ p: 4, boxShadow: theme.shadows[2] }} >
+                  <Box display={'flex'} alignItems={'center'} mb={5}>
+                    <Typography flex={1} variant="h3">Hire Income</Typography>
+                    <Box flex={1}>
+                      <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Filter</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="Age"
+                        >
+                          <MenuItem value={10}>Today</MenuItem>
+                          <MenuItem value={20}>Yesterday</MenuItem>
+                          <MenuItem value={30}>Last Week</MenuItem>
+                          <MenuItem value={40}>Last Month</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Box>
+                  </Box>
+                  <Bar options={options} data={data} />;
+                </Card>
+              </Grid>
+
+              <Grid item xs={12} md={4} lg={4}>
+                <Card sx={{ p: 4, boxShadow: theme.shadows[2] }}>
+                  <Typography flex={1} variant="h3" mb={4}>Hire Expenses</Typography>
+                  <Doughnut data={data2} />
+                </Card>
+              </Grid>
+            </Grid>
+          </Box>
         </Container>
       </Box>
     </Dashboard>

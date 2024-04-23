@@ -254,9 +254,9 @@ export const Hire = () => {
         open={isModalOpen}
         onClose={toggleDrawer(null, false)}
       >
-        {modalContent.view && <ViewHire />}
-        {modalContent.create && <CreateHire />}
-        {modalContent.update && <UpdateHire />}
+        {modalContent.view && <ViewHire onClose={toggleDrawer('view', false, '')}  />}
+        {modalContent.create && <CreateHire onClose={toggleDrawer('create', false, '')} />}
+        {modalContent.update && <UpdateHire onClose={toggleDrawer('update', false, '')}  />}
       </Drawer>
 
       <Dialog

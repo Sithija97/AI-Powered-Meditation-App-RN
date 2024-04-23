@@ -10,6 +10,7 @@ import { MainListItems } from ".";
 import { Avatar, Box, Typography, useTheme } from "@mui/material";
 import sidebarimg from '../assets/images/asset.png';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import logo from '../assets/images/logonew.png'
 const drawerWidth: number = 301;
 
 const Drawer = styled(MuiDrawer, {
@@ -64,11 +65,23 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
           px: [1],
         }}
       >
-        <IconButton onClick={toggleDrawer}>
-          <MenuOpenIcon sx={{color:'#999999'}} />
-        </IconButton>
+        <Box display={'flex'} justifyContent={'center'} mr={4}>
+        <img src={logo} width={150}/>
+        </Box>
+
+        <Avatar onClick={toggleDrawer}
+        id="logout_btn"
+        sx={{
+          color: '#1E88E5',
+          backgroundColor: theme.palette.background.paper,
+          border:`1px solid #ddd`,
+          margin: '0 8px 0 0',
+          cursor:'pointer'
+        }}
+      >
+      <MenuOpenIcon color="primary" />
+      </Avatar>
       </Toolbar>
-      {/* <Divider /> */}
       {open ? 
       <>
        <Box  sx={{ display: 'flex', justifyContent: 'center',marginTop: theme.spacing(2)}}>
