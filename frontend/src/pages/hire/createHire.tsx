@@ -22,8 +22,40 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
+import { iniitalHireState } from "../hire/data";
+import { useState } from "react";
+import { IHireInput, RequestStatus } from "../../models";
+import { addHire, getAllHires } from "../../store/hire/hireSlice";
 
 const CreateHire = () => {
+  const dispatch = useAppDispatch();
+  const { drivers } = useAppSelector((state: RootState) => state.auth);
+  const { allVehicles } = useAppSelector((state: RootState) => state.vehicles);
+
+  const [baseData, setBaseData] = useState(iniitalHireState);
+
+  const handleBaseChange = (event: any) => {
+    const { name, value } = event.target;
+    setBaseData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    const payload: IHireInput = {
+      ...baseData,
+    };
+
+    await dispatch(addHire(payload)).then((res) => {
+      if (res.meta.requestStatus === RequestStatus.Fulfiled) {
+        dispatch(getAllHires());
+      }
+    });
+  };
+
   return (
     <Box sx={{ padding: "20px" }}>
       <Box
@@ -43,10 +75,15 @@ const CreateHire = () => {
       <Grid container rowSpacing={4}>
         <Grid item xs={12}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Hire Type</InputLabel>
-            <Select label="Type">
-              <MenuItem value={10}>Import</MenuItem>
-              <MenuItem value={20}>Export</MenuItem>
+            <InputLabel id="demo-simple-select-type">Hire Type</InputLabel>
+            <Select
+              label="Hire Type"
+              name="hireType"
+              value={baseData.hireType}
+              onChange={handleBaseChange}
+            >
+              <MenuItem value="import">Import</MenuItem>
+              <MenuItem value="export">Export</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -55,65 +92,99 @@ const CreateHire = () => {
       <Grid sx={{ mt: 1 }} container rowSpacing={4}>
         <Grid item xs={12}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Vehicle</InputLabel>
-            <Select label="Title">
-              <MenuItem value={10}>Van CAA-5321</MenuItem>
-              <MenuItem value={20}>Lorry CA -4345</MenuItem>
+            <InputLabel id="demo-simple-select-vehicle">Vehicle</InputLabel>
+            <Select
+              label="Vehicle"
+              name="vehicle"
+              value={baseData.vehicle}
+              onChange={handleBaseChange}
+            >
+              {allVehicles.map((vehicle) => (
+                <MenuItem
+                  key={vehicle._id}
+                  value={vehicle._id}
+                >{`${vehicle.type} - ${vehicle.chassieNumber}`}</MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Driver</InputLabel>
-            <Select label="Gender">
-              <MenuItem value={10}>Kamal</MenuItem>
-              <MenuItem value={20}>Nimal</MenuItem>
+            <Select
+              label="Driver"
+              name="driver"
+              value={baseData.driver}
+              onChange={handleBaseChange}
+            >
+              {drivers.map((driver) => (
+                <MenuItem
+                  key={driver._id}
+                  value={driver._id}
+                >{`${driver.name}`}</MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
       </Grid>
 
-      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+      <Grid sx={{ mt: 1, mb: 4 }} container rowSpacing={4}>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              slotProps={{ textField: { fullWidth: true } }}
-              label="Date"
-            />
-          </LocalizationProvider>
+          <TextField
+            required
+            id="date"
+            name="date"
+            label="Date"
+            value={baseData.date}
+            onChange={handleBaseChange}
+            fullWidth
+          />
         </Grid>
       </Grid>
+
       <Grid container rowSpacing={4}>
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["TimePicker"]}>
-              <TimePicker sx={{ width: "100%" }} label="Start time " />
-            </DemoContainer>
-          </LocalizationProvider>
+          <TextField
+            required
+            id="startTime"
+            name="startTime"
+            label="Start time"
+            value={baseData.startTime}
+            onChange={handleBaseChange}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12}>
           <TextField
             required
-            id="location"
-            name="location"
+            id="startLocation"
+            name="startLocation"
             label="Start Location"
+            value={baseData.startLocation}
+            onChange={handleBaseChange}
             fullWidth
           />
         </Grid>
 
         <Grid item xs={12}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["TimePicker"]}>
-              <TimePicker sx={{ width: "100%" }} label="End time " />
-            </DemoContainer>
-          </LocalizationProvider>
+          <TextField
+            required
+            id="endTime"
+            name="endTime"
+            label="End time"
+            value={baseData.endTime}
+            onChange={handleBaseChange}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12}>
           <TextField
             required
-            id="location"
-            name="location"
+            id="endLocation"
+            name="endLocation"
             label="End Location"
+            value={baseData.endLocation}
+            onChange={handleBaseChange}
             fullWidth
           />
         </Grid>
@@ -123,6 +194,8 @@ const CreateHire = () => {
             id="distance"
             name="distance"
             label="Distance"
+            value={baseData.distance}
+            onChange={handleBaseChange}
             fullWidth
           />
         </Grid>
@@ -132,11 +205,18 @@ const CreateHire = () => {
             id="amount"
             name="amount"
             label="Amount"
+            value={baseData.amount}
+            onChange={handleBaseChange}
             fullWidth
           />
         </Grid>
       </Grid>
-      <Button sx={{ mt: 3, mb: 2, ms: 3 }} variant="contained">
+      <Button
+        sx={{ mt: 3, mb: 2, ms: 3 }}
+        variant="contained"
+        type="submit"
+        onClick={handleSubmit}
+      >
         Save
       </Button>
     </Box>

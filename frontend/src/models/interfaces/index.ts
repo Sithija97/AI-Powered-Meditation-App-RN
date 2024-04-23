@@ -119,6 +119,20 @@ export interface IHire {
   amount: number;
 }
 
+export interface IHireInput {
+  _id?: string;
+  hireType: string;
+  vehicle: string;
+  driver: string;
+  date: string;
+  startTime: string;
+  startLocation: string;
+  endTime: string;
+  endLocation: string;
+  distance: string;
+  amount: number;
+}
+
 export interface VehicleData {
   type: string;
   ownership: string;
@@ -128,11 +142,16 @@ export interface VehicleData {
 
 export interface IInitialVehicleState {
   vehicleInfo: IVehicle[];
+  allVehicles: IVehicle[];
   selectedVehicle: IVehicle | null;
   getVehiclesError: boolean;
   getVehiclesSuccess: boolean;
   getVehiclesLoading: boolean;
   getVehiclesMessage: string;
+  getAllVehiclesLoading: boolean;
+  getAllVehiclesSuccess: boolean;
+  getAllVehiclesError: boolean;
+  getAllVehiclesMessage: string;
   addVehicleError: boolean;
   addVehicleSuccess: boolean;
   addVehicleLoading: boolean;
@@ -147,12 +166,17 @@ export interface IInitialAuthState {
   userInfo: IUser | null;
   selectedUser: IUser | null;
   allRegisteredUsers: IUser[];
+  drivers: IUser[];
   isError: boolean;
   isSuccess: boolean;
   isLoading: boolean;
   isgetAllUsersLoading: boolean;
   isgetAllUsersSuccess: boolean;
   isgetAllUsersError: boolean;
+  getDriversLoading: boolean;
+  getDriversSuccess: boolean;
+  getDriversError: boolean;
+  getDriversMessage: string;
   message: string;
 }
 
@@ -164,4 +188,8 @@ export interface IIniitalHireState {
   getHiresSuccess: boolean;
   getHiresError: boolean;
   getHiresMessage: string;
+  getAllHiresLoading: boolean;
+  getAllHiresSuccess: boolean;
+  getAllHiresError: boolean;
+  getAllHiresMessage: string;
 }

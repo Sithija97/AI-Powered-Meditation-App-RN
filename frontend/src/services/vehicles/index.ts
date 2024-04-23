@@ -11,6 +11,14 @@ export const getVehicles = async () => {
   }
 };
 
+// get all vehicles
+export const getAllVehicles = async () => {
+  const response = await axios.get(`${API_URL}/all`);
+  if (response.data) {
+    return response.data;
+  }
+};
+
 // add vehicle
 export const addVehicle = async (data: IVehicle) => {
   const response = await axios.post(`${API_URL}`, data);

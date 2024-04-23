@@ -4,11 +4,16 @@ import { IInitialVehicleState, IVehicle } from "../../models";
 
 const initialState: IInitialVehicleState = {
   vehicleInfo: [],
+  allVehicles: [],
   selectedVehicle: null,
   getVehiclesError: false,
   getVehiclesSuccess: false,
   getVehiclesLoading: false,
   getVehiclesMessage: "",
+  getAllVehiclesLoading: false,
+  getAllVehiclesSuccess: false,
+  getAllVehiclesError: false,
+  getAllVehiclesMessage: "",
   addVehicleError: false,
   addVehicleSuccess: false,
   addVehicleLoading: false,
@@ -25,6 +30,25 @@ export const getVehicles = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       return await vehicleService.getVehicles();
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// get all vehicles
+export const getAllVehicles = createAsyncThunk(
+  "vehicles/getAllVehicles",
+  async (_, thunkAPI) => {
+    try {
+      return await vehicleService.getAllVehicles();
     } catch (error: any) {
       const message =
         (error.response &&
@@ -123,6 +147,19 @@ const vehicleSlice = createSlice({
         state.getVehiclesLoading = false;
         state.getVehiclesError = true;
         state.getVehiclesMessage = action.payload as string;
+      })
+      .addCase(getAllVehicles.pending, (state) => {
+        state.getAllVehiclesLoading = true;
+      })
+      .addCase(getAllVehicles.fulfilled, (state, action) => {
+        state.getAllVehiclesLoading = false;
+        state.getAllVehiclesSuccess = true;
+        state.allVehicles = action.payload;
+      })
+      .addCase(getAllVehicles.rejected, (state, action) => {
+        state.getAllVehiclesLoading = false;
+        state.getAllVehiclesError = true;
+        state.getAllVehiclesMessage = action.payload as string;
       })
       .addCase(addVehicle.pending, (state) => {
         state.addVehicleLoading = true;

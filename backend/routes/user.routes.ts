@@ -8,6 +8,7 @@ import {
   registerUser,
   updateUserProfile,
   updateUser,
+  getDrivers,
 } from "../controllers/user.controller.js";
 import { protect } from "../middleware/auth.middleware.js";
 const userRouter = express.Router();
@@ -19,6 +20,7 @@ userRouter.get("/profile", protect, getUserProfile);
 userRouter.put("/profile", protect, updateUserProfile);
 userRouter.put("/:id", protect, updateUser);
 userRouter.get("/all", protect, getAllRegisterdUsers);
+userRouter.get("/drivers", protect, getDrivers);
 userRouter.delete("/:id", protect, deleteUser);
 
 export { userRouter };

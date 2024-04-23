@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IHire, IIniitalHireState } from "../../models";
+import { IHire, IHireInput, IIniitalHireState } from "../../models";
 import { hireService } from "../../services";
 
 const initialState: IIniitalHireState = {
@@ -10,6 +10,10 @@ const initialState: IIniitalHireState = {
   getHiresSuccess: false,
   getHiresError: false,
   getHiresMessage: "",
+  getAllHiresLoading: false,
+  getAllHiresSuccess: false,
+  getAllHiresError: false,
+  getAllHiresMessage: "",
 };
 
 // get hires
@@ -33,7 +37,7 @@ export const getHires = createAsyncThunk(
 
 // get all hires
 export const getAllHires = createAsyncThunk(
-  "hires/getHires",
+  "hires/getAllHires",
   async (_, thunkAPI) => {
     try {
       return await hireService.getAllHires();
@@ -53,7 +57,7 @@ export const getAllHires = createAsyncThunk(
 // add hire
 export const addHire = createAsyncThunk(
   "hires/addHire",
-  async (hireData: IHire, thunkAPI) => {
+  async (hireData: IHireInput, thunkAPI) => {
     try {
       return await hireService.addHire(hireData);
     } catch (error: any) {
@@ -74,7 +78,7 @@ export const updateHire = createAsyncThunk(
   "hires/updateHires",
   async (hireData: any, thunkAPI) => {
     try {
-      return await hireService.updateHire(hireData.data, hireData.id);
+      return await hireService.updateHire(hireData.id, hireData.data);
     } catch (error: any) {
       const message =
         (error.response &&
@@ -132,6 +136,19 @@ const hireSlice = createSlice({
         state.getHiresLoading = false;
         state.getHiresError = true;
         state.getHiresMessage = action.payload as string;
+      })
+      .addCase(getAllHires.pending, (state) => {
+        state.getAllHiresLoading = true;
+      })
+      .addCase(getAllHires.fulfilled, (state, action) => {
+        state.getAllHiresLoading = false;
+        state.getAllHiresSuccess = true;
+        state.allHires = action.payload;
+      })
+      .addCase(getAllHires.rejected, (state, action) => {
+        state.getAllHiresLoading = false;
+        state.getAllHiresError = true;
+        state.getAllHiresMessage = action.payload as string;
       });
   },
 });

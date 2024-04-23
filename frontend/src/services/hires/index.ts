@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IHire } from "../../models";
+import { IHire, IHireInput } from "../../models";
 
 const API_URL = "/api/hires";
 
@@ -20,7 +20,7 @@ export const getAllHires = async () => {
 };
 
 // add hire
-export const addHire = async (data: IHire) => {
+export const addHire = async (data: IHireInput) => {
   const response = await axios.post(`${API_URL}`, data);
   if (response.data) {
     return response.data;
@@ -28,7 +28,7 @@ export const addHire = async (data: IHire) => {
 };
 
 // update hire
-export const updateHire = async (data: IHire, id: string) => {
+export const updateHire = async (id: string, data: IHireInput) => {
   const response = await axios.put(`${API_URL}/${id}`, data);
   if (response.data) {
     return response.data;
