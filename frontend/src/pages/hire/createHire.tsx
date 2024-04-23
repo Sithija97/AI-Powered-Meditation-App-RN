@@ -27,8 +27,9 @@ import { iniitalHireState } from "../hire/data";
 import { useState } from "react";
 import { IHireInput, RequestStatus } from "../../models";
 import { addHire, getAllHires } from "../../store/hire/hireSlice";
+import PropTypes from 'prop-types';
 
-const CreateHire = () => {
+const CreateHire = ({ onClose }:any) => {
   const dispatch = useAppDispatch();
   const { drivers } = useAppSelector((state: RootState) => state.auth);
   const { allVehicles } = useAppSelector((state: RootState) => state.vehicles);
@@ -68,7 +69,7 @@ const CreateHire = () => {
       >
         <Typography variant="h3">Create Hire</Typography>
         <IconButton aria-label="delete">
-          <CloseOutlinedIcon />
+          <CloseOutlinedIcon  onClick={onClose} />
         </IconButton>
       </Box>
       <Divider sx={{ mb: 3, mt: 2 }} />
@@ -224,3 +225,7 @@ const CreateHire = () => {
 };
 
 export default CreateHire;
+
+CreateHire.propTypes = {
+  onClose: PropTypes.func
+};

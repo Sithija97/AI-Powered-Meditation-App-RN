@@ -28,7 +28,7 @@ import { useState } from "react";
 import { IHireInput, RequestStatus } from "../../models";
 import { addHire, getAllHires, updateHire } from "../../store/hire/hireSlice";
 
-const UpdateHire = () => {
+const UpdateHire = ({onClose }:any) => {
   const dispatch = useAppDispatch();
   const { drivers } = useAppSelector((state: RootState) => state.auth);
   const { allVehicles } = useAppSelector((state: RootState) => state.vehicles);
@@ -84,7 +84,7 @@ const UpdateHire = () => {
         }}
       >
         <Typography variant="h3">Create Hire</Typography>
-        <IconButton aria-label="delete">
+        <IconButton aria-label="delete" onClick={onClose}>
           <CloseOutlinedIcon />
         </IconButton>
       </Box>

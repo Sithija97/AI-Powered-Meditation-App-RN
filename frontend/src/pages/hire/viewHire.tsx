@@ -23,7 +23,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { RootState, useAppSelector } from "../../store/store";
 
-export const ViewHire = () => {
+export const ViewHire = ({onClose }:any) => {
   const { selectedHire } = useAppSelector((state: RootState) => state.hires);
   return (
     <Box sx={{ padding: "20px" }}>
@@ -37,7 +37,7 @@ export const ViewHire = () => {
           }}
         >
           <Typography variant="h3">View Hire</Typography>
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={onClose}>
             <CloseOutlinedIcon />
           </IconButton>
         </Box>

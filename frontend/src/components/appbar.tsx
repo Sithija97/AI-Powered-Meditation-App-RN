@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, ListItemIcon, ListItemText, useTheme } from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -149,6 +150,18 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
             </Menu>
           </div>
         )}
+         <Avatar
+        id="notification_btn"
+        sx={{
+          color: '#1E88E5',
+          backgroundColor: theme.palette.background.paper,
+          border:`1px solid #ddd`,
+          margin: '0 20px 0 0',
+          cursor:'pointer'
+        }}
+      >
+       <NotificationsActiveOutlinedIcon/>
+      </Avatar>
          <Avatar
         id="logout_btn"
         sx={{
