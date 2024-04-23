@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import { RequestStatus } from "../../models";
 import loginBgImg from "../../assets/images/bg.png";
 import loginImg from "../../assets/images/login.png";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logonew.png";
 import themes from "../../themes";
 import { HOME } from "../../routes";
 
@@ -121,7 +121,7 @@ export const Login = () => {
             }}
           >
             <Box sx={{ display: "flex" }}>
-              <img src={logo} alt="logo" />
+              <img src={logo} alt="logo" width={150} />
               <Box
                 sx={{
                   display: "flex",
