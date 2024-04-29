@@ -18,7 +18,7 @@ import {
 import { RequestStatus } from "../../models";
 import { formatDate } from "../../utils/dateFormatter";
 import loginImg from "../../assets/images/login.png";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logonew.png";
 import loginBgImg from "../../assets/images/bg.png";
 import themes from "../../themes";
 import { LOGIN } from "../../routes";
@@ -177,7 +177,7 @@ export const Register = () => {
           elevation={6}
           square
         >
-          <Box>
+          <Box mt={5}>
             <Box
               component="form"
               noValidate
@@ -185,7 +185,7 @@ export const Register = () => {
               sx={{ p: 4 }}
             >
               <Box sx={{ display: "flex", mb: 4 }}>
-                <img src={logo} width={72} height={68} alt="logo" />
+                <img src={logo} width={150}  alt="logo" />
                 <Box
                   sx={{
                     display: "flex",
@@ -212,7 +212,7 @@ export const Register = () => {
                   </Typography>
                 </Box>
               </Box>
-              <Grid container spacing={2}>
+              <Grid mt={5} container spacing={2}>
                 <Grid item xs={12} sx={{marginBottom:'10px'}}>
                   <TextField
                     required

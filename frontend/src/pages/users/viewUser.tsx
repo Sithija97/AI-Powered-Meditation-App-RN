@@ -60,7 +60,7 @@ export const ViewUsers = ({ onClose }:any) => {
           <Typography>{selectedUser?.dob}</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography>Licence Details</Typography>
+          <Typography variant="h3">Licence Details</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>NIC</Typography>
@@ -76,7 +76,7 @@ export const ViewUsers = ({ onClose }:any) => {
         </Grid>
 
         <Grid item xs={12}>
-          <Typography>Police Report Details</Typography>
+          <Typography variant="h3">Police Report Details</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Report No</Typography>
@@ -98,9 +98,8 @@ export const ViewUsers = ({ onClose }:any) => {
             {selectedUser?.policeReportsDetails?.endDate}
           </Typography>
         </Grid>
-
         <Grid item xs={12}>
-          <Typography>Driving Licence Details</Typography>
+          <Typography variant="h3">Driving Licence Details</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Licence No</Typography>
