@@ -101,6 +101,21 @@ export const Users = () => {
         size: 150,
       },
       {
+        accessorKey: "nic", //access nested data with dot notation
+        header: "NIC",
+        size: 150,
+      },
+      {
+        accessorKey: "mobileNumber", //access nested data with dot notation
+        header: "Mobile Number",
+        size: 150,
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+        size: 150,
+      },
+      {
         accessorKey: "email",
         header: "Email",
         size: 150,

@@ -37,6 +37,7 @@ export const UpdateVehicles = ({ onClose }: any) => {
     ownership: selectedVehicle?.ownership!,
     fuelType: selectedVehicle?.fuelType!,
     chassieNumber: selectedVehicle?.chassieNumber!,
+    vehicleNo: selectedVehicle?.vehicleNo!
   });
   const [revenueLicenceData, setRevenueLicenceData] = useState({
     amount: selectedVehicle?.revenueLicenceDetails.amount,
@@ -241,6 +242,20 @@ export const UpdateVehicles = ({ onClose }: any) => {
             name="chassieNumber"
             label="Chassie Number"
             value={baseData.chassieNumber}
+            onChange={handleBaseChange}
+            fullWidth
+          />
+        </Grid>
+      </Grid>
+
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="vehicleNo"
+            name="vehicleNo"
+            label="Vehicle Number"
+            value={baseData.vehicleNo}
             onChange={handleBaseChange}
             fullWidth
           />

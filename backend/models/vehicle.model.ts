@@ -20,6 +20,10 @@ const vehicleSchema = new Schema<IVehicle>(
       type: String,
       required: [true, "Please add vehicle's chassie number"],
     },
+    vehicleNo: {
+      type: String,
+      required: [true, "Please add vehicle's number"],
+    },
     fuelType: {
       type: String,
       required: [true, "Please add vehicle's fuel type"],
