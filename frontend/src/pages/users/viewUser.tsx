@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dashboard } from "../../layouts";
 import {
+  Avatar,
   Box,
   Button,
   Divider,
   Grid,
   IconButton,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { RootState, useAppSelector } from "../../store/store";
 import PropTypes from 'prop-types';
+import ImageIcon from '@mui/icons-material/Image';
+import CustomDialog from "../../components/common/customDialog";
 
 export const ViewUsers = ({ onClose }:any) => {
   const { selectedUser } = useAppSelector((state: RootState) => state.auth);
-
+  const [showLogin, setShowLogin] = useState(false);
+  const [title, setTitle] = useState('');
   return (
     <Box sx={{ padding: "20px" }}>
       <Stack className="mt-2 p-2">
@@ -68,7 +73,22 @@ export const ViewUsers = ({ onClose }:any) => {
         <Divider sx={{ mb: 3, mt: 2 }} />
         <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
-          <Typography variant="h3">Licence Details</Typography>
+        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
+        <Typography variant="h3">NIC Details</Typography>
+            <Box sx={{ display: "flex" }} ml={2}>
+              <Tooltip title="View">
+                <Avatar
+                  sx={{
+                    color: "#00c853",
+                    background: "#b9f6ca61",
+                    margin: "0 15px 0 0",
+                  }}
+                >
+                  <ImageIcon onClick={() => { setShowLogin(true); setTitle('NIC') }} />
+                </Avatar>
+              </Tooltip>
+            </Box>
+        </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>NIC</Typography>
@@ -87,7 +107,22 @@ export const ViewUsers = ({ onClose }:any) => {
         <Divider sx={{ mb: 3, mt: 2 }} />
         <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
-          <Typography variant="h3">Police Report Details</Typography>
+        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
+        <Typography variant="h3">Police Report Details</Typography>
+            <Box sx={{ display: "flex" }} ml={2}>
+              <Tooltip title="View">
+                <Avatar
+                  sx={{
+                    color: "#00c853",
+                    background: "#b9f6ca61",
+                    margin: "0 15px 0 0",
+                  }}
+                >
+                  <ImageIcon onClick={() => { setShowLogin(true); setTitle('Police Report') }} />
+                </Avatar>
+              </Tooltip>
+            </Box>
+        </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Report No</Typography>
@@ -113,7 +148,22 @@ export const ViewUsers = ({ onClose }:any) => {
         <Divider sx={{ mb: 3, mt: 2 }} />
         <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
-          <Typography variant="h3">Driving Licence Details</Typography>
+        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
+        <Typography variant="h3">Driving Licence Details</Typography>
+            <Box sx={{ display: "flex" }} ml={2}>
+              <Tooltip title="View">
+                <Avatar
+                  sx={{
+                    color: "#00c853",
+                    background: "#b9f6ca61",
+                    margin: "0 15px 0 0",
+                  }}
+                >
+                  <ImageIcon onClick={() => { setShowLogin(true); setTitle('Driving Licence') }} />
+                </Avatar>
+              </Tooltip>
+            </Box>
+        </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Licence No</Typography>
@@ -148,6 +198,7 @@ export const ViewUsers = ({ onClose }:any) => {
           </Button>
         </Box>
       </Stack>
+      <CustomDialog title={title}  show={showLogin} close={() => setShowLogin(false)}/>
     </Box>
   );
 };
