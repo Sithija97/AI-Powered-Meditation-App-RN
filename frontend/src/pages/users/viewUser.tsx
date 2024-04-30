@@ -13,14 +13,15 @@ import {
 } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { RootState, useAppSelector } from "../../store/store";
-import PropTypes from 'prop-types';
-import ImageIcon from '@mui/icons-material/Image';
+import PropTypes from "prop-types";
+import ImageIcon from "@mui/icons-material/Image";
 import CustomDialog from "../../components/common/customDialog";
 
-export const ViewUsers = ({ onClose }:any) => {
+export const ViewUsers = ({ onClose }: any) => {
   const { selectedUser } = useAppSelector((state: RootState) => state.auth);
-  const [showLogin, setShowLogin] = useState(false);
-  const [title, setTitle] = useState('');
+  const [showImage, setShowImage] = useState(false);
+  const [title, setTitle] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
   return (
     <Box sx={{ padding: "20px" }}>
       <Stack className="mt-2 p-2">
@@ -68,13 +69,17 @@ export const ViewUsers = ({ onClose }:any) => {
           <Typography>Date Of Birth</Typography>
           <Typography>{selectedUser?.dob}</Typography>
         </Grid>
-        </Grid>
+      </Grid>
 
-        <Divider sx={{ mb: 3, mt: 2 }} />
-        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Divider sx={{ mb: 3, mt: 2 }} />
+      <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
-        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
-        <Typography variant="h3">NIC Details</Typography>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3">NIC Details</Typography>
             <Box sx={{ display: "flex" }} ml={2}>
               <Tooltip title="View">
                 <Avatar
@@ -84,11 +89,17 @@ export const ViewUsers = ({ onClose }:any) => {
                     margin: "0 15px 0 0",
                   }}
                 >
-                  <ImageIcon onClick={() => { setShowLogin(true); setTitle('NIC') }} />
+                  <ImageIcon
+                    onClick={() => {
+                      setShowImage(true);
+                      setTitle("NIC");
+                      setImgUrl(selectedUser?.nicDetails.nicImageUrl!);
+                    }}
+                  />
                 </Avatar>
               </Tooltip>
             </Box>
-        </Box>
+          </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>NIC</Typography>
@@ -102,13 +113,17 @@ export const ViewUsers = ({ onClose }:any) => {
           <Typography>End Date</Typography>
           <Typography>{selectedUser?.nicDetails?.endDate}</Typography>
         </Grid>
-        </Grid>
-       
-        <Divider sx={{ mb: 3, mt: 2 }} />
-        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      </Grid>
+
+      <Divider sx={{ mb: 3, mt: 2 }} />
+      <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
-        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
-        <Typography variant="h3">Police Report Details</Typography>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3">Police Report Details</Typography>
             <Box sx={{ display: "flex" }} ml={2}>
               <Tooltip title="View">
                 <Avatar
@@ -118,11 +133,19 @@ export const ViewUsers = ({ onClose }:any) => {
                     margin: "0 15px 0 0",
                   }}
                 >
-                  <ImageIcon onClick={() => { setShowLogin(true); setTitle('Police Report') }} />
+                  <ImageIcon
+                    onClick={() => {
+                      setShowImage(true);
+                      setTitle("Police Report");
+                      setImgUrl(
+                        selectedUser?.policeReportsDetails.policeReportImageUrl!
+                      );
+                    }}
+                  />
                 </Avatar>
               </Tooltip>
             </Box>
-        </Box>
+          </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Report No</Typography>
@@ -144,12 +167,16 @@ export const ViewUsers = ({ onClose }:any) => {
             {selectedUser?.policeReportsDetails?.endDate}
           </Typography>
         </Grid>
-        </Grid>
-        <Divider sx={{ mb: 3, mt: 2 }} />
-        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      </Grid>
+      <Divider sx={{ mb: 3, mt: 2 }} />
+      <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
-        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
-        <Typography variant="h3">Driving Licence Details</Typography>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3">Driving Licence Details</Typography>
             <Box sx={{ display: "flex" }} ml={2}>
               <Tooltip title="View">
                 <Avatar
@@ -159,11 +186,20 @@ export const ViewUsers = ({ onClose }:any) => {
                     margin: "0 15px 0 0",
                   }}
                 >
-                  <ImageIcon onClick={() => { setShowLogin(true); setTitle('Driving Licence') }} />
+                  <ImageIcon
+                    onClick={() => {
+                      setShowImage(true);
+                      setTitle("Driving Licence");
+                      setImgUrl(
+                        selectedUser?.drivingLicenceDetails
+                          .drivingLicenceImageUrl!
+                      );
+                    }}
+                  />
                 </Avatar>
               </Tooltip>
             </Box>
-        </Box>
+          </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Licence No</Typography>
@@ -182,13 +218,13 @@ export const ViewUsers = ({ onClose }:any) => {
           {selectedUser?.drivingLicenceDetails?.endDate}
           <Typography></Typography>
         </Grid>
-        </Grid>
-    
+      </Grid>
+
       <Divider sx={{ mb: 3, mt: 2 }} />
       <Stack>
         <Box>
           <Button
-          onClick={onClose}
+            onClick={onClose}
             size="large"
             type="submit"
             variant="contained"
@@ -198,7 +234,12 @@ export const ViewUsers = ({ onClose }:any) => {
           </Button>
         </Box>
       </Stack>
-      <CustomDialog title={title}  show={showLogin} close={() => setShowLogin(false)}/>
+      <CustomDialog
+        title={title}
+        imgUrl={imgUrl}
+        show={showImage}
+        close={() => setShowImage(false)}
+      />
     </Box>
   );
 };
@@ -206,5 +247,5 @@ export const ViewUsers = ({ onClose }:any) => {
 export default ViewUsers;
 
 ViewUsers.propTypes = {
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
 };

@@ -10,11 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RootState, useAppDispatch, useAppSelector } from "../../store/store";
 import { register, reset } from "../../store/auth/authSlice";
-import {
-  CircularProgress,
-  Divider,
-  Paper,
-} from "@mui/material";
+import { CircularProgress, Divider, Paper } from "@mui/material";
 import { RequestStatus } from "../../models";
 import { formatDate } from "../../utils/dateFormatter";
 import loginImg from "../../assets/images/login.png";
@@ -67,6 +63,13 @@ export const Register = () => {
     (state: RootState) => state.auth
   );
   const [formData, setFormData] = useState(InitialState);
+  const [errors, setErrors] = useState({
+    name: "",
+    nic: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+  });
 
   useEffect(() => {
     if (isError) {
@@ -84,6 +87,57 @@ export const Register = () => {
       ...prevData,
       [name]: value,
     }));
+
+    // validation and update error message
+    if (name === "name") {
+      if (!/^[a-zA-Z\s]*$/.test(value)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          name: "Name should only contain letters and spaces",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          name: "",
+        }));
+      }
+    } else if (name === "password") {
+      if (value.length < 6) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          password: "Password should be at least 6 characters long",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          password: "",
+        }));
+      }
+    } else if (name === "email") {
+      if (!/\S+@\S+\.\S+/.test(value)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: "Please enter a valid email address",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: "",
+        }));
+      }
+    } else if (name === "nic") {
+      if (!/^\d{9}[vVxX]?$/.test(value)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          nic: "Please enter a valid NIC",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          nic: "",
+        }));
+      }
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -106,11 +160,19 @@ export const Register = () => {
           drivingLicenceDetails: initialDrivingLicenceDetails,
         };
 
-        await dispatch(register(userData)).then((res) => {
-          if (res.meta.requestStatus === RequestStatus.Fulfiled) {
-            navigate(LOGIN);
-          }
-        });
+        const errorMessages = Object.values(errors).filter(
+          (error) => error !== ""
+        );
+
+        if (errorMessages.length > 0) {
+          toast.error(errorMessages.join("\n"));
+        } else {
+          await dispatch(register(userData)).then((res) => {
+            if (res.meta.requestStatus === RequestStatus.Fulfiled) {
+              navigate(LOGIN);
+            }
+          });
+        }
       } catch (error: any) {
         toast.error(error?.data?.message || error.error);
       }
@@ -185,7 +247,7 @@ export const Register = () => {
               sx={{ p: 4 }}
             >
               <Box sx={{ display: "flex", mb: 4 }}>
-                <img src={logo} width={150}  alt="logo" />
+                <img src={logo} width={150} alt="logo" />
                 <Box
                   sx={{
                     display: "flex",
@@ -213,7 +275,7 @@ export const Register = () => {
                 </Box>
               </Box>
               <Grid mt={5} container spacing={2}>
-                <Grid item xs={12} sx={{marginBottom:'10px'}}>
+                <Grid item xs={12} sx={{ marginBottom: "10px" }}>
                   <TextField
                     required
                     fullWidth
@@ -226,7 +288,7 @@ export const Register = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}  sx={{marginBottom:'10px'}}>
+                <Grid item xs={12} sx={{ marginBottom: "10px" }}>
                   <TextField
                     required
                     fullWidth
@@ -239,7 +301,7 @@ export const Register = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}  sx={{marginBottom:'10px'}}>
+                <Grid item xs={12} sx={{ marginBottom: "10px" }}>
                   <TextField
                     required
                     fullWidth
@@ -252,7 +314,7 @@ export const Register = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}  sx={{marginBottom:'10px'}}>
+                <Grid item xs={12} sx={{ marginBottom: "10px" }}>
                   <TextField
                     required
                     fullWidth

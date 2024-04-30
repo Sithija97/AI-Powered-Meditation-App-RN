@@ -13,13 +13,14 @@ import {
 } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { RootState, useAppSelector } from "../../store/store";
-import PropTypes from 'prop-types';
-import ImageIcon from '@mui/icons-material/Image';
+import PropTypes from "prop-types";
+import ImageIcon from "@mui/icons-material/Image";
 import CustomDialog from "../../components/common/customDialog";
 
-export const ViewVehicle = ({ onClose }:any) => {
-  const [showLogin, setShowLogin] = useState(false);
-  const [title, setTitle] = useState('');
+export const ViewVehicle = ({ onClose }: any) => {
+  const [showImage, setShowImage] = useState(false);
+  const [title, setTitle] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
   const { selectedVehicle } = useAppSelector(
     (state: RootState) => state.vehicles
   );
@@ -66,61 +67,88 @@ export const ViewVehicle = ({ onClose }:any) => {
       <Divider sx={{ mb: 3, mt: 2 }} />
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Grid item xs={12}>
-        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
-        <Typography variant="h3">Revenue Licence Details</Typography>
-          <Box sx={{ display: "flex" }} ml={2}>
-                <Tooltip title="View">
-                  <Avatar
-                    sx={{
-                      color: "#00c853",
-                      background: "#b9f6ca61",
-                      margin: "0 15px 0 0",
+        <Grid item xs={12}>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3">Revenue Licence Details</Typography>
+            <Box sx={{ display: "flex" }} ml={2}>
+              <Tooltip title="View">
+                <Avatar
+                  sx={{
+                    color: "#00c853",
+                    background: "#b9f6ca61",
+                    margin: "0 15px 0 0",
+                  }}
+                >
+                  <ImageIcon
+                    onClick={() => {
+                      setShowImage(true);
+                      setTitle("Revenue Licence");
+                      setImgUrl(
+                        selectedVehicle?.revenueLicenceDetails.licenceImgUrl!
+                      );
                     }}
-                  >
-                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Revenue Licence')}}/>
-                  </Avatar>
-                </Tooltip>
-
-              </Box>
-        </Box>
-          
+                  />
+                </Avatar>
+              </Tooltip>
+            </Box>
+          </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Amount</Typography>
-          <Typography>{selectedVehicle?.revenueLicenceDetails?.amount}</Typography>
+          <Typography>
+            {selectedVehicle?.revenueLicenceDetails?.amount}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Effective Date</Typography>
-          <Typography>{selectedVehicle?.revenueLicenceDetails?.effectiveDate}</Typography>
+          <Typography>
+            {selectedVehicle?.revenueLicenceDetails?.effectiveDate}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Renewal Date</Typography>
-          <Typography>{selectedVehicle?.revenueLicenceDetails?.renewalDate}</Typography>
+          <Typography>
+            {selectedVehicle?.revenueLicenceDetails?.renewalDate}
+          </Typography>
         </Grid>
       </Grid>
 
       <Divider sx={{ mb: 3, mt: 2 }} />
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Grid item xs={12}>
-      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
-        <Typography variant="h3">Insurance Details</Typography>
-          <Box sx={{ display: "flex" }} ml={2}>
-                <Tooltip title="View">
-                  <Avatar
-                    sx={{
-                      color: "#00c853",
-                      background: "#b9f6ca61",
-                      margin: "0 15px 0 0",
+        <Grid item xs={12}>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3">Insurance Details</Typography>
+            <Box sx={{ display: "flex" }} ml={2}>
+              <Tooltip title="View">
+                <Avatar
+                  sx={{
+                    color: "#00c853",
+                    background: "#b9f6ca61",
+                    margin: "0 15px 0 0",
+                  }}
+                >
+                  <ImageIcon
+                    onClick={() => {
+                      setShowImage(true);
+                      setTitle("Insurance");
+                      setImgUrl(
+                        selectedVehicle?.insuaranceDetails.insuranceImgUrl!
+                      );
                     }}
-                  >
-                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Insurance')}}/>
-                  </Avatar>
-                </Tooltip>
-
-              </Box>
-        </Box>
+                  />
+                </Avatar>
+              </Tooltip>
+            </Box>
+          </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Company</Typography>
@@ -132,35 +160,50 @@ export const ViewVehicle = ({ onClose }:any) => {
         </Grid>
         <Grid item xs={6}>
           <Typography>Effective Date</Typography>
-          <Typography>{selectedVehicle?.insuaranceDetails?.effectiveDate}</Typography>
+          <Typography>
+            {selectedVehicle?.insuaranceDetails?.effectiveDate}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Renewal Date</Typography>
-          <Typography>{selectedVehicle?.insuaranceDetails?.renewalDate}</Typography>
+          <Typography>
+            {selectedVehicle?.insuaranceDetails?.renewalDate}
+          </Typography>
         </Grid>
       </Grid>
 
       <Divider sx={{ mb: 3, mt: 2 }} />
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Grid item xs={12}>
-      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
-        <Typography variant="h3">Smoke Test Details</Typography>
-          <Box sx={{ display: "flex" }} ml={2}>
-                <Tooltip title="View">
-                  <Avatar
-                    sx={{
-                      color: "#00c853",
-                      background: "#b9f6ca61",
-                      margin: "0 15px 0 0",
+        <Grid item xs={12}>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3">Smoke Test Details</Typography>
+            <Box sx={{ display: "flex" }} ml={2}>
+              <Tooltip title="View">
+                <Avatar
+                  sx={{
+                    color: "#00c853",
+                    background: "#b9f6ca61",
+                    margin: "0 15px 0 0",
+                  }}
+                >
+                  <ImageIcon
+                    onClick={() => {
+                      setShowImage(true);
+                      setTitle("Smoke Test Image");
+                      setImgUrl(
+                        selectedVehicle?.smokeTestDetails.smokeTestImgUrl!
+                      );
                     }}
-                  >
-                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Smoke Test Image')}}/>
-                  </Avatar>
-                </Tooltip>
-
-              </Box>
-        </Box>
+                  />
+                </Avatar>
+              </Tooltip>
+            </Box>
+          </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Amount</Typography>
@@ -168,35 +211,50 @@ export const ViewVehicle = ({ onClose }:any) => {
         </Grid>
         <Grid item xs={6}>
           <Typography>Effective Date</Typography>
-          <Typography>{selectedVehicle?.smokeTestDetails?.effectiveDate}</Typography>
+          <Typography>
+            {selectedVehicle?.smokeTestDetails?.effectiveDate}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Renewal Date</Typography>
-          <Typography>{selectedVehicle?.smokeTestDetails?.renewalDate}</Typography>
+          <Typography>
+            {selectedVehicle?.smokeTestDetails?.renewalDate}
+          </Typography>
         </Grid>
       </Grid>
 
       <Divider sx={{ mb: 3, mt: 2 }} />
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Grid item xs={12}>
-      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
-        <Typography variant="h3">Port Permit Details</Typography>
-          <Box sx={{ display: "flex" }} ml={2}>
-                <Tooltip title="View">
-                  <Avatar
-                    sx={{
-                      color: "#00c853",
-                      background: "#b9f6ca61",
-                      margin: "0 15px 0 0",
+        <Grid item xs={12}>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3">Port Permit Details</Typography>
+            <Box sx={{ display: "flex" }} ml={2}>
+              <Tooltip title="View">
+                <Avatar
+                  sx={{
+                    color: "#00c853",
+                    background: "#b9f6ca61",
+                    margin: "0 15px 0 0",
+                  }}
+                >
+                  <ImageIcon
+                    onClick={() => {
+                      setShowImage(true);
+                      setTitle("Port Permit Image");
+                      setImgUrl(
+                        selectedVehicle?.portPermitDetails.portPermitImgUrl!
+                      );
                     }}
-                  >
-                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Port Permit Image')}}/>
-                  </Avatar>
-                </Tooltip>
-
-              </Box>
-        </Box>
+                  />
+                </Avatar>
+              </Tooltip>
+            </Box>
+          </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Amount</Typography>
@@ -204,35 +262,48 @@ export const ViewVehicle = ({ onClose }:any) => {
         </Grid>
         <Grid item xs={6}>
           <Typography>Effective Date</Typography>
-          <Typography>{selectedVehicle?.portPermitDetails?.effectiveDate}</Typography>
+          <Typography>
+            {selectedVehicle?.portPermitDetails?.effectiveDate}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Renewal Date</Typography>
-          <Typography>{selectedVehicle?.portPermitDetails?.renewalDate}</Typography>
+          <Typography>
+            {selectedVehicle?.portPermitDetails?.renewalDate}
+          </Typography>
         </Grid>
       </Grid>
 
       <Divider sx={{ mb: 3, mt: 2 }} />
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Grid item xs={12}>
-      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
-        <Typography variant="h3">Leasing Details</Typography>
-          <Box sx={{ display: "flex" }} ml={2}>
-                <Tooltip title="View">
-                  <Avatar
-                    sx={{
-                      color: "#00c853",
-                      background: "#b9f6ca61",
-                      margin: "0 15px 0 0",
+        <Grid item xs={12}>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3">Leasing Details</Typography>
+            <Box sx={{ display: "flex" }} ml={2}>
+              <Tooltip title="View">
+                <Avatar
+                  sx={{
+                    color: "#00c853",
+                    background: "#b9f6ca61",
+                    margin: "0 15px 0 0",
+                  }}
+                >
+                  <ImageIcon
+                    onClick={() => {
+                      setShowImage(true);
+                      setTitle("Leasing Image");
+                      setImgUrl(selectedVehicle?.leasingDetails.leasingImgUrl!);
                     }}
-                  >
-                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Leasing Image')}}/>
-                  </Avatar>
-                </Tooltip>
-
-              </Box>
-        </Box>
+                  />
+                </Avatar>
+              </Tooltip>
+            </Box>
+          </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Company</Typography>
@@ -244,32 +315,40 @@ export const ViewVehicle = ({ onClose }:any) => {
         </Grid>
         <Grid item xs={6}>
           <Typography>Effective Date</Typography>
-          <Typography>{selectedVehicle?.leasingDetails?.effectiveDate}</Typography>
+          <Typography>
+            {selectedVehicle?.leasingDetails?.effectiveDate}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Renewal Date</Typography>
-          <Typography>{selectedVehicle?.leasingDetails?.renewalDate}</Typography>
+          <Typography>
+            {selectedVehicle?.leasingDetails?.renewalDate}
+          </Typography>
         </Grid>
       </Grid>
-        <Box mt={3}>
-          <Button
+      <Box mt={3}>
+        <Button
           onClick={onClose}
-            size="large"
-            type="submit"
-            variant="contained"
-            color="secondary"
-          >
-            Close
-          </Button>
-        </Box>
-        <CustomDialog title={title}  show={showLogin} close={() => setShowLogin(false)}/>
+          size="large"
+          type="submit"
+          variant="contained"
+          color="secondary"
+        >
+          Close
+        </Button>
+      </Box>
+      <CustomDialog
+        title={title}
+        imgUrl={imgUrl}
+        show={showImage}
+        close={() => setShowImage(false)}
+      />
     </Box>
-   
   );
 };
 
 export default ViewVehicle;
 
 ViewVehicle.propTypes = {
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
 };
