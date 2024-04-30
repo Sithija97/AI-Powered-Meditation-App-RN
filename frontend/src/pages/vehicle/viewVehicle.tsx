@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dashboard } from "../../layouts";
 import {
+  Avatar,
   Box,
   Button,
   Divider,
   Grid,
   IconButton,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { RootState, useAppSelector } from "../../store/store";
 import PropTypes from 'prop-types';
+import ImageIcon from '@mui/icons-material/Image';
+import CustomDialog from "../../components/common/customDialog";
 
 export const ViewVehicle = ({ onClose }:any) => {
+  const [showLogin, setShowLogin] = useState(false);
+  const [title, setTitle] = useState('');
   const { selectedVehicle } = useAppSelector(
     (state: RootState) => state.vehicles
   );
@@ -61,7 +67,24 @@ export const ViewVehicle = ({ onClose }:any) => {
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={12}>
-          <Typography variant="h3">Revenue Licence Details</Typography>
+        <Box display={'flex'} alignItems={'center'}> 
+        <Typography variant="h3">Revenue Licence Details</Typography>
+          <Box sx={{ display: "flex" }} ml={2}>
+                <Tooltip title="View">
+                  <Avatar
+                    sx={{
+                      color: "#00c853",
+                      background: "#b9f6ca61",
+                      margin: "0 15px 0 0",
+                    }}
+                  >
+                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Revenue Licence')}}/>
+                  </Avatar>
+                </Tooltip>
+
+              </Box>
+        </Box>
+          
         </Grid>
         <Grid item xs={6}>
           <Typography>Amount</Typography>
@@ -175,7 +198,9 @@ export const ViewVehicle = ({ onClose }:any) => {
             Close
           </Button>
         </Box>
+        <CustomDialog title={title}  show={showLogin} close={() => setShowLogin(false)}/>
     </Box>
+   
   );
 };
 

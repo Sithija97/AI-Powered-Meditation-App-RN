@@ -119,7 +119,7 @@ export const Hire = () => {
       },
       {
         accessorKey: "distance",
-        header: "Distacne",
+        header: "Distance",
         size: 150,
       },
       {
