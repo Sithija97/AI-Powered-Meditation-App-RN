@@ -14,9 +14,9 @@ import { logout } from "../store/auth/authSlice";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import { Avatar, ListItemIcon, ListItemText, useTheme } from "@mui/material";
-import LogoutIcon from '@mui/icons-material/Logout';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import NotificationsActiveOutlinedIcon from "@mui/icons-material/NotificationsActiveOutlined";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -69,8 +69,7 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
   };
 
   return (
-    <AppBar position="absolute" open={open}
-    sx={{zIndex:1200}}>
+    <AppBar position="absolute" open={open} sx={{ zIndex: 1200 }}>
       <Toolbar
         sx={{
           pr: "40px", // keep right padding when drawer closed
@@ -94,9 +93,7 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
           color="inherit"
           noWrap
           sx={{ flexGrow: 1 }}
-        >
-         
-        </Typography>
+        ></Typography>
         {/* <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
             <NotificationsIcon />
@@ -104,21 +101,20 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
         </IconButton> */}
         {userInfo && (
           <div>
-            
             <Avatar
-            id="profile_btn"
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-            sx={{
-              marginRight: '20px',
-              cursor: 'pointer',
-              width: 42, 
-              height: 42
-            }}
-            aria-controls={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            color="inherit"
-            onClick={handleMenu}
-          />
+              id="profile_btn"
+              src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+              sx={{
+                marginRight: "20px",
+                cursor: "pointer",
+                width: 42,
+                height: 42,
+              }}
+              aria-controls={open ? "menu-list-grow" : undefined}
+              aria-haspopup="true"
+              color="inherit"
+              onClick={handleMenu}
+            />
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
@@ -150,30 +146,31 @@ export const Appbar = ({ open, toggleDrawer }: IProps) => {
             </Menu>
           </div>
         )}
-         <Avatar
-        id="notification_btn"
-        sx={{
-          color: '#1E88E5',
-          backgroundColor: theme.palette.background.paper,
-          border:`1px solid #ddd`,
-          margin: '0 20px 0 0',
-          cursor:'pointer'
-        }}
-      >
-       <NotificationsActiveOutlinedIcon/>
-      </Avatar>
-         <Avatar
-        id="logout_btn"
-        sx={{
-          color: '#1E88E5',
-          backgroundColor: theme.palette.background.paper,
-          border:`1px solid #ddd`,
-          margin: '0 8px 0 0',
-          cursor:'pointer'
-        }}
-      >
-       <LogoutIcon/>
-      </Avatar>
+        <Avatar
+          id="notification_btn"
+          sx={{
+            color: "#1E88E5",
+            backgroundColor: theme.palette.background.paper,
+            border: `1px solid #ddd`,
+            margin: "0 20px 0 0",
+            cursor: "pointer",
+          }}
+        >
+          <NotificationsActiveOutlinedIcon />
+        </Avatar>
+        <Avatar
+          id="logout_btn"
+          sx={{
+            color: "#1E88E5",
+            backgroundColor: theme.palette.background.paper,
+            border: `1px solid #ddd`,
+            margin: "0 8px 0 0",
+            cursor: "pointer",
+          }}
+          onClick={handleLogout}
+        >
+          <LogoutIcon />
+        </Avatar>
       </Toolbar>
     </AppBar>
   );
