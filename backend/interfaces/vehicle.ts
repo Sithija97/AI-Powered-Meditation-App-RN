@@ -6,6 +6,7 @@ export interface IVehicle extends Document {
   type: string;
   fuelType: string;
   chassieNumber: string;
+  vehicleNo: string;
   revenueLicenceDetails: {
     amount: number;
     effectiveDate: string;

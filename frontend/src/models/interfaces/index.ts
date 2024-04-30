@@ -79,6 +79,7 @@ export interface IVehicle {
   type: string;
   fuelType: string;
   chassieNumber: string;
+  vehicleNo: string;
   revenueLicenceDetails: RevenueLicenceDetails;
   insuaranceDetails: InsuaranceDetails;
   smokeTestDetails: SmokeTestDetails;
@@ -138,6 +139,7 @@ export interface VehicleData {
   ownership: string;
   fuelType: string;
   chassieNumber: string;
+  vehicleNo: string;
 }
 
 export interface IInitialVehicleState {

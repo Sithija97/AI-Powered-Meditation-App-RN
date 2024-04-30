@@ -49,6 +49,10 @@ export const ViewVehicle = ({ onClose }:any) => {
           <Typography>{selectedVehicle?.fuelType}</Typography>
         </Grid>
         <Grid item xs={6}>
+          <Typography>Vehicle No</Typography>
+          <Typography>{selectedVehicle?.vehicleNo}</Typography>
+        </Grid>
+        <Grid item xs={6}>
           <Typography>Chassie No</Typography>
           <Typography>{selectedVehicle?.chassieNumber}</Typography>
         </Grid>
@@ -65,11 +69,11 @@ export const ViewVehicle = ({ onClose }:any) => {
         </Grid>
         <Grid item xs={6}>
           <Typography>Effective Date</Typography>
-          <Typography>{selectedVehicle?.evenueLicenceDetails?.effectiveDate}</Typography>
+          <Typography>{selectedVehicle?.revenueLicenceDetails?.effectiveDate}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Renewal Date</Typography>
-          <Typography>{selectedVehicle?.evenueLicenceDetails?.renewalDate}</Typography>
+          <Typography>{selectedVehicle?.revenueLicenceDetails?.renewalDate}</Typography>
         </Grid>
       </Grid>
 

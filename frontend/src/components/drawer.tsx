@@ -11,6 +11,7 @@ import { Avatar, Box, Typography, useTheme } from "@mui/material";
 import sidebarimg from '../assets/images/asset.png';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import logo from '../assets/images/logonew.png'
+import { RootState, useAppSelector } from "../store/store";
 const drawerWidth: number = 301;
 
 const Drawer = styled(MuiDrawer, {
@@ -55,6 +56,7 @@ interface IProps {
 
 export const Sidebar = ({ open, toggleDrawer }: IProps) => {
   const theme = useTheme();
+  const { userInfo } = useAppSelector((state: RootState) => state.auth);
   return (
     <Drawer variant="permanent" open={open}>
       <Toolbar
@@ -91,7 +93,7 @@ export const Sidebar = ({ open, toggleDrawer }: IProps) => {
           sx={{ width: 90, height: 90, boxShadow: theme.shadows[3], border: `6px solid ${theme.palette.background.paper}` }}/>
       </Box>
        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: theme.spacing(2) }}>
-       <Typography variant='h4' align="center" sx={{}}  >Hi, Paul Van </Typography>
+       <Typography variant='h4' align="center" sx={{ fontSize:'15px'}}  >{`${userInfo?.name}`} </Typography>
      </Box>
       </>
        

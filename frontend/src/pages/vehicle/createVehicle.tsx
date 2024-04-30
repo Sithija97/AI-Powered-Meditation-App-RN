@@ -213,6 +213,20 @@ export const CreateVehicles = ({ onClose }:any) => {
         </Grid>
       </Grid>
 
+      <Grid sx={{ mt: 1 }} container rowSpacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="vehicleNo"
+            name="vehicleNo"
+            label="Vehicle Number"
+            value={baseData.vehicleNo}
+            onChange={handleBaseChange}
+            fullWidth
+          />
+        </Grid>
+      </Grid>
+
       <Divider sx={{ mt: 2, mb: 2 }} />
       <Typography variant="h3" gutterBottom>
         Revenue Licence Details

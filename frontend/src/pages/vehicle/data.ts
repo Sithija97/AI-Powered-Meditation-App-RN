@@ -5,6 +5,7 @@ export const InitialBaseState = {
   ownership: "",
   fuelType: "",
   chassieNumber: "",
+  vehicleNo: ""
 };
 
 export const initialRevenueLicenceState = {

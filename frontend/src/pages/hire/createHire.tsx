@@ -104,7 +104,7 @@ const CreateHire = ({ onClose }:any) => {
                 <MenuItem
                   key={vehicle._id}
                   value={vehicle._id}
-                >{`${vehicle.type} - ${vehicle.chassieNumber}`}</MenuItem>
+                >{`${vehicle.type} - ${vehicle.vehicleNo}`}</MenuItem>
               ))}
             </Select>
           </FormControl>

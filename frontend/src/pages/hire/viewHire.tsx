@@ -50,7 +50,7 @@ export const ViewHire = ({onClose }:any) => {
         </Grid>
         <Grid item xs={6}>
           <Typography>Vehicle</Typography>
-          <Typography>{selectedHire?.vehicle?.type}</Typography>
+          <Typography>{selectedHire?.vehicle?.type} - {selectedHire?.vehicle?.vehicleNo}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography>Driver</Typography>

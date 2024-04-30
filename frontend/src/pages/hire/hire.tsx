@@ -100,16 +100,26 @@ export const Hire = () => {
       {
         accessorKey: "hireType", //access nested data with dot notation
         header: "Hire Type",
-        size: 150,
+        size: 100,
       },
       {
         accessorKey: "vehicle.type", //normal accessorKey
-        header: "Vehicle",
-        size: 200,
+        header: "Vehicle Type",
+        size: 100,
+      },
+      {
+        accessorKey: "vehicle.vehicleNo", //normal accessorKey
+        header: "Vehicle No",
+        size: 100,
       },
       {
         accessorKey: "driver.name",
         header: "Driver",
+        size: 150,
+      },
+      {
+        accessorKey: "distance",
+        header: "Distacne",
         size: 150,
       },
       {

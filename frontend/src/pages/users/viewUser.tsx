@@ -48,6 +48,10 @@ export const ViewUsers = ({ onClose }:any) => {
           <Typography>{selectedUser?.gender}</Typography>
         </Grid>
         <Grid item xs={6}>
+          <Typography>Mobile</Typography>
+          <Typography>{selectedUser?.mobileNumber}</Typography>
+        </Grid>
+        <Grid item xs={6}>
           <Typography>Address</Typography>
           <Typography>{selectedUser?.address}</Typography>
         </Grid>
@@ -59,6 +63,10 @@ export const ViewUsers = ({ onClose }:any) => {
           <Typography>Date Of Birth</Typography>
           <Typography>{selectedUser?.dob}</Typography>
         </Grid>
+        </Grid>
+
+        <Divider sx={{ mb: 3, mt: 2 }} />
+        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
           <Typography variant="h3">Licence Details</Typography>
         </Grid>
@@ -74,7 +82,10 @@ export const ViewUsers = ({ onClose }:any) => {
           <Typography>End Date</Typography>
           <Typography>{selectedUser?.nicDetails?.endDate}</Typography>
         </Grid>
-
+        </Grid>
+       
+        <Divider sx={{ mb: 3, mt: 2 }} />
+        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
           <Typography variant="h3">Police Report Details</Typography>
         </Grid>
@@ -98,6 +109,9 @@ export const ViewUsers = ({ onClose }:any) => {
             {selectedUser?.policeReportsDetails?.endDate}
           </Typography>
         </Grid>
+        </Grid>
+        <Divider sx={{ mb: 3, mt: 2 }} />
+        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12}>
           <Typography variant="h3">Driving Licence Details</Typography>
         </Grid>
@@ -118,7 +132,8 @@ export const ViewUsers = ({ onClose }:any) => {
           {selectedUser?.drivingLicenceDetails?.endDate}
           <Typography></Typography>
         </Grid>
-      </Grid>
+        </Grid>
+    
       <Divider sx={{ mb: 3, mt: 2 }} />
       <Stack>
         <Box>

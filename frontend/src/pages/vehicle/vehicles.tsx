@@ -67,7 +67,12 @@ export const Vehicles = () => {
       {
         accessorKey: "type", //normal accessorKey
         header: "Type",
-        size: 200,
+        size: 100,
+      },
+      {
+        accessorKey: "vehicleNo",
+        header: "Vehicle No",
+        size: 150,
       },
       {
         accessorKey: "ownership",
