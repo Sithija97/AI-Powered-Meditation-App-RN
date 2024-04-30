@@ -67,7 +67,7 @@ export const ViewVehicle = ({ onClose }:any) => {
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={12}>
-        <Box display={'flex'} alignItems={'center'}> 
+        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
         <Typography variant="h3">Revenue Licence Details</Typography>
           <Box sx={{ display: "flex" }} ml={2}>
                 <Tooltip title="View">
@@ -104,7 +104,23 @@ export const ViewVehicle = ({ onClose }:any) => {
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={12}>
-          <Typography variant="h3">Insurance Details</Typography>
+      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
+        <Typography variant="h3">Insurance Details</Typography>
+          <Box sx={{ display: "flex" }} ml={2}>
+                <Tooltip title="View">
+                  <Avatar
+                    sx={{
+                      color: "#00c853",
+                      background: "#b9f6ca61",
+                      margin: "0 15px 0 0",
+                    }}
+                  >
+                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Insurance')}}/>
+                  </Avatar>
+                </Tooltip>
+
+              </Box>
+        </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Company</Typography>
@@ -128,7 +144,23 @@ export const ViewVehicle = ({ onClose }:any) => {
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={12}>
-          <Typography variant="h3">Smoke Test Details</Typography>
+      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
+        <Typography variant="h3">Smoke Test Details</Typography>
+          <Box sx={{ display: "flex" }} ml={2}>
+                <Tooltip title="View">
+                  <Avatar
+                    sx={{
+                      color: "#00c853",
+                      background: "#b9f6ca61",
+                      margin: "0 15px 0 0",
+                    }}
+                  >
+                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Smoke Test Image')}}/>
+                  </Avatar>
+                </Tooltip>
+
+              </Box>
+        </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Amount</Typography>
@@ -148,7 +180,23 @@ export const ViewVehicle = ({ onClose }:any) => {
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={12}>
-          <Typography variant="h3">Port Permit Details</Typography>
+      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
+        <Typography variant="h3">Port Permit Details</Typography>
+          <Box sx={{ display: "flex" }} ml={2}>
+                <Tooltip title="View">
+                  <Avatar
+                    sx={{
+                      color: "#00c853",
+                      background: "#b9f6ca61",
+                      margin: "0 15px 0 0",
+                    }}
+                  >
+                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Port Permit Image')}}/>
+                  </Avatar>
+                </Tooltip>
+
+              </Box>
+        </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Amount</Typography>
@@ -168,7 +216,23 @@ export const ViewVehicle = ({ onClose }:any) => {
 
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={12}>
-          <Typography variant="h3">Leasing Details</Typography>
+      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'}> 
+        <Typography variant="h3">Leasing Details</Typography>
+          <Box sx={{ display: "flex" }} ml={2}>
+                <Tooltip title="View">
+                  <Avatar
+                    sx={{
+                      color: "#00c853",
+                      background: "#b9f6ca61",
+                      margin: "0 15px 0 0",
+                    }}
+                  >
+                    <ImageIcon onClick={() => {setShowLogin(true);setTitle('Leasing Image')}}/>
+                  </Avatar>
+                </Tooltip>
+
+              </Box>
+        </Box>
         </Grid>
         <Grid item xs={6}>
           <Typography>Company</Typography>
