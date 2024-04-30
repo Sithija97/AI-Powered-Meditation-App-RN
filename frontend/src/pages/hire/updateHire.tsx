@@ -83,7 +83,7 @@ const UpdateHire = ({onClose }:any) => {
           flexWrap: "wrap",
         }}
       >
-        <Typography variant="h3">Create Hire</Typography>
+        <Typography variant="h3">Update Hire</Typography>
         <IconButton aria-label="delete" onClick={onClose}>
           <CloseOutlinedIcon />
         </IconButton>
