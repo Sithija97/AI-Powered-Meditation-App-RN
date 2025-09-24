@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "ai-Agent-React-Native",
-    "slug": "ai-Agent-React-Native",
+    "name": "AI-Powered-Meditation-App-RN",
+    "slug": "AI-Powered-Meditation-App-RN",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "aiagentreactnative",
+    "scheme": "aipoweredmeditationapprn",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
