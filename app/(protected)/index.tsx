@@ -8,7 +8,7 @@ export default function Index() {
 
   const handleSignOut = async () => {
     await signOut();
-    router.push("/(public)");
+    router.replace("/(public)");
   };
 
   return (

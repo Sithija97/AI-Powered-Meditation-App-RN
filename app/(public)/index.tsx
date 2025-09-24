@@ -36,6 +36,7 @@ export default function Index() {
 
   const onPress = useCallback(async () => {
     try {
+      setIsLoading(true);
       // Start the authentication process by calling `startSSOFlow()`
       const { createdSessionId, setActive, signIn, signUp } =
         await startSSOFlow({
@@ -47,22 +48,9 @@ export default function Index() {
         });
 
       // If sign in was successful, set the active session
-      if (createdSessionId && setActive) {
-        await setActive({ session: createdSessionId });
-        router.push("/(protected)");
-        setActive!({
-          session: createdSessionId,
-          navigate: async ({ session }) => {
-            if (session?.currentTask) {
-              // Check for tasks and navigate to custom UI to help users resolve them
-              // See https://clerk.com/docs/custom-flows/overview#session-tasks
-              console.log(session?.currentTask);
-              return;
-            }
-
-            router.push("/(protected)");
-          },
-        });
+      if (createdSessionId) {
+        await setActive!({ session: createdSessionId });
+        router.replace("/(protected)");
       } else {
         // If there is no `createdSessionId`,
         // there are missing requirements, such as MFA
@@ -73,6 +61,8 @@ export default function Index() {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
