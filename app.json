@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "AI-Powered-Meditation-App-RN",
-    "slug": "AI-Powered-Meditation-App-RN",
+    "name": "AI-Powered-Agent-App-RN",
+    "slug": "AI-Powered-Agent-App-RN",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "aipoweredmeditationapprn",
+    "scheme": "aipoweredagentapprn",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
