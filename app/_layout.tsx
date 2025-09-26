@@ -15,19 +15,19 @@ function RootLayoutWithAuth() {
   }
 
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Protected guard={isSignedIn}>
-        <Stack.Screen name="(protected)" />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="chat" />
       </Stack.Protected>
       <Stack.Protected guard={!isSignedIn}>
-        <Stack.Screen name="(public)" options={{ headerShown: false }} />
+        <Stack.Screen name="(public)" />
       </Stack.Protected>
     </Stack>
   );
 }
 
 export default function RootLayout() {
-  console.log(`key : ${process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY}`);
   return (
     <ClerkProvider
       tokenCache={tokenCache}

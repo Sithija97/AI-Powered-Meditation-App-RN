@@ -1,8 +1,10 @@
+import { db } from "@/config/firebase";
 import { useSSO } from "@clerk/clerk-expo";
 import Feather from "@expo/vector-icons/Feather";
 import * as AuthSession from "expo-auth-session";
 import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
+import { doc, setDoc } from "firebase/firestore";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -47,10 +49,19 @@ export default function Index() {
           redirectUrl: AuthSession.makeRedirectUri(),
         });
 
+      if (signUp && signUp.emailAddress) {
+        await setDoc(doc(db, "users", signUp.emailAddress ?? ""), {
+          email: signUp.emailAddress,
+          name: signUp.firstName + " " + signUp.lastName,
+          joinDate: Date.now(),
+          credits: 20,
+        });
+      }
+
       // If sign in was successful, set the active session
       if (createdSessionId) {
         await setActive!({ session: createdSessionId });
-        router.replace("/(protected)");
+        router.replace("/(tabs)/home");
       } else {
         // If there is no `createdSessionId`,
         // there are missing requirements, such as MFA
@@ -96,7 +107,7 @@ export default function Index() {
 
       {isLoading && (
         <View style={styles.loadingOverlay}>
-          <ActivityIndicator size="large" color="#1DA1F2" />
+          <ActivityIndicator size="large" color="#4285F4" />
           <Text style={styles.overlayText}>Authenticating with Google...</Text>
         </View>
       )}
@@ -168,8 +179,8 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 16,
-    color: "#1DA1F2",
-    fontWeight: "500",
+    color: "#4285F4",
+    fontWeight: "800",
   },
   loadingOverlay: {
     position: "absolute",
@@ -184,7 +195,7 @@ const styles = StyleSheet.create({
   },
   overlayText: {
     fontSize: 16,
-    color: "#1DA1F2",
+    color: "#4285F4",
     fontWeight: "500",
   },
 });
